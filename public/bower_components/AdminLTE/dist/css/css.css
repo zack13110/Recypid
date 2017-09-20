@@ -5,6 +5,8 @@
             background-repeat: no-repeat!important;
             background-attachment: fixed;
             overflow: hidden;
+            background-size:  cover;
+            background-position: center center;
             }
             .login-box-body{
             padding: 20px;
@@ -69,3 +71,15 @@
                 background: none;
                 }
             }
+.first-bg{
+    background: none;
+    background-image: url("../images/bg_earth.png") ;
+    background-repeat: no-repeat!important;
+    background-attachment: fixed;
+    background-position: center center;
+    background-color: #364836;
+    background-size:  75%;
+}
+.margin-1per{
+    margin-top:1%; 
+}
