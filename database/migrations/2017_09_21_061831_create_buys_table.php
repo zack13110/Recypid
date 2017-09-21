@@ -15,7 +15,7 @@ class CreateBuysTable extends Migration
     {
         Schema::create('buys', function (Blueprint $table) {
             $table->increments('id');
-            $table->int('id_user')
+            $table->integer('id_user')
                 ->reference('id')->on('User')->onDelete('cascade');
             $table->integer('type');
             $table->integer('sub_type');
@@ -25,7 +25,7 @@ class CreateBuysTable extends Migration
             $table->double('price');
             //$table->string('location');
             $table->string('name');
-            $table->long('desc');
+            $table->string('desc');
             $table->timestamps();
         });
     }
