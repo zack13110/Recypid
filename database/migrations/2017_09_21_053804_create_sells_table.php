@@ -14,14 +14,15 @@ class CreateSellsTable extends Migration
     public function up()
     {
         Schema::create('sells', function (Blueprint $table) {
-            //$table->increments('id');
-            $table->string('type');
-            $table->string('sub_type');
-            $table->string('gender')
-            ->reference('gender')->on("User");
-            $table->string('time');
-            $table->string('volume');
-            $table->string('price');
+            $table->increments('id');
+            $table->int('id_user')
+                ->reference('id')->on('User')->onDelete('cascade');
+            $table->integer('type');
+            $table->integer('sub_type');
+            $table->integer('gender');
+            $table->integer('time');
+            $table->integer('volume');
+            $table->double('price');
             //$table->string('location');
             $table->string('name');
             $table->long('desc');
