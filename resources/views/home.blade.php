@@ -89,10 +89,97 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Success Modal</h4>
+                <h4 class="modal-title">BUY</h4>
               </div>
               <div class="modal-body">
-                <p>One fine body&hellip;</p>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Name</div>
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control">
+                </div>
+              </div>
+              <!--rowend-->
+              
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Category</div>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-control">
+                    <option value="volvo"></option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                </div>
+              </div>
+              <!--endrow-->
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Sub-category</div>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-control">
+                    <option value="volvo">Volvo</option>
+                    <option value="saab">Saab</option>
+                    <option value="mercedes">Mercedes</option>
+                    <option value="audi">Audi</option>
+                  </select>
+                </div>
+              </div>
+              <!--endrow-->
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Description</div>
+                </div>
+                <div class="col-md-6">
+                  <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea> 
+                </div>
+              </div>
+              <!--rowend-->
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Volume</div>
+                </div>
+                <div class="col-md-6">
+                  <input class="form-control"> 
+                </div>
+              </div>
+              <!--rowend-->
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Gender</div>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-control">
+                    <option value="volvo">Male</option>
+                    <option value="saab">Female</option>
+                  </select>
+                </div>
+              </div>
+              <!--endrow-->
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="font-modal">Time</div>
+                </div>
+                <div class="col-md-6">
+                  <select class="form-control">
+                  <option value="mercedes">00.00-03.00</option>
+                    <option value="audi">03.00-06.00</option>
+                    <option value="volvo">06.00-09.00</option>
+                    <option value="saab">09.00-12.00</option>
+                    <option value="mercedes">12.00-15.00</option>
+                    <option value="audi">15.00-18.00</option>
+                    <option value="volvo">18.00-21.00</option>
+                    <option value="saab">21.00-24.00</option>
+                    
+                  </select>
+                </div>
+              </div>
+              <!--endrow-->
+              <!-- modal-body end -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
