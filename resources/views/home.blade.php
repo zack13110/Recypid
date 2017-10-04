@@ -69,18 +69,107 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Danger Modal</h4>
-              </div>
-              <div class="modal-body">
-                <p>One fine body&hellip;</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline">Save changes</button>
+                <h4 class="modal-title">ตั้งขาย</h4>
+                </div>
+                <div class="modal-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">ชื่อ</div>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control">
+                  </div>
+                </div>
+                <!--rowend-->
+                
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">หมวด</div>
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control">
+                      <option value="1">เศษเหล็ก</option>
+                      <option value="2">เศษกระดาษ</option>
+                      <option value="3">ขวดแก้ว</option>
+                      <option value="4">พลาสติก</option>
+                      <option value="5">โลหะ</option>
+                      <option value="6">เครื่องใช้สำนักงาน</option>
+                      <option value="7">อื่นๆ</option>
+                    </select>
+                  </div>
+                </div>
+                <!--endrow-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">ประเภท</div>
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control">
+                    <option value="1">ลวด</option>
+                    <option value="2">กระป๋อง</option>
+                    <option value="3">สังกะสี</option>
+                    </select>
+                  </div>
+                </div>
+                <!--endrow-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">คำอธิบาย</div>
+                  </div>
+                  <div class="col-md-6">
+                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea> 
+                  </div>
+                </div>
+                <!--rowend-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">จำนวน</div>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control"> 
+                  </div>
+                </div>
+                <!--rowend-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">เพศ</div>
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control">
+                      <option value="1">ชาย</option>
+                      <option value="5">หญิง</option>
+                    </select>
+                  </div>
+                </div>
+                <!--endrow-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">เวลาที่สะดวก</div>
+                  </div>
+                  <div class="col-md-6">
+                    <select class="form-control">
+                    <option value="1">00.00-03.00</option>
+                      <option value="2">03.00-06.00</option>
+                      <option value="3">06.00-09.00</option>
+                      <option value="4">09.00-12.00</option>
+                      <option value="5">12.00-15.00</option>
+                      <option value="6">15.00-18.00</option>
+                      <option value="7">18.00-21.00</option>
+                      <option value="8">21.00-24.00</option>
+                      
+                    </select>
+                  </div>
+                </div>
+                <!--endrow-->
+                <!-- modal-body end -->
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-outline">ตกลง</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 <!-- showmodal-red -->
 <!-- showmodal-green -->
 <div class="modal modal-success fade" id="modal-success">
@@ -89,12 +178,12 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">BUY</h4>
+                <h4 class="modal-title">ตั้งซื้อ</h4>
               </div>
               <div class="modal-body">
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Name</div>
+                  <div class="font-modal">ชื่อ</div>
                 </div>
                 <div class="col-md-6">
                   <input class="form-control">
@@ -104,35 +193,37 @@
               
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Category</div>
+                  <div class="font-modal">หมวด</div>
                 </div>
                 <div class="col-md-6">
                   <select class="form-control">
-                    <option value="volvo"></option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                  <option value="1">เศษเหล็ก</option>
+                  <option value="2">เศษกระดาษ</option>
+                  <option value="3">ขวดแก้ว</option>
+                  <option value="4">พลาสติก</option>
+                  <option value="5">โลหะ</option>
+                  <option value="6">เครื่องใช้สำนักงาน</option>
+                  <option value="7">อื่นๆ</option>
                   </select>
                 </div>
               </div>
               <!--endrow-->
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Sub-category</div>
+                  <div class="font-modal">ประเภท</div>
                 </div>
                 <div class="col-md-6">
                   <select class="form-control">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="mercedes">Mercedes</option>
-                    <option value="audi">Audi</option>
+                  <option value="1">ลวด</option>
+                  <option value="2">กระป๋อง</option>
+                  <option value="3">สังกะสี</option>
                   </select>
                 </div>
               </div>
               <!--endrow-->
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Description</div>
+                  <div class="font-modal">คำอธิบาย</div>
                 </div>
                 <div class="col-md-6">
                   <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea> 
@@ -141,7 +232,7 @@
               <!--rowend-->
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Volume</div>
+                  <div class="font-modal">จำนวน</div>
                 </div>
                 <div class="col-md-6">
                   <input class="form-control"> 
@@ -150,30 +241,30 @@
               <!--rowend-->
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Gender</div>
+                  <div class="font-modal">เพศ</div>
                 </div>
                 <div class="col-md-6">
                   <select class="form-control">
-                    <option value="volvo">Male</option>
-                    <option value="saab">Female</option>
+                    <option value="1">ชาย</option>
+                    <option value="5">หญิง</option>
                   </select>
                 </div>
               </div>
               <!--endrow-->
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">Time</div>
+                  <div class="font-modal">เวลาที่สะดวก</div>
                 </div>
                 <div class="col-md-6">
                   <select class="form-control">
-                  <option value="mercedes">00.00-03.00</option>
-                    <option value="audi">03.00-06.00</option>
-                    <option value="volvo">06.00-09.00</option>
-                    <option value="saab">09.00-12.00</option>
-                    <option value="mercedes">12.00-15.00</option>
-                    <option value="audi">15.00-18.00</option>
-                    <option value="volvo">18.00-21.00</option>
-                    <option value="saab">21.00-24.00</option>
+                  <option value="1">00.00-03.00</option>
+                    <option value="2">03.00-06.00</option>
+                    <option value="3">06.00-09.00</option>
+                    <option value="4">09.00-12.00</option>
+                    <option value="5">12.00-15.00</option>
+                    <option value="6">15.00-18.00</option>
+                    <option value="7">18.00-21.00</option>
+                    <option value="8">21.00-24.00</option>
                     
                   </select>
                 </div>
@@ -183,7 +274,7 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline">Save changes</button>
+                <button type="button" class="btn btn-outline">ตกลง</button>
               </div>
             </div>
             <!-- /.modal-content -->
