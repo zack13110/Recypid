@@ -61,6 +61,7 @@
         </div>
     </div>
 </div>
+<p>Click on this paragraph.</p>
 
 <!-- showmodals-red -->
 <div class="modal modal-danger fade" id="modal-danger">
@@ -87,7 +88,7 @@
                     <div class="font-modal">หมวด</div>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control">
+                    <select id="main-type" class="form-control">
                       <option value="1">เศษเหล็ก</option>
                       <option value="2">เศษกระดาษ</option>
                       <option value="3">ขวดแก้ว</option>
@@ -101,13 +102,11 @@
                 <!--endrow-->
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="font-modal">ประเภท</div>
+                    <div  class="font-modal">ประเภท</div>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control">
-                    <option value="1">ลวด</option>
-                    <option value="2">กระป๋อง</option>
-                    <option value="3">สังกะสี</option>
+                    <select id="sub-type" class="form-control">
+                      <option value="">-- select one -- </option>
                     </select>
                   </div>
                 </div>
