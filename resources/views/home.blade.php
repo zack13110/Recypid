@@ -75,6 +75,7 @@
                 <div class="modal-body">
                 <form action="/sell" name="sell_post" id="sell_post" method="post">
                 {{ csrf_field() }}
+                <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
                 <div class="row">
                   <div class="col-md-4">
                     <div class="font-modal">ชื่อสินค้า</div>
@@ -162,6 +163,15 @@
                   </div>
                 </div>
                 <!--endrow-->
+                <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">ราคา</div>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" id="price" name="price"> 
+                  </div>
+                </div>
+                <!--rowend-->
                 <!-- modal-body end -->
                 </div>
                 <div class="modal-footer">
@@ -183,7 +193,9 @@
                 <h4 class="modal-title">ตั้งซื้อ</h4>
               </div>
               <div class="modal-body">
-              <form action="" method="post">
+              <form action="/buy" name="buy_post" id="buy_post" method="post">
+                {{ csrf_field() }}
+              <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
               <div class="row">
                 <div class="col-md-4">
                   <div class="font-modal">ชื่อสินค้า</div>
@@ -271,11 +283,20 @@
                 </div>
               </div>
               <!--endrow-->
+              <div class="row">
+                  <div class="col-md-4">
+                    <div class="font-modal">ราคา</div>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" id="price" name="price"> 
+                  </div>
+                </div>
+                <!--rowend-->
               <!-- modal-body end -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline">ตกลง</button>
+                <button type="button" class="btn btn-outline submit_">ตกลง</button>
               </div>
               </form>
             </div>
