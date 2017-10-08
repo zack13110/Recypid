@@ -26,5 +26,12 @@ $(document).ready(function(){
             }
             
         });
+        $('.submit').on('click',function(){
+            
+                    $("#sell_post").submit();
+                });
+            
     
     });
+
+    
