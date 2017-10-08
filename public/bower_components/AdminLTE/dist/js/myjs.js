@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
         $(".main-type").change(function() {
             
