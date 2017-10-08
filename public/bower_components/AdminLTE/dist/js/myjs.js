@@ -17,7 +17,7 @@ $(document).ready(function(){
                 $(".sub-type").html("<option value='1'>อลูมิเนียม</option><option value='2'>กระป๋องเครื่องดื่ม</option><option value='3'>ทองแดง</option><option value='4'>ทองเหลือง</option>");
     
             } else if (val == "6") {
-                $(".sub-type").html("<option value='1'>---</option>");
+                $(".sub-type").html("<option value='1'>อื่นๆ</option>");
     
             } else if (val == "7") {
                 $(".sub-type").html("<option value='1'>น้ำมันพืชเก่า</option><option value='2'>ยางรถยนต์</option><option value='3'>ยางรถมอเตอร์ไซต์</option>");
