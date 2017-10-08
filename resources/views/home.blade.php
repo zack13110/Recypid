@@ -73,7 +73,7 @@
                 <h4 class="modal-title">ตั้งขาย</h4>
                 </div>
                 <div class="modal-body">
-                <form action="" method="post">
+                <form action="" name="sell_post" id="sell_post" method="post">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="font-modal">ชื่อ</div>
@@ -165,7 +165,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-outline">ตกลง</button>
+                  <button type="button" class="btn btn-outline submit">ตกลง</button>
                 </div>
                 </form>
               </div>
