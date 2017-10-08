@@ -73,7 +73,8 @@
                 <h4 class="modal-title">ตั้งขาย</h4>
                 </div>
                 <div class="modal-body">
-                <form action="" name="sell_post" id="sell_post" method="post">
+                <form action="/sell" name="sell_post" id="sell_post" method="post">
+                {{ csrf_field() }}
                 <div class="row">
                   <div class="col-md-4">
                     <div class="font-modal">ชื่อสินค้า</div>
@@ -89,7 +90,7 @@
                     <div class="font-modal">หมวด</div>
                   </div>
                   <div class="col-md-6">
-                    <select id="" class="form-control main-type">
+                    <select id="type" name="type" class="form-control main-type">
                       <option value="1">เศษเหล็ก</option>
                       <option value="2">เศษกระดาษ</option>
                       <option value="3">ขวดแก้ว</option>
@@ -106,7 +107,7 @@
                     <div  class="font-modal">ประเภท</div>
                   </div>
                   <div class="col-md-6">
-                    <select id="" class="form-control sub-type">
+                    <select id="sub_type" name="sub_type" class="form-control sub-type">
                       <option value="">-- select one -- </option>
                     </select>
                   </div>
@@ -198,7 +199,7 @@
                 <div class="font-modal">หมวด</div>
               </div>
               <div class="col-md-6">
-                <select id="" class="form-control main-type">
+                <select id="type" name="type" class="form-control main-type">
                   <option value="1">เศษเหล็ก</option>
                   <option value="2">เศษกระดาษ</option>
                   <option value="3">ขวดแก้ว</option>
@@ -215,7 +216,7 @@
                 <div  class="font-modal">ประเภท</div>
               </div>
               <div class="col-md-6">
-                <select id="" class="form-control sub-type">
+                <select id="sub_type" name="sub_type" class="form-control sub-type">
                   <option value="">-- select one -- </option>
                 </select>
               </div>

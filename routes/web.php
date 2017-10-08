@@ -24,4 +24,4 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/home', 'HomeController@sells')->name('home');
+Route::post('/sell', 'sellsController@sells');
