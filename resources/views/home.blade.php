@@ -73,7 +73,7 @@
                 <h4 class="modal-title">ตั้งขาย</h4>
                 </div>
                 <div class="modal-body">
-                <form action="xxxxxx" id="sell_post" name="sell_post" method="post">
+                <form action="" name="sell_post" id="sell_post" method="post">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="font-modal">ชื่อสินค้า</div>
@@ -89,7 +89,7 @@
                     <div class="font-modal">หมวด</div>
                   </div>
                   <div class="col-md-6">
-                    <select id= "type" name="type" class="form-control main-type" >
+                    <select id="" class="form-control main-type">
                       <option value="1">เศษเหล็ก</option>
                       <option value="2">เศษกระดาษ</option>
                       <option value="3">ขวดแก้ว</option>
@@ -106,7 +106,7 @@
                     <div  class="font-modal">ประเภท</div>
                   </div>
                   <div class="col-md-6">
-                    <select id="sub-type" name="sub_type" class="form-control sub-type" >
+                    <select id="" class="form-control sub-type">
                       <option value="">-- select one -- </option>
                     </select>
                   </div>
@@ -167,7 +167,7 @@
                   <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                   <button type="button" class="btn btn-outline submit">ตกลง</button>
                 </div>
-               </form>
+                </form>
               </div>
             </div>
           </div>
@@ -194,11 +194,11 @@
               <!--rowend-->
               
               <div class="row">
-                <div class="col-md-4">
-                  <div class="font-modal">หมวด</div>
-                </div>
-                <div class="col-md-6">
-                  <select id="type" name="type" class="form-control main-type" >
+              <div class="col-md-4">
+                <div class="font-modal">หมวด</div>
+              </div>
+              <div class="col-md-6">
+                <select id="" class="form-control main-type">
                   <option value="1">เศษเหล็ก</option>
                   <option value="2">เศษกระดาษ</option>
                   <option value="3">ขวดแก้ว</option>
@@ -206,21 +206,21 @@
                   <option value="5">โลหะ</option>
                   <option value="6">เครื่องใช้สำนักงาน</option>
                   <option value="7">อื่นๆ</option>
-                  </select>
-                </div>
+                </select>
               </div>
-              <!--endrow-->
-              <div class="row">
-                <div class="col-md-4">
-                  <div  class="font-modal">ประเภท</div>
+            </div>
+            <!--endrow-->
+            <div class="row">
+              <div class="col-md-4">
+                <div  class="font-modal">ประเภท</div>
               </div>
               <div class="col-md-6">
-                <select id="sub-type" name="sub_type" class="form-control sub-type" >
+                <select id="" class="form-control sub-type">
                   <option value="">-- select one -- </option>
                 </select>
               </div>
             </div>
-              <!--endrow-->
+            <!--endrow-->
               <div class="row">
                 <div class="col-md-4">
                   <div class="font-modal">คำอธิบาย</div>
@@ -276,7 +276,7 @@
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-outline">ตกลง</button>
               </div>
-             </form>
+              </form>
             </div>
             <!-- /.modal-content -->
           </div>
