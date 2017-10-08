@@ -73,12 +73,13 @@
                 <h4 class="modal-title">ตั้งขาย</h4>
                 </div>
                 <div class="modal-body">
+                <form action="xxxxxx" id="sell_post" name="sell_post" method="post">
                 <div class="row">
                   <div class="col-md-4">
-                    <div class="font-modal">ชื่อ</div>
+                    <div class="font-modal">ชื่อสินค้า</div>
                   </div>
                   <div class="col-md-6">
-                    <input class="form-control">
+                    <input class="form-control" id="name" name="name">
                   </div>
                 </div>
                 <!--rowend-->
@@ -88,7 +89,7 @@
                     <div class="font-modal">หมวด</div>
                   </div>
                   <div class="col-md-6">
-                    <select id="main-type" class="form-control">
+                    <select id= "type" name="type" class="form-control main-type" >
                       <option value="1">เศษเหล็ก</option>
                       <option value="2">เศษกระดาษ</option>
                       <option value="3">ขวดแก้ว</option>
@@ -105,7 +106,7 @@
                     <div  class="font-modal">ประเภท</div>
                   </div>
                   <div class="col-md-6">
-                    <select id="sub-type" class="form-control">
+                    <select id="sub-type" name="sub_type" class="form-control sub-type" >
                       <option value="">-- select one -- </option>
                     </select>
                   </div>
@@ -116,7 +117,7 @@
                     <div class="font-modal">คำอธิบาย</div>
                   </div>
                   <div class="col-md-6">
-                    <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea> 
+                    <textarea class="form-control" name="desc" id="desc" cols="30" rows="10"></textarea> 
                   </div>
                 </div>
                 <!--rowend-->
@@ -125,7 +126,7 @@
                     <div class="font-modal">จำนวน</div>
                   </div>
                   <div class="col-md-6">
-                    <input class="form-control"> 
+                    <input class="form-control" id="volume" name="volume"> 
                   </div>
                 </div>
                 <!--rowend-->
@@ -134,7 +135,7 @@
                     <div class="font-modal">เพศ</div>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control">
+                    <select class="form-control" id="gender" name="gender">
                       <option value="1">ชาย</option>
                       <option value="5">หญิง</option>
                     </select>
@@ -146,7 +147,7 @@
                     <div class="font-modal">เวลาที่สะดวก</div>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control">
+                    <select class="form-control" id="time" name="time">
                     <option value="1">00.00-03.00</option>
                       <option value="2">03.00-06.00</option>
                       <option value="3">06.00-09.00</option>
@@ -164,8 +165,9 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-outline">ตกลง</button>
+                  <button type="button" class="btn btn-outline submit">ตกลง</button>
                 </div>
+               </form>
               </div>
             </div>
           </div>
@@ -180,12 +182,13 @@
                 <h4 class="modal-title">ตั้งซื้อ</h4>
               </div>
               <div class="modal-body">
+              <form action="" method="post">
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">ชื่อ</div>
+                  <div class="font-modal">ชื่อสินค้า</div>
                 </div>
                 <div class="col-md-6">
-                  <input class="form-control">
+                  <input class="form-control" id="name" name="name">
                 </div>
               </div>
               <!--rowend-->
@@ -195,7 +198,7 @@
                   <div class="font-modal">หมวด</div>
                 </div>
                 <div class="col-md-6">
-                  <select class="form-control">
+                  <select id="type" name="type" class="form-control main-type" >
                   <option value="1">เศษเหล็ก</option>
                   <option value="2">เศษกระดาษ</option>
                   <option value="3">ขวดแก้ว</option>
@@ -209,23 +212,21 @@
               <!--endrow-->
               <div class="row">
                 <div class="col-md-4">
-                  <div class="font-modal">ประเภท</div>
-                </div>
-                <div class="col-md-6">
-                  <select class="form-control">
-                  <option value="1">ลวด</option>
-                  <option value="2">กระป๋อง</option>
-                  <option value="3">สังกะสี</option>
-                  </select>
-                </div>
+                  <div  class="font-modal">ประเภท</div>
               </div>
+              <div class="col-md-6">
+                <select id="sub-type" name="sub_type" class="form-control sub-type" >
+                  <option value="">-- select one -- </option>
+                </select>
+              </div>
+            </div>
               <!--endrow-->
               <div class="row">
                 <div class="col-md-4">
                   <div class="font-modal">คำอธิบาย</div>
                 </div>
                 <div class="col-md-6">
-                  <textarea class="form-control" name="" id="" cols="30" rows="10"></textarea> 
+                  <textarea class="form-control" name="desc" id="desc" cols="30" rows="10"></textarea> 
                 </div>
               </div>
               <!--rowend-->
@@ -234,7 +235,7 @@
                   <div class="font-modal">จำนวน</div>
                 </div>
                 <div class="col-md-6">
-                  <input class="form-control"> 
+                  <input class="form-control" id="volume" name="volume"> 
                 </div>
               </div>
               <!--rowend-->
@@ -243,7 +244,7 @@
                   <div class="font-modal">เพศ</div>
                 </div>
                 <div class="col-md-6">
-                  <select class="form-control">
+                  <select class="form-control" id="gender" name="gender">
                     <option value="1">ชาย</option>
                     <option value="5">หญิง</option>
                   </select>
@@ -255,7 +256,7 @@
                   <div class="font-modal">เวลาที่สะดวก</div>
                 </div>
                 <div class="col-md-6">
-                  <select class="form-control">
+                  <select class="form-control" id="time" name="time">
                   <option value="1">00.00-03.00</option>
                     <option value="2">03.00-06.00</option>
                     <option value="3">06.00-09.00</option>
@@ -273,8 +274,9 @@
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-outline">ตกลง</button>
+                <button type="submit" class="btn btn-outline">ตกลง</button>
               </div>
+             </form>
             </div>
             <!-- /.modal-content -->
           </div>

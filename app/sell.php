@@ -11,7 +11,7 @@ class sell extends Model
      *
      * @var string
      */
-     protected $table = 'sell';
+     protected $table = 'sells';
      
           /**
           * The attributes that are mass assignable.
