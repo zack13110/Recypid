@@ -26,8 +26,13 @@ $(document).ready(function(){
             
         });
         $('.submit').on('click',function(){
-            alert("dasdsa");
+
                     $("#sell_post").submit();
+                });
+
+         $('.submit_').on('click',function(){
+                    
+                    $("#buy_post").submit();
                 });
             
     
