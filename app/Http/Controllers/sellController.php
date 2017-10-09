@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Request;
 use App\sell;
+use Auth;
 
 class sellController extends Controller
 {
