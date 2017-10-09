@@ -1,6 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+
+@foreach($db_sell as $sell)
+<div>
+    <h1>{{$sell->id}}</h1>
+    <h3> {{ $sell->name }}</h3>
+</div>
+
+@endforeach
+@foreach($db_buy as $buy)
+<div>
+    <h1>{{$buy->id}}</h1>
+    <h3> {{ $buy->name }}</h3>
+</div>
+
+@endforeach
 <div class="container">
     <div class="row">
     <div class="col-md-10 col-md-offset-1">

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use DB;
+use Auth;
 class HomeController extends Controller
 {
     /**
@@ -23,11 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
-    }
-    public function test()
-    {
-        $db_sell = DB::table('sell')->get();
-        return view('home',['db_sell', $db_sell]);
+        $id_user = Auth::user()->id;
+        $db_sell = DB::table('sells')->where('id_user', '$id_user')->get();
+        $db_buy = DB::table('users')->where('id_user', '$id_user')->get();
+
+        return view('home',['db_sell'=> $db_sell, 'db_buy' => $db_buy]);
     }
 }
