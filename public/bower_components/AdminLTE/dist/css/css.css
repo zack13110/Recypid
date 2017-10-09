@@ -93,3 +93,27 @@
 .modal-body{
     padding:3%;
 }
+iframe{
+    width: 100%;
+
+}
+.nav.nav-tabs li{
+    width: 50%;
+    border: 0px;
+    margin-right:0px;
+
+}
+.circle{
+    border: #79ec79 solid;
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+    background: #79ec79;
+    font-size: 45px;
+}
+.badge_buy{
+    font-size: 1.2em;
+}
+.badge_sell{
+    font-size: 1.2em;
+}

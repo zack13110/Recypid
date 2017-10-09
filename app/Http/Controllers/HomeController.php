@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function test()
+    {
+        $db_sell = DB::table('sell')->get();
+        return view('home',['db_sell', $db_sell]);
+    }
 }

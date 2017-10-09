@@ -61,7 +61,6 @@
         </div>
     </div>
 </div>
-<p>Click on this paragraph.</p>
 
 <!-- showmodals-red -->
 <div class="modal modal-danger fade" id="modal-danger">
@@ -310,18 +309,94 @@
 <!--box-->
 <div class="row margin-1per">
     <div class="col-md-4">
-        <div class="box">
-        </div>>
+      <!-- *****************BUY************* -->
+        <div class="box box-success">
+          <div class="box box-widget widget-user box_buy">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-black" style="background: url('/bower_components/AdminLTE/dist/img/photo1.png') center center;">
+              <h3 class="widget-user-username"><span class="pull-right badge bg-green badge_buy">BUY</span></h3>
+              <h5 class="widget-user-desc">Web Designer</h5>
+            </div>
+            <div class="widget-user-image">
+              <!--<div class="circle">BUY</div>-->
+              
+            </div>
+            <div class="box-footer no-padding">
+            <ul class="nav nav-stacked">
+                <li>
+                    <a href="#">หมวด
+                        <span class="pull-right badge bg-blue">31</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Sub Type
+                        <span class="pull-right badge bg-aqua">5</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Completed Projects
+                        <span class="pull-right badge bg-green">12</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">Followers
+                        <span class="pull-right badge bg-red">842</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+          </div>
+        </div>
     </div>
+    <!-- *****************BUY************* -->
+    <div class="col-md-4">
+    <!-- *****************SELL************* -->
+    <div class="box box-danger">
+    <div class="box box-widget widget-user box_sell">
+      <!-- Add the bg color to the header using any of the bg-* classes -->
+      <div class="widget-user-header bg-black" style="background: url('/bower_components/AdminLTE/dist/img/photo1.png') center center;">
+        <h3 class="widget-user-username"><span class="pull-right badge bg-red badge_sell">SELL</span></h3>
+        <h5 class="widget-user-desc">Web Designer</h5>
+      </div>
+      <div class="widget-user-image">
+        <!--<div class="circle">BUY</div>-->
+        
+      </div>
+      <div class="box-footer no-padding">
+      <ul class="nav nav-stacked">
+          <li>
+              <a href="#">หมวด
+                  <span class="pull-right badge bg-blue">31</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">Sub Type
+                  <span class="pull-right badge bg-aqua">5</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">Completed Projects
+                  <span class="pull-right badge bg-green">12</span>
+              </a>
+          </li>
+          <li>
+              <a href="#">Followers
+                  <span class="pull-right badge bg-red">842</span>
+              </a>
+          </li>
+      </ul>
+  </div>
+    </div>
+   </div>
+    </div>
+    <!-- *****************SELL************* -->
     <div class="col-md-4">
         <div class="box">
-        </div>>
-    </div>
-    <div class="col-md-4">
-        <div class="box">
-        </div>>
+        </div>
     </div>
 </div>
+
+
 <!--box-->
 
 @endsection
