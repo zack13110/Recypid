@@ -2,6 +2,7 @@
 
 @section('content')
 
+<<<<<<< HEAD
 @foreach($db_sell as $sell)
 <div>
     <h1>{{$sell->id}}</h1>
@@ -18,8 +19,29 @@
 @endforeach
 
 
+=======
+>>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
 
 <div class="container">
+  <div class="row testclass">
+
+<?php
+if(count($db_buy) != 0){
+$vol_buy = count($db_buy);
+$count_buy=0;
+}
+else{
+  $vol_buy=0;
+}
+if(count($db_sell) !=0){
+$vol_sell = count($db_sell);
+$count_sell=0;
+}
+else{
+  $vol_sell=0;
+}
+?>
+  </div>
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
     <!-- Widget: user widget style 1 -->
@@ -325,15 +347,22 @@
 <!-- /.modal -->
 
 <!--box-->
-<div class="row margin-1per">
-    <div class="col-md-4">
+<?php 
+if($vol_buy !=0){
+
+if($count_buy%3==0) 
+{
+ echo '<div class="row margin-1per">';
+}
+foreach($db_buy as $x)
+    echo '<div class="col-md-4">
       <!-- *****************BUY************* -->
         <div class="box box-success">
           <div class="box box-widget widget-user box_buy">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url('/bower_components/AdminLTE/dist/img/photo1.png') center center;">
+            <div class="widget-user-header bg-black" style="background: url(\'/bower_components/AdminLTE/dist/img/photo1.png\') center center;">
               <h3 class="widget-user-username"><span class="pull-right badge bg-green badge_buy">BUY</span></h3>
-              <h5 class="widget-user-desc">Web Designer</h5>
+              <h5 class="widget-user-desc">'.$x["name"].'</h5>
             </div>
             <div class="widget-user-image">
               <!--<div class="circle">BUY</div>-->
@@ -343,22 +372,34 @@
             <ul class="nav nav-stacked">
                 <li>
                     <a href="#">หมวด
-                        <span class="pull-right badge bg-blue">31</span>
+                        <span class="pull-right badge bg-blue">'.$x["type"].'</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">ประเภท
+<<<<<<< HEAD
                         <span class="pull-right badge bg-aqua">5</span>
+=======
+                        <span class="pull-right badge bg-aqua">'.$x["sub_type"].'</span>
+>>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
                     </a>
                 </li>
                 <li>
                     <a href="#">ราคา
+<<<<<<< HEAD
                         <span class="pull-right badge bg-green">12</span>
+=======
+                        <span class="pull-right badge bg-green">'.$x["price"].'</span>
+>>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
                     </a>
                 </li>
                 <li>
                     <a href="#">จำนวน
+<<<<<<< HEAD
                         <span class="pull-right badge bg-red">842</span>
+=======
+                        <span class="pull-right badge bg-red">'.$x["volume"].'</span>
+>>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
                     </a>
                 </li>
             </ul>
@@ -366,9 +407,24 @@
           </div>
         </div>
     </div>
-    <!-- *****************BUY************* -->
+    <!-- *****************BUY************* -->';
+    
+    if($count_buy%3==0) 
+    {
+    echo '</div>';
+    }
+$count_buy++;
+}
+?>
+<?php if($vol_buy%3==0)
+{
+ echo '<div class="row margin-1per">';
+}
+?>
+
     <div class="col-md-4">
-    <!-- *****************SELL************* -->
+     
+        <!-- *****************SELL************* -->
     <div class="box box-danger">
     <div class="box box-widget widget-user box_sell">
       <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -408,9 +464,6 @@
    </div>
     </div>
     <!-- *****************SELL************* -->
-    <div class="col-md-4">
-        <div class="box">
-        </div>
     </div>
 </div>
 
