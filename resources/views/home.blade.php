@@ -2,28 +2,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-@foreach($db_sell as $sell)
-<div>
-    <h1>{{$sell->id}}</h1>
-    <h3> {{ $sell->name }}</h3>
-    <h4> {{ $sell->type }}</h4>
-</div>
-
-@endforeach
-@foreach($db_buy as $buy)
-<div>
-    <h1>{{$buy->id}}</h1>
-    <h3> {{ $buy->name }}</h3>
-</div>
-@endforeach
-
-
-=======
->>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
-=======
->>>>>>> naraedza-master
 
 <div class="container">
   <div class="row testclass">
@@ -118,14 +96,8 @@ else{
                   <div class="col-md-4">
                     <div class="font-modal">ชื่อสินค้า</div>
                   </div>
-<<<<<<< HEAD
-                  <div class="col-md-6" >
-                    <input class="form-control" id="name" name="name">
-                    
-=======
                   <div class="col-md-6">
                     <input class="form-control" id="name" name="name" required>
->>>>>>> acdcfe085a7648309cfd23b53976b54786efebb1
                   </div>
                 </div>
                 <!--rowend-->
@@ -457,37 +429,11 @@ foreach($db_buy as $x)
                 </li>
                 <li>
                     <a href="#">ประเภท
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <span class="pull-right badge bg-aqua">5</span>
-=======
                         <span class="pull-right badge bg-aqua">'.$x["sub_type"].'</span>
->>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
-=======
-                        <span class="pull-right badge bg-aqua">'.$x["sub_type"].'</span>
->>>>>>> naraedza-master
                     </a>
                 </li>
                 <li>
                     <a href="#">ราคา
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <span class="pull-right badge bg-green">12</span>
-=======
-                        <span class="pull-right badge bg-green">'.$x["price"].'</span>
->>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
-                    </a>
-                </li>
-                <li>
-                    <a href="#">จำนวน
-<<<<<<< HEAD
-                        <span class="pull-right badge bg-red">842</span>
-=======
-                        <span class="pull-right badge bg-red">'.$x["volume"].'</span>
->>>>>>> 422a3dfa89e75eae7026414e5964f38d6c46472e
-                    </a>
-                </li>
-=======
                         <span class="pull-right badge bg-green">'.$x["price"].'</span>
                     </a>
                 </li>
@@ -501,7 +447,6 @@ foreach($db_buy as $x)
                 <span class="pull-right badge bg-red">'.$x["date"].'</span>
             </a>
         </li>
->>>>>>> naraedza-master
             </ul>
         </div>
           </div>
@@ -517,67 +462,6 @@ $count_buy++;
 }
 ?>
 
-<<<<<<< HEAD
-
-<?php
-if($vol_sell !=0){
-
-if($count_sell%3==0) 
-{
- echo '<div class="row margin-1per">';
-}
-foreach($db_sell as $x)
-  echo '<div class="col-md-4">
-    <!-- *****************SELL************* -->
-    <div class="box box-danger">
-    <div class="box box-widget widget-user box_sell">
-      <!-- Add the bg color to the header using any of the bg-* classes -->
-      <div class="widget-user-header bg-black" style="background: url(\'/bower_components/AdminLTE/dist/img/photo1.png\') center center;">
-        <h3 class="widget-user-username"><span class="pull-right badge bg-red badge_sell">SELL</span></h3>
-        <h5 class="widget-user-desc">'.$x["name"].'</h5>
-      </div>
-      <div class="widget-user-image">
-        <!--<div class="circle">BUY</div>-->
-        
-      </div>
-      <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-          <li>
-              <a href="#">หมวด
-              <span class="pull-right badge bg-blue">'.$x["type"].'</span>
-              </a>
-          </li>
-          <li>
-              <a href="#">ประเภท
-              <span class="pull-right badge bg-aqua">'.$x["sub_type"].'</span>
-              </a>
-          </li>
-          <li>
-              <a href="#">ราคา
-              <span class="pull-right badge bg-green">'.$x["price"].'</span>
-              </a>
-          </li>
-          <li>
-              <a href="#">จำนวน
-              <span class="pull-right badge bg-red">'.$x["volume"].'</span>
-              </a>
-          </li>
-      </ul>
-  </div>
-    </div>
-   </div>
-    </div>
-    <!-- *****************SELL************* -->';
-    if($count_sell%3==0) 
-    {
-    echo '</div>';
-    }
-$count_sell++;
-}
-?>
-    </div>
-=======
->>>>>>> acdcfe085a7648309cfd23b53976b54786efebb1
 </div>
 
 
