@@ -57,4 +57,4 @@ class buyController extends Controller
          exit();
          return view('post_view');
     }
-}
+}   
