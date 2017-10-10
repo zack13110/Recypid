@@ -26,8 +26,8 @@ class HomeController extends Controller
     {
         $id_user = Auth::user()->id;
         $db_sell = DB::table('sells')->where('id_user', '$id_user')->get();
-        $db_buy = DB::table('users')->where('id_user', '$id_user')->get();
-
+        $db_buy = DB::table('buys')->where('id_user', '$id_user')->get();
+        
         return view('home',['db_sell'=> $db_sell, 'db_buy' => $db_buy]);
     }
 }

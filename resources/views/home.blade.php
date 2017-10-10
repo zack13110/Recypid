@@ -6,6 +6,7 @@
 <div>
     <h1>{{$sell->id}}</h1>
     <h3> {{ $sell->name }}</h3>
+    <h4> {{ $sell->type }}</h4>
 </div>
 
 @endforeach
@@ -14,8 +15,10 @@
     <h1>{{$buy->id}}</h1>
     <h3> {{ $buy->name }}</h3>
 </div>
-
 @endforeach
+
+
+
 <div class="container">
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
@@ -344,17 +347,17 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">Sub Type
+                    <a href="#">ประเภท
                         <span class="pull-right badge bg-aqua">5</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">Completed Projects
+                    <a href="#">ราคา
                         <span class="pull-right badge bg-green">12</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">Followers
+                    <a href="#">จำนวน
                         <span class="pull-right badge bg-red">842</span>
                     </a>
                 </li>
@@ -385,17 +388,17 @@
               </a>
           </li>
           <li>
-              <a href="#">Sub Type
+              <a href="#">ประเภท
                   <span class="pull-right badge bg-aqua">5</span>
               </a>
           </li>
           <li>
-              <a href="#">Completed Projects
+              <a href="#">ราคา
                   <span class="pull-right badge bg-green">12</span>
               </a>
           </li>
           <li>
-              <a href="#">Followers
+              <a href="#">จำนวน
                   <span class="pull-right badge bg-red">842</span>
               </a>
           </li>

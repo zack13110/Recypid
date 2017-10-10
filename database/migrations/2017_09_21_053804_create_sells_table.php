@@ -24,6 +24,7 @@ class CreateSellsTable extends Migration
             $table->integer('volume');
             $table->double('price');
             //$table->string('location');
+            $table->blob('image');
             $table->string('name');
             $table->string('desc');
             $table->timestamps();

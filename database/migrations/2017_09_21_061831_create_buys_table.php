@@ -26,6 +26,7 @@ class CreateBuysTable extends Migration
             //$table->string('location');
             $table->string('name');
             $table->string('desc');
+            $table->blob('image');
             $table->timestamps();
         });
     }
