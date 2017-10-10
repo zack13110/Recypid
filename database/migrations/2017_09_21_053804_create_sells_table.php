@@ -26,7 +26,7 @@ class CreateSellsTable extends Migration
             //$table->string('location');
             $table->blob('image');
             $table->string('name');
-            $table->string('desc');
+            $table->string('desc')->nullable();
             $table->timestamps();
         });
     }
