@@ -27,4 +27,5 @@ Route::post('/sell', 'sellController@sell');
 Route::get('/sell/{id}', 'sellController@show');
 
 Route::post('/buy', 'buyController@buy');
+Route::post('/buy/{id}', 'buyController@buy');
 Route::post('/test', 'HomeController@test2');
