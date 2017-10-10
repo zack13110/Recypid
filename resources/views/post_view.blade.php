@@ -1,6 +1,14 @@
 @extends('layouts.app') @section('content')
 
+<?php
+    if(isset($db_buy)){
+        $numbers_buy = count($db_buy);
+        $count_buy=0;
+    }else
+    {
 
+    }
+?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -45,38 +53,62 @@
                         <img class="img-circle" src="/bower_components/AdminLTE/dist/img/user7-128x128.jpg" alt="User Avatar">
                     </div>
                     <!-- /.widget-user-image -->
-                    <h3 class="widget-user-username">Nadia Carmichael</h3>
-                    <h5 class="widget-user-desc">Lead Developer</h5>
+                    <h3 class="widget-user-username"><?php echo $data_owner['name']?></h3>
+                    <h5 class="widget-user-desc"><?php echo $data_owner['tel']?></h5>
                 </div>
                 <div class="box-footer no-padding">
                     <ul class="nav nav-stacked">
-                        <li>
-                            <a href="#">หมวด
-                                <span class="pull-right badge bg-blue">31</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">Sub Type
-                                <span class="pull-right badge bg-aqua">5</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">Completed Projects
-                                <span class="pull-right badge bg-green">12</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">Followers
-                                <span class="pull-right badge bg-red">842</span>
-                            </a>
-                        </li>
+                    <li>
+                    <a href="#">ชื่อสินค้า
+                        <span class="pull-right badge bg-blue"><?php echo $data_owner['name_product']?></span>
+                    </a>
+                </li>
+                    <li>
+                    <a href="#">หมวด
+                        <span class="pull-right badge bg-blue"><?php echo $data_owner['type']?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">ประเภท
+                        <span class="pull-right badge bg-aqua"><?php echo $data_owner['sub_type']?></span>
+                    </a>
+                </li>
+                <li>
+                <a href="#">คำอธิบายเพิ่มเติม
+                    <span class="pull-right badge bg-yellow"><?php echo $data_owner['desc']?></span>
+                </a>
+            </li>
+                <li>
+                    <a href="#">เพศ
+                        <span class="pull-right badge bg-aqua"><?php echo $data_owner['gender']?></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">ราคา
+                        <span class="pull-right badge bg-green"><?php echo $data_owner['price']?></span>
+                    </a>
+                </li>
+                <li>
+                <a href="#">จำนวน
+                    <span class="pull-right badge bg-yellow"><?php echo $data_owner['volume']?></span>
+                </a>
+            </li>
+            <li>
+            <a href="#">เวลาที่ว่าง
+                <span class="pull-right badge bg-red"><?php echo $data_owner['time']?></span>
+            </a>
+        </li>
                     </ul>
                 </div>
             </div>
             <!-- /.widget-user -->
         </div>
     </div>
-    <div class="row">
+
+<?php
+if($numbers_buy >1){
+    foreach($db_buy as $key)
+    echo '<div class="row">
         <div class="col-md-12">
             <!-- /.info-box -->
           <div class="info-box bg-red">
@@ -84,10 +116,11 @@
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/user7-128x128.jpg" alt="User Avatar"></span>
 
             <div class="info-box-content">
-              <span class="info-box-text">Name</span>
-              <span class="info-box-number">Telephone number</span>
-              <span class="info-box-number">volume</span>
-              <span class="info-box-number">Price</span>
+                <span class="info-box-text">name</span>'.$key['name_buyer'].'
+              <span class="info-box-text">Sub type</span>'.$key['sub_type'].'
+              <span class="info-box-text">Name_product</span>'.$key['name_product'].'
+              <span class="info-box-text">price</span>'.$key['price'].'
+              <span class="info-box-text">volume</span>'.$key['volume'].'
 
              
             </div>
@@ -95,6 +128,8 @@
           </div>
           
         </div>
-    </div>
+    </div>';
+}
+?>
 </div>
 @endsection
