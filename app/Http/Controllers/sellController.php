@@ -4,23 +4,11 @@ namespace App\Http\Controllers;
 
 use Request;
 use Auth;
-<<<<<<< HEAD
-use App\sell;
-use Validator;
-use App\Http\Controllers\Controller;
-
-=======
 use DB;
->>>>>>> acdcfe085a7648309cfd23b53976b54786efebb1
 
 class sellController extends Controller
 {
     public function sell(Request $data)
-<<<<<<< HEAD
-    {
-            sell::create(Request::all());
-            return 'oK';
-=======
     
         {   
             $a = sell::create(Request::all());
@@ -55,6 +43,5 @@ class sellController extends Controller
         }
         exit();
         return view('post_view');
->>>>>>> acdcfe085a7648309cfd23b53976b54786efebb1
     }
 }
