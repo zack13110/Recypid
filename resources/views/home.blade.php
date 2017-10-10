@@ -28,9 +28,9 @@ else{
     <!-- Widget: user widget style 1 -->
     <div class="box box-widget widget-user">
       <!-- Add the bg color to the header using any of the bg-* classes -->
-      <div class="widget-user-header bg-black" style="background: url('/bower_components/AdminLTE/dist/img/photo1.png') center center;">
-        <h3 class="widget-user-username">{{ ucfirst(Auth::user()->name) }}</h3>
-        <h5 class="widget-user-desc">Web Designer</h5>
+      <div class="widget-user-header" style="background-color:#598a48">
+        <h3 class="widget-user-username">{{ ucfirst(Auth::user()->name) }} {{ ucfirst(Auth::user()->sub_name) }}</h3>
+        <span><h4 class="widget-user-desc"><b>Contract :</b> {{ ucfirst(Auth::user()->tel) }}</h4></span>
       </div>
       <div class="widget-user-image">
         <img class="img-circle" src="/bower_components/AdminLTE/dist/img/user3-128x128.jpg" alt="User Avatar">
@@ -39,24 +39,24 @@ else{
         <div class="row">
           <div class="col-sm-4 border-right">
             <div class="description-block">
-              <h5 class="description-header">1</h5>
-              <span class="description-text">POST</span>
+              <h5 class="description-header"><?php echo count($db_buy) ?></h5>
+              <span class="description-text">BUYING POST</span>
             </div>
             <!-- /.description-block -->
           </div>
           <!-- /.col -->
           <div class="col-sm-4 border-right">
             <div class="description-block">
-              <h5 class="description-header">13,000</h5>
-              <span class="description-text">FOLLOWERS</span>
+              <h5 class="description-header"><?php echo count($db_sell) ?></h5>
+              <span class="description-text">SELLING POST</span>
             </div>
             <!-- /.description-block -->
           </div>
           <!-- /.col -->
           <div class="col-sm-4">
             <div class="description-block">
-              <h5 class="description-header">35</h5>
-              <span class="description-text">PRODUCTS</span>
+              <h5 class="description-header">5</h5>
+              <span class="description-text">RATING</span>
             </div>
             <!-- /.description-block -->
           </div>
@@ -68,17 +68,13 @@ else{
 <div class="row margin-1per">
     <div class="clearfix">
         <div class="col-md-12">
-            <div class="pull-right">
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger">
+            <div class="">
+            <button type="button" class="btn btn-danger btn-block btn-flat" data-toggle="modal" data-target="#modal-danger">
                         Want to Sell
                 </button>
             </div>
         
-        <div class="pull-left">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-success">
-                    Want to Buy
-            </button>
-        </div>
+        
         </div>
     </div>
 </div>
@@ -101,7 +97,7 @@ else{
                     <div class="font-modal">ชื่อสินค้า</div>
                   </div>
                   <div class="col-md-6">
-                    <input class="form-control" id="name" name="name">
+                    <input class="form-control" id="name" name="name" required>
                   </div>
                 </div>
                 <!--rowend-->
@@ -203,6 +199,7 @@ else{
             </div>
           </div>
 <!-- showmodal-red -->
+
 <!-- showmodal-green -->
 <div class="modal modal-success fade" id="modal-success">
           <div class="modal-dialog">
@@ -329,6 +326,80 @@ else{
 
 <!--box-->
 <?php 
+if($vol_sell !=0){
+
+if($count_sell%3==0) 
+{
+ echo '<div class="row margin-1per">';
+}
+foreach($db_sell as $x)
+    echo '<div class="col-md-4">
+      <!-- *****************sell************* -->
+        <div class="box box-danger">
+          <div class="box box-widget widget-user box_sell">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+            <div class="widget-user-header bg-black" style="background: url(\'/bower_components/AdminLTE/dist/img/photo1.png\') center center;">
+              <h3 class="widget-user-username"><span class="pull-right badge bg-red badge_sell">SELL</span></h3>
+              <h5 class="widget-user-desc">'.$x["name"].'</h5>
+            </div>
+            <div class="widget-user-image">
+              <!--<div class="circle">sell</div>-->
+              
+            </div>
+            <div class="box-footer no-padding">
+            <ul class="nav nav-stacked">
+                <li>
+                    <a href="#">หมวด
+                        <span class="pull-right badge bg-blue">'.$x["type"].'</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">ประเภท
+                        <span class="pull-right badge bg-aqua">'.$x["sub_type"].'</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">ราคา
+                        <span class="pull-right badge bg-green">'.$x["price"].'</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">จำนวน
+                        <span class="pull-right badge bg-yellow">'.$x["volume"].'</span>
+                    </a>
+                </li>
+                <li>
+                <a href="#">เวลาที่สร้าง
+                    <span class="pull-right badge bg-red">'.$x["date"].'</span>
+                </a>
+            </li>
+            </ul>
+        </div>
+          </div>
+        </div>
+    </div>
+    <!-- *****************sell************* -->';
+    
+    if($count_sell%3==0) 
+    {
+    echo '</div>';
+    }
+$count_sell++;
+}
+?>
+<!--modals-->
+<div class="row margin-1per">
+    <div class="clearfix">
+        <div class="col-md-12">
+        <div class="">
+            <button type="button" class="btn btn-success btn-block btn-flat" data-toggle="modal" data-target="#modal-success">
+                    Want to Buy
+            </button>
+        </div>
+        </div>
+    </div>
+</div>
+<?php 
 if($vol_buy !=0){
 
 if($count_buy%3==0) 
@@ -367,10 +438,15 @@ foreach($db_buy as $x)
                     </a>
                 </li>
                 <li>
-                    <a href="#">จำนวน
-                        <span class="pull-right badge bg-red">'.$x["volume"].'</span>
-                    </a>
-                </li>
+                <a href="#">จำนวน
+                    <span class="pull-right badge bg-yellow">'.$x["volume"].'</span>
+                </a>
+            </li>
+            <li>
+            <a href="#">เวลาที่สร้าง
+                <span class="pull-right badge bg-red">'.$x["date"].'</span>
+            </a>
+        </li>
             </ul>
         </div>
           </div>
@@ -385,55 +461,7 @@ foreach($db_buy as $x)
 $count_buy++;
 }
 ?>
-<?php if($vol_buy%3==0)
-{
- echo '<div class="row margin-1per">';
-}
-?>
 
-    <div class="col-md-4">
-     
-        <!-- *****************SELL************* -->
-    <div class="box box-danger">
-    <div class="box box-widget widget-user box_sell">
-      <!-- Add the bg color to the header using any of the bg-* classes -->
-      <div class="widget-user-header bg-black" style="background: url('/bower_components/AdminLTE/dist/img/photo1.png') center center;">
-        <h3 class="widget-user-username"><span class="pull-right badge bg-red badge_sell">SELL</span></h3>
-        <h5 class="widget-user-desc">Web Designer</h5>
-      </div>
-      <div class="widget-user-image">
-        <!--<div class="circle">BUY</div>-->
-        
-      </div>
-      <div class="box-footer no-padding">
-      <ul class="nav nav-stacked">
-          <li>
-              <a href="#">หมวด
-                  <span class="pull-right badge bg-blue">31</span>
-              </a>
-          </li>
-          <li>
-              <a href="#">Sub Type
-                  <span class="pull-right badge bg-aqua">5</span>
-              </a>
-          </li>
-          <li>
-              <a href="#">Completed Projects
-                  <span class="pull-right badge bg-green">12</span>
-              </a>
-          </li>
-          <li>
-              <a href="#">Followers
-                  <span class="pull-right badge bg-red">842</span>
-              </a>
-          </li>
-      </ul>
-  </div>
-    </div>
-   </div>
-    </div>
-    <!-- *****************SELL************* -->
-    </div>
 </div>
 
 

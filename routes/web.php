@@ -24,5 +24,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/sell', 'sellController@sell');
+Route::get('/sell/{id}', 'sellController@show');
 
 Route::post('/buy', 'buyController@buy');
+Route::post('/test', 'HomeController@test2');

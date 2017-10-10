@@ -1,17 +1,6 @@
 @extends('layouts.app') @section('content')
 
-@if(!empty($a))
-    {{ $a }}
 
-@endif
-
-@foreach($c as $u)
-<div>
-    <h1>{{$u->id}}</h1>
-    <h3> {{ $u->name }}</h3>
-</div>
-
-@endforeach
 <div class="container">
     <div class="row">
         <div class="col-md-12">
