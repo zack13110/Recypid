@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use DB;
 use Auth;
@@ -16,7 +14,6 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -49,7 +46,6 @@ class HomeController extends Controller
             );    
         }
         /*----------------------  buy end---------------------------*/
-
         /*----------------------  sell ---------------------------*/
         $db_sell = DB::table('sells')->where('id_user', $id_user)->get();
         $sell =array();

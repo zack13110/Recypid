@@ -25,7 +25,7 @@ class CreateBuysTable extends Migration
             $table->double('price');
             //$table->string('location');
             $table->string('name');
-            $table->string('desc');
+            $table->string('desc')->nullable();
             $table->timestamps();
         });
     }
