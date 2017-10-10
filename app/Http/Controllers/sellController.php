@@ -16,5 +16,4 @@ class sellController extends Controller
             sell::create(Request::all());
             return 'oK';
     }
-  
 }
