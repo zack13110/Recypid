@@ -125,7 +125,9 @@ else{
                   </div>
                   <div class="col-md-6">
                     <select id="sub_type" name="sub_type" class="form-control sub-type">
-                      <option value="">-- select one -- </option>
+                    <option value='1'>ลวด</option>
+                <option value='3'>กระป๋อง</option>
+                <option value='5'>สังกะสี</option>
                     </select>
                   </div>
                 </div>
@@ -246,7 +248,9 @@ else{
               </div>
               <div class="col-md-6">
                 <select id="sub_type" name="sub_type" class="form-control sub-type">
-                  <option value="">-- select one -- </option>
+                <option value='1'>ลวด</option>
+                <option value='3'>กระป๋อง</option>
+                <option value='5'>สังกะสี</option>
                 </select>
               </div>
             </div>
@@ -335,10 +339,10 @@ if($count_sell%3==0)
 foreach($db_sell as $x)
     echo '<div class="col-md-4">
       <!-- *****************sell************* -->
-        <div class="box box-danger">
+        <div class="box box-danger" >
           <div class="box box-widget widget-user box_sell">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url(\'/bower_components/AdminLTE/dist/img/photo1.png\') center center;">
+            <div class="widget-user-header bg-sell2" >
               <h3 class="widget-user-username"><span class="pull-right badge bg-red badge_sell">SELL</span></h3>
               <h5 class="widget-user-desc">'.$x["name"].'</h5>
             </div>
@@ -373,6 +377,11 @@ foreach($db_sell as $x)
                     <span class="pull-right badge bg-red">'.$x["date"].'</span>
                 </a>
             </li>
+            <li class="link bg-sell2">
+            <a href="/buy/'.$x["id"].'">
+                VIEW MATCHING  <span class="label bg-red">1</span>
+            </a>
+        </li>
             </ul>
         </div>
           </div>
@@ -412,7 +421,7 @@ foreach($db_buy as $x)
         <div class="box box-success">
           <div class="box box-widget widget-user box_buy">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-black" style="background: url(\'/bower_components/AdminLTE/dist/img/photo1.png\') center center;">
+            <div class="widget-user-header bg-buy2">
               <h3 class="widget-user-username"><span class="pull-right badge bg-green badge_buy">BUY</span></h3>
               <h5 class="widget-user-desc">'.$x["name"].'</h5>
             </div>
@@ -447,6 +456,11 @@ foreach($db_buy as $x)
                 <span class="pull-right badge bg-red">'.$x["date"].'</span>
             </a>
         </li>
+        <li class="link bg-buy2">
+        <a href="/buy/'.$x["id"].'">
+            VIEW MATCHING  <span class="label bg-red">1</span>
+        </a>
+    </li>
             </ul>
         </div>
           </div>
