@@ -24,7 +24,8 @@ class sellController extends Controller
        
         // echo '<pre>';
         // print_r($data_seller);
-        foreach ($data_seller as $key){
+        foreach ($data_seller as $key)
+        {
             
             $id_user_x =  $key->id_user;
             $name_product = $key->name;
@@ -33,10 +34,12 @@ class sellController extends Controller
             $sub_type_x = $key->sub_type;
             $type_name_sel_owner = DB::table('type_names')->where( ['id'=> $key->type])->get();
             $sub_type_name_sel_owner = DB::table('sub_type_names')->where( ['type_id'=> $key->type,'sub_type_id'=> $key->sub_type])->get();
-            foreach ($type_name_sel_owner as $x){
+            foreach ($type_name_sel_owner as $x)
+            {
                 $type_name_owner =$x->name;
             }
-            foreach ($sub_type_name_sel_owner as $y){
+            foreach ($sub_type_name_sel_owner as $y)
+            {
                 $sub_type_name_owner =$y->sub_type_name;
             }
             $gender_x = $key->gender;
@@ -45,6 +48,9 @@ class sellController extends Controller
             $time_x = $key->time;
 
             $data_buyer_matching = DB::table('buys')->where( ['type'=> $type_x])->get();/*หา id ที่มี type คล้าย*/
+        
+            $matching =array();
+            if(count($data_buyer_matching) != 0){
             foreach ($data_buyer_matching as $key_){
                 $type_y = $key_->type;
                 $sub_type_y = $key_->sub_type;
@@ -69,6 +75,9 @@ class sellController extends Controller
 
             }
         }
+        }
+        $buy = array();
+        if(count($data_buyer_matching) != 0){
         foreach ($matching as $key){
             $id_buy=$key;
             $buy_selection = DB::table('buys')->where( ['id'=> $id_buy])->get();
@@ -100,6 +109,8 @@ class sellController extends Controller
                 );    
             }
         }
+        rsort($buy);
+    }
         $owner = DB::table('users')->where( ['id'=> $id_user_x])->get();
         foreach($owner as $x){
             $name_owner = $x->name;
@@ -117,7 +128,7 @@ class sellController extends Controller
             'volume'=>$volume_x,
             'time' => $time_x,
         );
-        rsort($buy);
+        
         return view('post_view',['db_buy'=> $buy, 'data_owner' => $data_own]);
     }
 }
