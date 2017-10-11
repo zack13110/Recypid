@@ -10,6 +10,7 @@
 if(count($db_buy) != 0){
 $vol_buy = count($db_buy);
 $count_buy=0;
+
 }
 else{
   $vol_buy=0;
@@ -17,6 +18,7 @@ else{
 if(count($db_sell) !=0){
 $vol_sell = count($db_sell);
 $count_sell=0;
+
 }
 else{
   $vol_sell=0;
@@ -337,6 +339,7 @@ if($count_sell%3==0)
  echo '<div class="row margin-1per">';
 }
 foreach($db_sell as $x)
+
     echo '<div class="col-md-4">
       <!-- *****************sell************* -->
         <div class="box box-danger" >
@@ -379,7 +382,7 @@ foreach($db_sell as $x)
             </li>
             <li class="link bg-sell2">
             <a href="/buy/'.$x["id"].'">
-                VIEW MATCHING  <span class="label bg-red">1</span>
+                VIEW MATCHING  <span class="badge bg-red">'.$x["countmatching"].'</span>
             </a>
         </li>
             </ul>
@@ -416,6 +419,7 @@ if($count_buy%3==0)
  echo '<div class="row margin-1per">';
 }
 foreach($db_buy as $x)
+
     echo '<div class="col-md-4">
       <!-- *****************BUY************* -->
         <div class="box box-success">
@@ -458,7 +462,7 @@ foreach($db_buy as $x)
         </li>
         <li class="link bg-buy2">
         <a href="/buy/'.$x["id"].'">
-            VIEW MATCHING  <span class="label bg-red">1</span>
+            VIEW MATCHING  <span class="badge bg-red">'.$x["countmatching"].'</span>
         </a>
     </li>
             </ul>
