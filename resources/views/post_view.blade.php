@@ -6,7 +6,17 @@
         $count_buy=0;
     }else
     {
+        $numbers_buy = 0; 
+    }
+?>
 
+<?php
+    if(isset($db_sell)){
+        $numbers_sell = count($db_sell);
+        $count_sell=0;
+    }else
+    {
+        $numbers_sell = 0;
     }
 ?>
 <div class="container">
@@ -131,5 +141,35 @@ if($numbers_buy >1){
     </div>';
 }
 ?>
+
+
+<?php
+if($numbers_sell >1){
+    foreach($db_sell as $key)
+    echo '<div class="row">
+        <div class="col-md-12">
+            <!-- /.info-box -->
+          <div class="info-box bg-red">
+              
+            <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/user7-128x128.jpg" alt="User Avatar"></span>
+
+            <div class="info-box-content">
+                <span class="info-box-text">name</span>'.$key['name_seller'].'
+              <span class="info-box-text">Sub type</span>'.$key['sub_type'].'
+              <span class="info-box-text">Name_product</span>'.$key['name_product'].'
+              <span class="info-box-text">price</span>'.$key['price'].'
+              <span class="info-box-text">volume</span>'.$key['volume'].'
+
+             
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          
+        </div>
+    </div>';
+}
+?>
+
+
 </div>
 @endsection

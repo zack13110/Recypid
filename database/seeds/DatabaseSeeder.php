@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             ['name'=>'03.00.06.00'],
         ]);
 
-        DB::table('gender_name')->insert([
+        DB::table('gender_names')->insert([
             ['id_gender' => '1', 'name' => 'ชาย'],
             ['id_gender' => '5', 'name' => 'หญิง'],
         ]);
