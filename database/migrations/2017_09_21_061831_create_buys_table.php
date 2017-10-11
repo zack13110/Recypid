@@ -24,6 +24,7 @@ class CreateBuysTable extends Migration
             $table->integer('volume');
             $table->double('price');
             //$table->string('location');
+            //$table->string('image')->nullable();
             $table->string('name');
             $table->string('desc')->nullable();
             $table->timestamps();
