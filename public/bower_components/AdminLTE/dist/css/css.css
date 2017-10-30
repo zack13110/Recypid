@@ -126,3 +126,38 @@ iframe{
 .widget-user-desc{
     color: white;
 }
+.font15{
+    font-size: 1em
+}
+.bg-sell{
+    background-color: #d24646;
+}
+.post_view_no_border{
+    background-color: #ddd;
+}
+.bg-buy{
+    background-color: #0ba75f;
+}
+/*---home bg---*/
+.bg-sell2{
+    background-color: #5f1919;
+}
+
+.bg-buy2{
+    background-color: #3c763d;
+}
+.link{
+    
+
+}
+li.link a:hover{
+    background-color: #525252;
+    color: white;
+}
+li.link a{
+    color: white;
+    text-align:center;
+}
+.font_c_white{
+    color:white;
+}

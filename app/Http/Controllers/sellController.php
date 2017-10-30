@@ -44,6 +44,8 @@ class sellController extends Controller
                 $type_x = $key->type;
                 $desc_x = $key->desc;
                 $sub_type_x = $key->sub_type;
+                $gender_sel_owner = DB::table('gender_names')->where( ['id_gender'=> $key->gender])->get();
+                $time_sel_owner = DB::table('time_names')->where( ['id'=> $key->time])->get();
                 $type_name_sel_owner = DB::table('type_names')->where( ['id'=> $key->type])->get();
                 $sub_type_name_sel_owner = DB::table('sub_type_names')->where( ['type_id'=> $key->type,'sub_type_id'=> $key->sub_type])->get();
                 foreach ($type_name_sel_owner as $x)
@@ -53,6 +55,14 @@ class sellController extends Controller
                 foreach ($sub_type_name_sel_owner as $y)
                 {
                     $sub_type_name_owner =$y->sub_type_name;
+                }
+                foreach ($time_sel_owner as $z)
+                {
+                    $time_x_name =$z->name;
+                }
+                foreach ($gender_sel_owner as $w)
+                {
+                    $gender_x_name =$w->name;
                 }
                 $gender_x = $key->gender;
                 $price_x = $key->price;
@@ -75,7 +85,7 @@ class sellController extends Controller
                     $cal_xy = sqrt(pow($sub_type_x,2)+pow($gender_x,2)+pow($time_x,2)) * sqrt(pow($sub_type_y,2)+pow($gender_y,2)+pow($time_y,2));
                     $cal = $cal_xdoty / $cal_xy;
                     
-                    if($cal > 0.85){
+                    if($cal > 0.75){
                         $matching[] = $key_->id;
                         print_r($key_->id);
                     }
@@ -138,10 +148,10 @@ class sellController extends Controller
                 'type' => $type_name_owner,
                 'sub_type' =>$sub_type_name_owner,
                 'desc' => $desc_x,
-                'gender' =>$gender_x,
+                'gender' =>$gender_x_name,
                 'price' =>$price_x,
                 'volume'=>$volume_x,
-                'time' => $time_x,
+                'time' => $time_x_name,
             );
             
             return view('post_view',['db_buy'=> $buy, 'data_owner' => $data_own]);
