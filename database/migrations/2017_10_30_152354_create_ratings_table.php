@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGenderNamesTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateGenderNamesTable extends Migration
      */
     public function up()
     {
-        Schema::create('gender_names', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->integer('id_user')
+            ->reference('id')->on('User')->onDelete('cascade');
+            $table->integer('id_user_give');
+            $table->integer('rating');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +30,6 @@ class CreateGenderNamesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gender_names');
+        Schema::dropIfExists('ratings');
     }
 }

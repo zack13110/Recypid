@@ -20,6 +20,10 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('tel');
+            $table->string('latitude');
+            $table->string('longitude');
+            $table->string('avatar')->default('defualt.jpg');
+            $table->integer('rating');
             $table->rememberToken();
             $table->timestamps();
         });
