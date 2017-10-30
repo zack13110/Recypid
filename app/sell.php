@@ -19,6 +19,6 @@ class sell extends Model
           * @var array
           */
          protected $fillable = [
-             'id', 'id_user', 'type', 'sub_type', 'gender', 'time', 'volume', 'price', 'name', 'desc',
+             'id', 'id_user', 'type', 'sub_type', 'gender', 'time', 'volume', 'price', 'latitude', 'longitude', 'image', 'name', 'desc',
          ];    
 }
