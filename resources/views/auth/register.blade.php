@@ -89,6 +89,21 @@
                             </div>
                         </div>
 
+                        <h3>แผนที่</h3>
+                                <div class="row">
+                                    <div class="col-lg-3">
+                            <div>latitude </div>
+                            <div><input class="form-control" type="text" name="latitude" id="latitude"></div>
+                        </div> 
+                        <div class="col-lg-3">
+                        <div>longitude  </div>
+                        <div><input class="form-control" type="text" name="longitude" id="longitude"></div>
+                        </div>
+                </div>
+                    <div id="maptab_1" style="height: 300px; width: 100%;"></div>
+
+                        <input type="hidden" name="rating" id="rating" value="5"/>
+                        <input type="hidden" name="avatar" id="avatar" value="avatar"/>
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">

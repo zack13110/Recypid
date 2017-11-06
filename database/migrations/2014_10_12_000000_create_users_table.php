@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('tel');
             $table->string('latitude');
             $table->string('longitude');
-            $table->string('avatar')->default('defualt.jpg');
+            $table->string('avatar')->default('defualt.jpg')->nullable();
             $table->integer('rating');
             $table->rememberToken();
             $table->timestamps();

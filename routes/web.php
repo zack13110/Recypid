@@ -29,3 +29,5 @@ Route::get('/sell/{id}', 'sellController@show');
 Route::post('/buy', 'buyController@buy');
 Route::get('/buy/{id}', 'buyController@show');
 Route::post('/test', 'HomeController@test2');
+
+Route::get('/map', 'googlemapAPIController@index');
