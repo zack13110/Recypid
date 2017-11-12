@@ -14,6 +14,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
  -->
+ <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  @include('including/header')
 <body class="first-bg">
     <div id="app">
@@ -78,5 +79,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initMap"></script>
+<script src="/js/googlemap.js"></script>
 </body>
 </html>

@@ -15,9 +15,7 @@ class CreateSubTypeNamesTable extends Migration
     {
         Schema::create('sub_type_names', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('type_id');
-            $table->integer('sub_type_id');
-            $table->string('sub_type_name');
+            $table->string('name');
         });
     }
 
