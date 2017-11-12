@@ -1,10 +1,12 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('content')
 
 <?php
     if(isset($db_buy)){
         $numbers_buy = count($db_buy);
         $count_buy=0;
         $bg_owner = "bg-sell";
+
     }else
     {
         $numbers_buy = 0; 
@@ -16,7 +18,7 @@
         $numbers_sell = count($db_sell);
         $count_sell=0;
         $bg_owner = "bg-buy";
-        print_r($db_sell);
+        
     }else
     {
         $numbers_sell = 0;
@@ -121,37 +123,9 @@
 
 <?php
 if($numbers_buy >=1){
-    foreach($db_buy as $key)
-    echo '<div class="row">
-        <div class="col-md-12">
-            <!-- /.info-box -->
-          <div class="info-box bg-red">
-              
-            <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">name</span>'.$key['name_buyer'].'
-              <span class="info-box-text">Sub type</span>'.$key['sub_type'].'
-              <span class="info-box-text">Name_product</span>'.$key['name_product'].'
-              <span class="info-box-text">price</span>'.$key['price'].'
-              <span class="info-box-text">volume</span>'.$key['volume'].'
-
-             
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          
-        </div>
-    </div>';
-}
-?>
-
-
-<?php
-if($numbers_sell >=1){
-    foreach($db_sell as $key)
+    foreach($db_buy as $key){
     echo '<!-- Modal -->
-    <div class="modal fade" id="modal_seller_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_buyer_'.$count_buy.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-sell2 font_c_white">
@@ -166,22 +140,131 @@ if($numbers_sell >=1){
           <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                   <li class="active">
-                      <a href="#tab_1_user_1" data-toggle="tab">Image</a>
+                      <a href="#tab_1_user_'.$count_buy.'" data-toggle="tab">Image</a>
                   </li>
                   <li>
-                      <a href="#tab_2_user_1" data-toggle="tab">Maps</a>
+                      <a href="#tab_2_user_'.$count_buy.'" data-toggle="tab">Maps</a>
                   </li>
 
 
               </ul>
               <div class="tab-content">
-                  <div class="tab-pane active" id="tab_1_user_1">
+                  <div class="tab-pane active" id="tab_1_user_'.$count_buy.'">
 
                       <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
 
                   </div>
                   <!-- /.tab-pane -->
-                  <div class="tab-pane" id="tab_2_user_1">
+                  <div class="tab-pane" id="tab_2_user_'.$count_buy.'">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
+                          width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  </div>
+                  <!-- /.tab-pane -->
+
+              </div>
+              <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+          </div>
+          <div class="box-body"><!-- start/.box-body -->
+            <dl class="dl-horizontal">
+            <dt>ชื่อผู้ขาย</dt>
+                <dd>'.$key['name_buyer'].'</dd>
+            <dt>เบอร์ติดต่อ</dt>
+                <dd>'.$key['tel_buyer'].'</dd>
+            <dt>ประเภท</dt>
+                <dd>'.$key['type'].'</dd>
+            <dt>หมวด</dt>
+                <dd>'.$key['sub_type'].'</dd>
+            <dt>เพศ</dt>
+                <dd>'.$key['gender'].'</dd>   
+            <dt>คำอธิบาย</dt>
+                <dd>'.$key['desc'].'</dd>
+            <dt>ราคา</dt>
+                <dd>'.$key['price'].'</dd> 
+            <dt>จำนวน</dt>
+                <dd>'.$key['volume'].'</dd>
+            <dt>เวลา</dt>
+                <dd>'.$key['time'].'</dd>   
+            </dl>
+        </div><!-- end/.box-body -->
+        
+        </div><!-- end div modal body-->
+      </div>
+    </div>';
+    echo '<div class="row margin-1per">
+        <div class="col-md-12">
+            <!-- /.info-box -->
+            <a data-toggle="modal" data-target="#modal_buyer_'.$count_buy.'">
+            <div class="box_info bg-green">
+              
+              <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
+  
+              <div class="info_box_content">
+                <div>
+                  <span class="info-box-text pull-left">name</span> : '.$key['name_buyer'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">Sub type</span> : '.$key['sub_type'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">Name_product</span> : '.$key['name_product'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">price</span> : '.$key['price'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">volume</span> : '.$key['volume'].'
+                </div>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            
+          </div>
+          </a>
+          
+        </div>';
+    $count_buy++;
+                      }
+}
+?>
+</div>
+
+<?php
+if($numbers_sell >=1){
+    foreach($db_sell as $key){
+    echo '<!-- Modal -->
+    <div class="modal fade" id="modal_seller_'.$count_sell.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-sell2 font_c_white">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="font_c_white" aria-hidden="true">&times;</span>
+        </button>
+            <h3 class="modal-title" id="exampleModalLabel">'.$key['name_product'].'</h3>
+            
+          </div>
+          <div class="modal-body">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                  <li class="active">
+                      <a href="#tab_1_user_'.$count_sell.'" data-toggle="tab">Image</a>
+                  </li>
+                  <li>
+                      <a href="#tab_2_user_'.$count_sell.'" data-toggle="tab">Maps</a>
+                  </li>
+
+
+              </ul>
+              <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1_user_'.$count_sell.'">
+
+                      <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
+
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
                           width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
@@ -218,29 +301,29 @@ if($numbers_sell >=1){
         </div><!-- end div modal body-->
       </div>
     </div>';
-    echo '<div class="row">
+    echo '<div class="row margin-1per">
         <div class="col-md-12">
             <!-- /.info-box -->
-            <a data-toggle="modal" data-target="#modal_seller_1">
+            <a data-toggle="modal" data-target="#modal_seller_'.$count_sell.'">
           <div class="box_info bg-red">
             
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
 
             <div class="info_box_content">
               <div>
-                <span class="info-box-text pull-left">name</span>'.$key['name_seller'].'
+                <span class="info-box-text pull-left">name</span> : '.$key['name_seller'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">Sub type</span>'.$key['sub_type'].'
+                <span class="info-box-text pull-left">Sub type</span> : '.$key['sub_type'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">Name_product</span>'.$key['name_product'].'
+                <span class="info-box-text pull-left">Name_product</span> : '.$key['name_product'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">price</span>'.$key['price'].'
+                <span class="info-box-text pull-left">price</span> : '.$key['price'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">volume</span>'.$key['volume'].'
+                <span class="info-box-text pull-left">volume</span> : '.$key['volume'].'
               </div>
             </div>
             <!-- /.info-box-content -->
@@ -249,6 +332,8 @@ if($numbers_sell >=1){
         </div>
         </a>
     </div>';
+    $count_sell++;
+                      }
 }
 ?>
 
