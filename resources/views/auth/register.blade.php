@@ -88,7 +88,7 @@
                                 @endif
                             </div>
                         </div>
-
+                        <div id="directions-panel"></div>
                         <h3>Map</h3>
                                 <div class="row">
                                     <div class="col-lg-3">

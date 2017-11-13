@@ -19,8 +19,13 @@ class CreateSellsTable extends Migration
                 ->reference('id')->on('User')->onDelete('cascade');
             $table->integer('type');
             $table->integer('sub_type');
-            $table->integer('gender');
-            $table->integer('time');
+            $table->integer('men');
+            $table->integer('women');
+            $table->integer('morning');
+            $table->integer('noon');
+            $table->integer('afternoon');
+            $table->integer('evening');
+            $table->integer('night');
             $table->integer('volume');
             $table->double('price');
             $table->string('latitude');
