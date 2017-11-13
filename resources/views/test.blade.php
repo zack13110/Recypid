@@ -3,6 +3,12 @@
 @section('content')
 
 <div id="map_canvas" style="height: 300px; width: 100%;"></div>
+<?php
+for ($i=0; $i < 2;$i++){
+    echo '<div class="singleMap" id="allMaps_'.$i.'"></div>';
+}
+?>
+<div id="allMaps"></div>
 
 @endsection
 @section('googlemap')
