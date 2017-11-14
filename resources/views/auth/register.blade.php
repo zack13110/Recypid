@@ -89,9 +89,11 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="form-group row">
+
+                   <div class="form-group row">
                         <label class="col-md-4 control-label">Map</label>
                                 
+
                                     <div class="col-lg-3">
                             <div>latitude </div>
                             <div><input class="form-control" type="text" name="latitude" id="latitude" readonly></div>
