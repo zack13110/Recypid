@@ -17,9 +17,9 @@ class CreateSellsTable extends Migration
             $table->increments('id');
             $table->integer('id_user')
                 ->reference('id')->on('User')->onDelete('cascade');
-            $table->integer('type');
-            $table->integer('sub_type');
-            $table->string('gender');
+            $table->string('type');
+            $table->string('sub_type');
+            $table->string('gender_trade');
             $table->string('morning');
             $table->string('noon');
             $table->string('afternoon');

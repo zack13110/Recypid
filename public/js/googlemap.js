@@ -60,6 +60,7 @@ function initMap() {
         });
     });
 
+
     google.maps.event.addListener(map, 'click', function (event) {
         if (markerarray != null) {
             markerarray.forEach(function (marker) {

@@ -157,7 +157,7 @@ else{
                     <div class="font-modal">เพศ</div>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control" id="gender" name="gender">
+                    <select class="form-control" id="gender" name="gender_trade">
                     <option value="ทั้งหมด">ทั้งหมด</option>
                       <option value="ชาย">ชาย</option>
                       <option value="หญิง">หญิง</option>
@@ -278,7 +278,7 @@ else{
                   <div class="font-modal">เพศ</div>
                 </div>
                 <div class="col-md-6">
-                  <select class="form-control" id="gender" name="gender">
+                  <select class="form-control" id="gender" name="gender_trade">
                     <option value="ทั้งหมด">ทั้งหมด</option>
                       <option value="ชาย">ชาย</option>
                       <option value="หญิง">หญิง</option>
