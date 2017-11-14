@@ -17,11 +17,14 @@ $(document).ready(function(){
                 $(".sub-type").html("<option value='อลูมิเนียม'>อลูมิเนียม</option><option value='กระป๋องเครื่องดื่ม'>กระป๋องเครื่องดื่ม</option><option value='ทองแดง'>ทองแดง</option><option value='ทองเหลือง'>ทองเหลือง</option>");
     
             } else if (val == "เครื่องใช้สำนักงาน") {
+<<<<<<< HEAD
                 $(".sub-type").html("<option value='อื่นๆ'>อื่นๆ</option>");
+=======
+                $(".sub-type").html("<option value='อุปกรณ์คอมพิวเตอร์'>อุปกรณ์คอมพิวเตอร์</option><option value='เครื่องใช้ไฟฟ้า'>เครื่องใช้ไฟฟ้า</option><option value='แผงวงจร'>แผงวงจร</option><option value='แอร์คอนดิชั่น'>แอร์คอนดิชั่น</option>");
+>>>>>>> 2e652b0d1d96e29c1d6b8166e8aefb7b5980d983
     
             } else if (val == "อื่นๆ") {
                 $(".sub-type").html("<option value='น้ำมันพืชเก่า'>น้ำมันพืชเก่า</option><option value='ยางรถยนต์'>ยางรถยนต์</option><option value='ยางรถมอเตอร์ไซต์'>ยางรถมอเตอร์ไซต์</option>");
-    
             }
             
         });
