@@ -64,6 +64,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        print_r($data);
+        exit();
         return User::create([
             'name' => $data['name'],
             'sub_name' => $data['sub_name'],
@@ -72,7 +74,7 @@ class RegisterController extends Controller
             'tel' => $data['tel'],
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
-            'avatar' => $data["avatar"],
+            'avatar' => $data['avatar'],
             'rating' => $data['rating'],
 
         ]);

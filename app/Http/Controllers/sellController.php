@@ -34,8 +34,9 @@ class sellController extends Controller
         public function show($id){
             $data_seller = DB::table('sells')->where( ['id'=> $id])->get();
            
-            // echo '<pre>';
-            // print_r($data_seller);
+             echo '<pre>';
+             print_r($data_seller);
+             exit();
             foreach ($data_seller as $key)
             {
                 

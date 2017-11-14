@@ -2,25 +2,25 @@ $(document).ready(function(){
         $(".main-type").change(function() {
             
             var val = $(this).val();
-            if (val == "1") {
-                $(".sub-type").html("<option value='1'>ลวด</option><option value='3'>กระป๋อง</option><option value='5'>สังกะสี</option>");
-            } else if (val == "2") {
-                $(".sub-type").html("<option value='1'>กระดาษลัง</option><option value='3'>กระดาษหนังสือพิมพ์</option><option value='5'>กระดาษย่อย</option><option value='7'>กระดาษหนังสือ</option>");
+            if (val == "เศษเหล็ก") {
+                $(".sub-type").html("<option value='ลวด'>ลวด</option><option value='กระป๋อง'>กระป๋อง</option><option value='สังกะสี'>สังกะสี</option>");
+            } else if (val == "เศษกระดาษ") {
+                $(".sub-type").html("<option value='กระดาษลัง'>กระดาษลัง</option><option value='3'>กระดาษหนังสือพิมพ์</option><option value='5'>กระดาษย่อย</option><option value='7'>กระดาษหนังสือ</option>");
     
-            } else if (val == "3") {
-                $(".sub-type").html("<option value='1'>ขวดสุรา</option><option value='3'>ขวดเครื่องดื่มชูกำลัง</option><option value='5'>เศษแก้ว</option>");
+            } else if (val == "ขวดแก้ว") {
+                $(".sub-type").html("<option value='ขวดสุรา'>ขวดสุรา</option><option value='ขวดเครื่องดื่มชูกำลัง'>ขวดเครื่องดื่มชูกำลัง</option><option value='เศษแก้ว'>เศษแก้ว</option>");
     
-            } else if (val == "4") {
-                $(".sub-type").html("<option value='1'>ขวด PET</option><option value='3'>ขวดน้ำขาว-ขุ่น</option><option value='5'>ท่อ PVC</option><option value='7'>โฟม</option>");
+            } else if (val == "พลาสติก") {
+                $(".sub-type").html("<option value='ขวด PET'>ขวด PET</option><option value='ขวดน้ำขาว-ขุ่น'>ขวดน้ำขาว-ขุ่น</option><option value='ท่อ PVC'>ท่อ PVC</option><option value='โฟม'>โฟม</option>");
     
-            } else if (val == "5") {
-                $(".sub-type").html("<option value='1'>อลูมิเนียม</option><option value='3'>กระป๋องเครื่องดื่ม</option><option value='5'>ทองแดง</option><option value='7'>ทองเหลือง</option>");
+            } else if (val == "โลหะ") {
+                $(".sub-type").html("<option value='อลูมิเนียม'>อลูมิเนียม</option><option value='กระป๋องเครื่องดื่ม'>กระป๋องเครื่องดื่ม</option><option value='ทองแดง'>ทองแดง</option><option value='ทองเหลือง'>ทองเหลือง</option>");
     
-            } else if (val == "6") {
-                $(".sub-type").html("<option value='1'>อื่นๆ</option>");
+            } else if (val == "เครื่องใช้สำนักงาน") {
+                $(".sub-type").html("<option value='อื่นๆ'>อื่นๆ</option>");
     
-            } else if (val == "7") {
-                $(".sub-type").html("<option value='1'>น้ำมันพืชเก่า</option><option value='3'>ยางรถยนต์</option><option value='5'>ยางรถมอเตอร์ไซต์</option>");
+            } else if (val == "อื่นๆ") {
+                $(".sub-type").html("<option value='น้ำมันพืชเก่า'>น้ำมันพืชเก่า</option><option value='ยางรถยนต์'>ยางรถยนต์</option><option value='ยางรถมอเตอร์ไซต์'>ยางรถมอเตอร์ไซต์</option>");
     
             }
             
