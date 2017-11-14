@@ -1,5 +1,5 @@
-@extends('layouts.app')
 
+@extends('layouts.app')
 @section('content')
 
 
@@ -381,7 +381,7 @@ foreach($db_sell as $x)
                 </a>
             </li>
             <li class="link bg-sell2">
-            <a href="/buy/'.$x["id"].'">
+            <a href="/sell/'.$x["id"].'">
                 VIEW MATCHING  <span class="badge bg-red">'.$x["countmatching"].'</span>
             </a>
         </li>

@@ -105,6 +105,8 @@ class sellController extends Controller
                //print($buy_selection);
                 //exit();
                 foreach($buy_selection as $key_buy){
+                    $gender_sel_owner = DB::table('gender_names')->where( ['id_gender'=> $key_buy->gender])->get();
+                    $time_sel_owner = DB::table('time_names')->where( ['id'=> $key_buy->time])->get();
                     $type_name_sel = DB::table('type_names')->where( ['id'=> $key_buy->type])->get();
                     $sub_type_name_sel = DB::table('sub_type_names')->where( ['type_id'=> $key_buy->type,'sub_type_id'=> $key_buy->sub_type])->get();
                     foreach ($type_name_sel as $x){
@@ -112,6 +114,14 @@ class sellController extends Controller
                     }
                     foreach ($sub_type_name_sel as $y){
                         $sub_type_name =$y->sub_type_name;
+                    }
+                    foreach ($time_sel_owner as $z)
+                    {
+                        $time_y_name =$z->name;
+                    }
+                    foreach ($gender_sel_owner as $w)
+                    {
+                        $gender_y_name =$w->name;
                     }
                     $buyer = DB::table('users')->where( ['id'=> $key_buy->id_user])->get();
                     foreach($buyer as $x){
@@ -121,9 +131,12 @@ class sellController extends Controller
                     $buy[] = array(
                         "id" => $key_buy->id,
                         "name_product" => $key_buy->name,  
+                        "desc" => $key_buy->desc,
                         "name_buyer" =>$name_buyer,
                         "tel_buyer" => $tel_buyer,
                         "type" => $type_name,
+                        "gender" => $gender_y_name,
+                        "time" => $time_y_name,
                         "sub_type" => $sub_type_name,
                         "volume" => $key_buy->volume,
                         "price" => $key_buy->price,
