@@ -157,7 +157,7 @@ else{
                     <div class="font-modal">เพศ</div>
                   </div>
                   <div class="col-md-6">
-                    <select class="form-control" id="gender" name="gender">
+                    <select class="form-control" id="gender" name="gender_trade">
                     <option value="ทั้งหมด">ทั้งหมด</option>
                       <option value="ชาย">ชาย</option>
                       <option value="หญิง">หญิง</option>
@@ -231,13 +231,13 @@ else{
               </div>
               <div class="col-md-6">
                 <select id="type" name="type" class="form-control main-type">
-                  <option value="1">เศษเหล็ก</option>
-                  <option value="2">เศษกระดาษ</option>
-                  <option value="3">ขวดแก้ว</option>
-                  <option value="4">พลาสติก</option>
-                  <option value="5">โลหะ</option>
-                  <option value="6">เครื่องใช้สำนักงาน</option>
-                  <option value="7">อื่นๆ</option>
+                  <option value="เศษเหล็ก">เศษเหล็ก</option>
+                      <option value="เศษกระดาษ">เศษกระดาษ</option>
+                      <option value="ขวดแก้ว">ขวดแก้ว</option>
+                      <option value="พลาสติก">พลาสติก</option>
+                      <option value="โลหะ">โลหะ</option>
+                      <option value="เครื่องใช้สำนักงาน">เครื่องใช้สำนักงาน</option>
+                      <option value="อื่นๆ">อื่นๆ</option>
                 </select>
               </div>
             </div>
@@ -248,9 +248,9 @@ else{
               </div>
               <div class="col-md-6">
                 <select id="sub_type" name="sub_type" class="form-control sub-type">
-                <option value='1'>ลวด</option>
-                <option value='3'>กระป๋อง</option>
-                <option value='5'>สังกะสี</option>
+                <option value='ลวด'>ลวด</option>
+                <option value='กระป๋อง'>กระป๋อง</option>
+                <option value='สังกะสี'>สังกะสี</option>
                 </select>
               </div>
             </div>
@@ -278,9 +278,10 @@ else{
                   <div class="font-modal">เพศ</div>
                 </div>
                 <div class="col-md-6">
-                  <select class="form-control" id="gender" name="gender">
-                    <option value="1">ชาย</option>
-                    <option value="5">หญิง</option>
+                  <select class="form-control" id="gender" name="gender_trade">
+                    <option value="ทั้งหมด">ทั้งหมด</option>
+                      <option value="ชาย">ชาย</option>
+                      <option value="หญิง">หญิง</option>
                   </select>
                 </div>
               </div>
@@ -291,14 +292,11 @@ else{
                 </div>
                 <div class="col-md-6">
                   <select class="form-control" id="time" name="time">
-                    <option value="1">00.00-03.00</option>
-                    <option value="2">03.00-06.00</option>
-                    <option value="3">06.00-09.00</option>
-                    <option value="4">09.00-12.00</option>
-                    <option value="5">12.00-15.00</option>
-                    <option value="6">15.00-18.00</option>
-                    <option value="7">18.00-21.00</option>
-                    <option value="8">21.00-24.00</option>
+                    <option value="เช้า">เช้า</option>
+                      <option value="กลางวัน">กลางวัน</option>
+                      <option value="บ่าย">บ่าย</option>
+                      <option value="เย็น">เย็น</option>
+                      <option value="กลางคืน">กลางคืน</option>
                     
                   </select>
                 </div>
