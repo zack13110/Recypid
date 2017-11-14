@@ -28,8 +28,6 @@ class CreateBuysTable extends Migration
             $table->integer('night');
             $table->integer('volume');
             $table->double('price');
-            $table->string('latitude');
-            $table->string('longitude');
             $table->string('image')->nullable();
             $table->string('name');
             $table->string('desc')->nullable();
