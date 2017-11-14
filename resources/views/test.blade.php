@@ -1,249 +1,114 @@
 @extends('layouts.app')
 
 @section('content')
-<!--modals-->
-<div class="row margin-1per">
-    <div class="clearfix">
-        <div class="col-md-12">
-            <div class="">
-            <button type="button" class="btn btn-danger btn-block btn-flat" data-toggle="modal" data-target="#modal-danger">
-                        Want to Sell
-                </button>
-            </div>
-        
-        
-        </div>
-    </div>
-</div>
+<?php
+$myVarValue = [18.796143,98.979263];
+?>
+<div id="map_canvas" style="height: 300px; width: 100%;"></div>
+<?php
+for ($i=0; $i < 2;$i++){
+    echo '<div class="singleMap" id="allMaps_'.$i.'"></div>';
+}
+?>
 
-<!-- showmodals-red -->
-<div class="modal modal-danger fade" id="modal-danger">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">ตั้งขาย</h4>
-                </div>
-                <div class="modal-body">
-                <form action="/home" name="sell_post" id="sell_post" method="post">
-                {{ csrf_field() }}
-                @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-                <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">ชื่อสินค้า</div>
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control" id="name" name="name" required>
-                  </div>
-                </div>
-                <!--rowend-->
-                
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">หมวด</div>
-                  </div>
-                  <div class="col-md-6">
-                    <select id="type" name="type" class="form-control main-type">
-                      <option value="1">เศษเหล็ก</option>
-                      <option value="2">เศษกระดาษ</option>
-                      <option value="3">ขวดแก้ว</option>
-                      <option value="4">พลาสติก</option>
-                      <option value="5">โลหะ</option>
-                      <option value="6">เครื่องใช้สำนักงาน</option>
-                      <option value="7">อื่นๆ</option>
-                    </select>
-                  </div>
-                </div>
-                <!--endrow-->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div  class="font-modal">ประเภท</div>
-                  </div>
-                  <div class="col-md-6">
-                    <select id="sub_type" name="sub_type" class="form-control sub-type">
-                      <option value="">-- select one -- </option>
-                    </select>
-                  </div>
-                </div>
-                <!--endrow-->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">คำอธิบาย</div>
-                  </div>
-                  <div class="col-md-6">
-                    <textarea class="form-control" name="desc" id="desc" cols="30" rows="10"></textarea> 
-                  </div>
-                </div>
-                <!--rowend-->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">จำนวน</div>
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control" id="volume" name="volume"> 
-                  </div>
-                </div>
-                <!--rowend-->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">เพศ</div>
-                  </div>
-                  <div class="col-md-6">
-                    <select class="form-control" id="gender" name="gender">
-                      <option value="1">ชาย</option>
-                      <option value="5">หญิง</option>
-                    </select>
-                  </div>
-                </div>
-                <!--endrow-->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">เวลาที่สะดวก</div>
-                  </div>
-                  <div class="col-md-6">
-                    <select class="form-control" id="time" name="time">
-                    <option value="1">00.00-03.00</option>
-                      <option value="2">03.00-06.00</option>
-                      <option value="3">06.00-09.00</option>
-                      <option value="4">09.00-12.00</option>
-                      <option value="5">12.00-15.00</option>
-                      <option value="6">15.00-18.00</option>
-                      <option value="7">18.00-21.00</option>
-                      <option value="8">21.00-24.00</option>
-                      
-                    </select>
-                  </div>
-                </div>
-                <!--endrow-->
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="font-modal">ราคา</div>
-                  </div>
-                  <div class="col-md-6">
-                    <input class="form-control" id="price" name="price"> 
-                  </div>
-                </div>
-                <!--rowend-->
-                <!-- modal-body end -->
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-outline submit">ตกลง</button>
-                </div>
-                </form>
-              </div>
-            </div>
-          </div>
-<!-- showmodal-red -->
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+@endsection
+@section('googlemap')
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
+ <script>
+    var myvar = <?php echo json_encode($myVarValue); ?>;
+    var map2;
+var global_markers = [];    
+var markers = [[37.09024, -95.712891, 'trialhead0'], [-14.235004, -51.92528, 'trialhead1'], [-38.416097, -63.616672, 'trialhead2']];
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(myvar[0],myvar[1]);
+    var myOptions = {
+        zoom: 12,
+        center: latlng,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map2 = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    var infowindow = new google.maps.InfoWindow({});
+    for (var i = 0; i < markers.length; i++) {
+        // obtain the attribues of each marker
+        var lat = parseFloat(markers[i][0]);
+        var lng = parseFloat(markers[i][1]);
+        var trailhead_name = markers[i][2];
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
+        var myLatlng = new google.maps.LatLng(lat, lng);
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+        var contentString = "<html><body><div><p><h2>" + trailhead_name + "</h2></p></div></body></html>";
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map2,
+            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name
+        });
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+        marker['infowindow'] = contentString;
 
-                        <div class="form-group{{ $errors->has('sub_name') ? ' has-error' : '' }}">
-                            <label for="sub_name" class="col-md-4 control-label">Sub Name</label>
+        global_markers[i] = marker;
 
-                            <div class="col-md-6">
-                                <input id="sub_name" type="text" class="form-control" name="sub_name" value="{{ old('sub_name') }}" required autofocus>
+        google.maps.event.addListener(global_markers[i], 'click', function() {
+            infowindow.setContent(this['infowindow']);
+            infowindow.open(map2, this);
+        });
+    }
+    var Chiang_mai = new google.maps.LatLng(18.796143, 98.979263);
+    var mapList = "";
+    //var abc= 0;
+    var start_array = [ ["18.808217", "98.954631"],["16.808217", "100"]];
+    var end_array = [ ["18.769325", "98.976480"],["17.08217", "102"]];
+    for (i = 0; i < 2; i++) {
+        var start = new google.maps.LatLng(start_array[i][0],start_array[i][1]);
+        var end = new google.maps.LatLng(end_array[i][0],end_array[i][1]); 
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        var directionsService = new google.maps.DirectionsService();
+        //abc = i;
+        //var name = '#allMaps_'+ abc +'_';
+        //$(name).append('<div class="singleMap" id="map_' + i + '"></div>');
+        var mapOptions = {
+            center: Chiang_mai,
+            zoom: 12
+        };
+        var map = new google.maps.Map(document.getElementById("allMaps_"+i), mapOptions);
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay,start,end);
+    }
+    
+}
 
-                                @if ($errors->has('sub_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('sub_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
-                            <label for="tel" class="col-md-4 control-label">Tel</label>
-
-                            <div class="col-md-6">
-                                <input id="tel" type="text" class="form-control" name="tel" value="{{ old('tel') }}" required autofocus>
-
-                                @if ($errors->has('tel'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('tel') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end) {
+    
+    
+    directionsService.route({
+      origin: start,
+      destination: end,
+      optimizeWaypoints: true,
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        var route = response.routes[0];
+        var summaryPanel = document.getElementById('directions-panel');
+        summaryPanel.innerHTML = '';
+        // For each route, display summary information.
+        for (var i = 0; i < route.legs.length; i++) {
+          var routeSegment = i + 1;
+          /*summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+              '</b><br>';
+          summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+          summaryPanel.innerHTML += route.legs[i].end_address + '<br>';*/
+          summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+        }
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
+window.onload = initialize;
+ </script>
 @endsection

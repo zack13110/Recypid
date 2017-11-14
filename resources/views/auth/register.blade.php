@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -88,25 +89,30 @@
                                 @endif
                             </div>
                         </div>
-                        <div id="directions-panel"></div>
-                        <h3>Map</h3>
-                                <div class="row">
+
+                   <div class="form-group row">
+                        <label class="col-md-4 control-label">Map</label>
+                                
+
                                     <div class="col-lg-3">
                             <div>latitude </div>
-                            <div><input class="form-control" type="text" name="latitude" id="latitude"></div>
+                            <div><input class="form-control" type="text" name="latitude" id="latitude" readonly></div>
                         </div> 
                         <div class="col-lg-3">
                         <div>longitude  </div>
-                        <div><input class="form-control" type="text" name="longitude" id="longitude"></div>
+                        <div><input class="form-control" type="text" name="longitude" id="longitude" readonly></div>
                         </div>
                 </div>
-                    <div id="maptab_1" style="height: 300px; width: 100%;"></div>
-
+                <div class="row form-group">
+                    <div class="col-lg-10 col-lg-offset-1">
+                        <div id="maptab_1" style="height: 300px; width: 100%;"></div>
+                    </div>
+                </div>
                         <input type="hidden" name="rating" id="rating" value="5"/>
                     
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                            <div class="col-md-10 col-md-offset-1">
+                                <button type="submit" class="btn btn-primary btn-flat btn-block">
                                     Register
                                 </button>
                             </div>
@@ -117,4 +123,9 @@
         </div>
     </div>
 </div>
+   
+@endsection
+
+@section('googlemap')
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initMap"></script>
 @endsection

@@ -1,10 +1,12 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('content')
 
 <?php
     if(isset($db_buy)){
         $numbers_buy = count($db_buy);
         $count_buy=0;
         $bg_owner = "bg-sell";
+
     }else
     {
         $numbers_buy = 0; 
@@ -16,7 +18,7 @@
         $numbers_sell = count($db_sell);
         $count_sell=0;
         $bg_owner = "bg-buy";
-        print_r($db_sell);
+        
     }else
     {
         $numbers_sell = 0;
@@ -121,37 +123,9 @@
 
 <?php
 if($numbers_buy >=1){
-    foreach($db_buy as $key)
-    echo '<div class="row">
-        <div class="col-md-12">
-            <!-- /.info-box -->
-          <div class="info-box bg-red">
-              
-            <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
-
-            <div class="info-box-content">
-                <span class="info-box-text">name</span>'.$key['name_buyer'].'
-              <span class="info-box-text">Sub type</span>'.$key['sub_type'].'
-              <span class="info-box-text">Name_product</span>'.$key['name_product'].'
-              <span class="info-box-text">price</span>'.$key['price'].'
-              <span class="info-box-text">volume</span>'.$key['volume'].'
-
-             
-            </div>
-            <!-- /.info-box-content -->
-          </div>
-          
-        </div>
-    </div>';
-}
-?>
-
-
-<?php
-if($numbers_sell >=1){
-    foreach($db_sell as $key)
+    foreach($db_buy as $key){
     echo '<!-- Modal -->
-    <div class="modal fade" id="modal_seller_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modal_buyer_'.$count_buy.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-sell2 font_c_white">
@@ -166,22 +140,131 @@ if($numbers_sell >=1){
           <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                   <li class="active">
-                      <a href="#tab_1_user_1" data-toggle="tab">Image</a>
+                      <a href="#tab_1_user_'.$count_buy.'" data-toggle="tab">Image</a>
                   </li>
                   <li>
-                      <a href="#tab_2_user_1" data-toggle="tab">Maps</a>
+                      <a href="#tab_2_user_'.$count_buy.'" data-toggle="tab">Maps</a>
                   </li>
 
 
               </ul>
               <div class="tab-content">
-                  <div class="tab-pane active" id="tab_1_user_1">
+                  <div class="tab-pane active" id="tab_1_user_'.$count_buy.'">
 
                       <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
 
                   </div>
                   <!-- /.tab-pane -->
-                  <div class="tab-pane" id="tab_2_user_1">
+                  <div class="tab-pane" id="tab_2_user_'.$count_buy.'">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
+                          width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  </div>
+                  <!-- /.tab-pane -->
+
+              </div>
+              <!-- /.tab-content -->
+          </div>
+          <!-- nav-tabs-custom -->
+          </div>
+          <div class="box-body"><!-- start/.box-body -->
+            <dl class="dl-horizontal">
+            <dt>ชื่อผู้ขาย</dt>
+                <dd>'.$key['name_buyer'].'</dd>
+            <dt>เบอร์ติดต่อ</dt>
+                <dd>'.$key['tel_buyer'].'</dd>
+            <dt>ประเภท</dt>
+                <dd>'.$key['type'].'</dd>
+            <dt>หมวด</dt>
+                <dd>'.$key['sub_type'].'</dd>
+            <dt>เพศ</dt>
+                <dd>'.$key['gender'].'</dd>   
+            <dt>คำอธิบาย</dt>
+                <dd>'.$key['desc'].'</dd>
+            <dt>ราคา</dt>
+                <dd>'.$key['price'].'</dd> 
+            <dt>จำนวน</dt>
+                <dd>'.$key['volume'].'</dd>
+            <dt>เวลา</dt>
+                <dd>'.$key['time'].'</dd>   
+            </dl>
+        </div><!-- end/.box-body -->
+        
+        </div><!-- end div modal body-->
+      </div>
+    </div>';
+    echo '<div class="row margin-1per">
+        <div class="col-md-12">
+            <!-- /.info-box -->
+            <a data-toggle="modal" data-target="#modal_buyer_'.$count_buy.'">
+            <div class="box_info bg-green">
+              
+              <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
+  
+              <div class="info_box_content">
+                <div>
+                  <span class="info-box-text pull-left">name</span> : '.$key['name_buyer'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">Sub type</span> : '.$key['sub_type'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">Name_product</span> : '.$key['name_product'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">price</span> : '.$key['price'].'
+                </div>
+                <div>
+                  <span class="info-box-text pull-left">volume</span> : '.$key['volume'].'
+                </div>
+              </div>
+              <!-- /.info-box-content -->
+            </div>
+            
+          </div>
+          </a>
+          
+        </div>';
+    $count_buy++;
+                      }
+}
+?>
+</div>
+
+<?php
+if($numbers_sell >=1){
+    foreach($db_sell as $key){
+    echo '<!-- Modal -->
+    <div class="modal fade" id="modal_seller_'.$count_sell.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-sell2 font_c_white">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span class="font_c_white" aria-hidden="true">&times;</span>
+        </button>
+            <h3 class="modal-title" id="exampleModalLabel">'.$key['name_product'].'</h3>
+            
+          </div>
+          <div class="modal-body">
+          <!-- Custom Tabs -->
+          <div class="nav-tabs-custom">
+              <ul class="nav nav-tabs">
+                  <li class="active">
+                      <a href="#tab_1_user_'.$count_sell.'" data-toggle="tab">Image</a>
+                  </li>
+                  <li>
+                      <a href="#tab_2_user_'.$count_sell.'" data-toggle="tab">Maps</a>
+                  </li>
+
+
+              </ul>
+              <div class="tab-content">
+                  <div class="tab-pane active" id="tab_1_user_'.$count_sell.'">
+
+                      <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
+
+                  </div>
+                  <!-- /.tab-pane -->
+                  <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
                           width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
@@ -218,29 +301,29 @@ if($numbers_sell >=1){
         </div><!-- end div modal body-->
       </div>
     </div>';
-    echo '<div class="row">
+    echo '<div class="row margin-1per">
         <div class="col-md-12">
             <!-- /.info-box -->
-            <a data-toggle="modal" data-target="#modal_seller_1">
+            <a data-toggle="modal" data-target="#modal_seller_'.$count_sell.'">
           <div class="box_info bg-red">
             
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
 
             <div class="info_box_content">
               <div>
-                <span class="info-box-text pull-left">name</span>'.$key['name_seller'].'
+                <span class="info-box-text pull-left">name</span> : '.$key['name_seller'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">Sub type</span>'.$key['sub_type'].'
+                <span class="info-box-text pull-left">Sub type</span> : '.$key['sub_type'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">Name_product</span>'.$key['name_product'].'
+                <span class="info-box-text pull-left">Name_product</span> : '.$key['name_product'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">price</span>'.$key['price'].'
+                <span class="info-box-text pull-left">price</span> : '.$key['price'].'
               </div>
               <div>
-                <span class="info-box-text pull-left">volume</span>'.$key['volume'].'
+                <span class="info-box-text pull-left">volume</span> : '.$key['volume'].'
               </div>
             </div>
             <!-- /.info-box-content -->
@@ -249,9 +332,112 @@ if($numbers_sell >=1){
         </div>
         </a>
     </div>';
+    $count_sell++;
+                      }
 }
 ?>
 
 
 </div>
+@endsection
+@section('googlemap')
+ <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
+ <script>
+    var Chiang_mai = new google.maps.LatLng(18.796143, 98.979263);
+    var count_number = <?php echo json_encode($numbers_buy); ?>;
+    var map2;
+var global_markers = [];    
+var markers = [[37.09024, -95.712891, 'trialhead0'], [-14.235004, -51.92528, 'trialhead1'], [-38.416097, -63.616672, 'trialhead2']];
+function initialize() {
+    geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(myvar[0],myvar[1]);
+    var myOptions = {
+        zoom: 12,
+        center: Chiang_mai,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map2 = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    var infowindow = new google.maps.InfoWindow({});
+    for (var i = 0; i < markers.length; i++) {
+        // obtain the attribues of each marker
+        var lat = parseFloat(markers[i][0]);
+        var lng = parseFloat(markers[i][1]);
+        var trailhead_name = markers[i][2];
+
+        var myLatlng = new google.maps.LatLng(lat, lng);
+
+        var contentString = "<html><body><div><p><h2>" + trailhead_name + "</h2></p></div></body></html>";
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map2,
+            title: "Coordinates: " + lat + " , " + lng + " | Trailhead name: " + trailhead_name
+        });
+
+        marker['infowindow'] = contentString;
+
+        global_markers[i] = marker;
+
+        google.maps.event.addListener(global_markers[i], 'click', function() {
+            infowindow.setContent(this['infowindow']);
+            infowindow.open(map2, this);
+        });
+    }
+    
+    var mapList = "";
+    //var abc= 0;
+    var start_array = [ ["18.808217", "98.954631"],["16.808217", "100"]];
+    var end_array = [ ["18.769325", "98.976480"],["17.08217", "102"]];
+    for (i = 0; i < 2; i++) {
+        var start = new google.maps.LatLng(start_array[i][0],start_array[i][1]);
+        var end = new google.maps.LatLng(end_array[i][0],end_array[i][1]); 
+        var directionsDisplay = new google.maps.DirectionsRenderer();
+        var directionsService = new google.maps.DirectionsService();
+        //abc = i;
+        //var name = '#allMaps_'+ abc +'_';
+        //$(name).append('<div class="singleMap" id="map_' + i + '"></div>');
+        var mapOptions = {
+            center: Chiang_mai,
+            zoom: 12
+        };
+        var map = new google.maps.Map(document.getElementById("allMaps_"+i), mapOptions);
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay,start,end);
+    }
+    
+}
+
+
+
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end) {
+    
+    
+    directionsService.route({
+      origin: start,
+      destination: end,
+      optimizeWaypoints: true,
+      travelMode: 'DRIVING'
+    }, function(response, status) {
+      if (status === 'OK') {
+        directionsDisplay.setDirections(response);
+        var route = response.routes[0];
+        var summaryPanel = document.getElementById('directions-panel');
+        summaryPanel.innerHTML = '';
+        // For each route, display summary information.
+        for (var i = 0; i < route.legs.length; i++) {
+          var routeSegment = i + 1;
+          /*summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
+              '</b><br>';
+          summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
+          summaryPanel.innerHTML += route.legs[i].end_address + '<br>';*/
+          summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+        }
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
+  }
+window.onload = initialize;
+ </script>
 @endsection
