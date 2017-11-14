@@ -109,15 +109,15 @@ class buyController extends Controller
         $data_sell = DB::table('sells')->where( ['id'=> $id])->first();
         $seller = DB::table('users')->where( ['id'=> $data_sell->id_user])->first();
         //print_r($buyer);
-        print_r($data_buy);
+        //print_r($data_buy);
         if($data_buy->gender_trade == 'ทั้งหมด')
         {
             $data_seller = DB::table('sells')
                         ->join('users', 'sells.id_user','=','users.id')
-                        //->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
+                        ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->select('sells.*','users.*')
                         ->get();
-                        //print_r($data_seller);
+                       // print_r($data_seller);
         }
         else
         {
@@ -129,7 +129,7 @@ class buyController extends Controller
                         //print_r($data_seller);
                         
         }
-        print_r($data_seller);
+        //print_r($data_seller);
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;

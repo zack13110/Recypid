@@ -112,7 +112,7 @@ class DatabaseSeeder extends Seeder
         ]);
         DB::table('sells')->insert([
             ['id_user' => '2',
-            'type' => 'เศษลวด',
+            'type' => 'เศษเหล็ก',
             'sub_type' => 'ลวด',
             'gender_trade' => 'ทั้งหมด',
             'morning' => '10',
@@ -127,7 +127,7 @@ class DatabaseSeeder extends Seeder
             'desc' => 'fdsafdasfs',
         ],
             ['id_user' => '3',
-            'type' => 'เศษลวด',
+            'type' => 'เศษเหล็ก',
             'sub_type' => 'ลวด',
             'gender_trade' => 'ชาย',
             'morning' => '0',
@@ -142,7 +142,7 @@ class DatabaseSeeder extends Seeder
             'desc' => 'gfdgfdsgds',
     ],
             ['id_user' => '4',
-            'type' => 'เศษลวด',
+            'type' => 'เศษเหล็ก',
             'sub_type' => 'ลวด',
             'gender_trade' => 'ชาย',
             'morning' => '0',
