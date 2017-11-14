@@ -12,6 +12,8 @@ class sellController extends Controller
     public function sell(Request $data)
     
         {   
+        print_r($data);
+        exit();
         //--------------------validation---------------//            
         $name = $data->input('name');
         $sub_type = $data->input('sub_type');

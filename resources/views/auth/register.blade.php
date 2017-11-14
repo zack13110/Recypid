@@ -89,21 +89,18 @@
                                 @endif
                             </div>
                         </div>
-
-                        <div class="row form-group">
-                <div class="col-md-4">
-                  <div class="control-label">gender</div>
-                </div>
-                <div class="col-md-6">
-                  <select class="form-control" id="gender" name="gender">
-                    <option value="ชาย">ชาย</option>
-                    <option value="หญิง">หญิง</option>
-                  </select>
-                </div>
-              </div>
-                        
+                           <div class="row form-group">
+                 <div class="col-md-4">
+                   <label class="control-label">gender</label>
+                 </div>
+                 <div class="col-md-6">
+                   <select class="form-control" id="gender" name="gender">
+                     <option value="ชาย">ชาย</option>
+                     <option value="หญิง">หญิง</option>
+                   </select>
+                 </div>
+               </div>
                         <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
-                        
                             <label for="tel" class="col-md-4 control-label">Profile Image</label>
 
                             <div class="col-md-6">
@@ -118,7 +115,9 @@
                         </div>
                         <div class="form-group row">
                         <label class="col-md-4 control-label">Map</label>
-                                    <div class="col-lg-3">
+                                
+
+                                <div class="col-lg-3">
                             <div>latitude </div>
                             <div><input class="form-control" type="text" name="latitude" id="latitude" readonly></div>
                         </div> 
