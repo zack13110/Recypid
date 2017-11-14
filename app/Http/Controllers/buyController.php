@@ -20,14 +20,86 @@ class buyController extends Controller
         $error = "--------------------------";
             return redirect()->back()->with('error'. $error);
         }
-        else
-        $items = $data->all();
-        $a = buy::create($items);
-       
-        $id_buying = $a->id;
+        else{
+        //$items = $data->all();
+        //$a = buy::create($items);
+        
+        $id_user = $data->input('id_user');
+        $type = $data->input('type');
+        $sub_type = $data->input('sub_type');
+        $gender = $data->input('gender');
+        $time_duration = $data->input('time');
+        if($time_duration == 'เช้า'){
+            $morning = 10;
+            $noon = 0;
+            $afternoon=0;
+            $evening =0;
+            $night = 0;
+        }
+        else if ($time_duration == 'กลางวัน') 
+        {
+            $morning = 0;
+            $noon = 10;
+            $afternoon=0;
+            $evening =0;
+            $night = 0;
+        }
+        else if ($time_duration == 'บ่าย') 
+        {
+            $morning = 0;
+            $noon = 0;
+            $afternoon=10;
+            $evening =0;
+            $night = 0;
+        }
+        else if ($time_duration == 'เย็น') 
+        {
+            $morning = 0;
+            $noon = 0;
+            $afternoon=0;
+            $evening =10;
+            $night = 0;
+        }
+        else if ($time_duration == 'กลางคืน') 
+        {
+            $morning = 0;
+            $noon = 0;
+            $afternoon=0;
+            $evening =0;
+            $night = 10;
+        }
+        $volume = $data->input('volume');
+        $price = $data->input('price');
+        $image = 'default';
+        $name = $data->input('name');
+        $desc = $data->input('desc');
+        $additem = DB::table('buys')
+        ->insert(array(
+            'id_user'      => $id_user,
+            'type' => $type,
+            'sub_type'     => $sub_type,
+            'gender'      => $gender,
+            'morning'=> $morning,
+            'noon' => $noon,
+            'afternoon' => $afternoon,
+            'evening' =>  $evening,
+            'night' => $night,
+            'volume' => $volume,
+            'price' => $price,
+            'image' => $image,
+            'name' => $name,
+            'desc' => $desc,
+            'created_at' => new \DateTime(),
+            'updated_at' =>  new \DateTime()
+        ));
+
+        $id_buying = $additem->id;
+
+
         return redirect()->action(
             'buyController@show', ['id' => $id_buying]
         );
+    }
         //--------------------validation---------------//
     }
     public function show($id){
