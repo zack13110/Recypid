@@ -5,8 +5,6 @@ var markerarray = [];
 
 function initMap() {
     
-    var directionsDisplay = new google.maps.DirectionsRenderer;
-
     var map = new google.maps.Map(document.getElementById('maptab_1'), {
         center: {
             lat: 13.7251088,
@@ -59,7 +57,6 @@ function initMap() {
             map.setCenter(results[0].geometry.location);
         });
     });
-
 
     google.maps.event.addListener(map, 'click', function (event) {
         if (markerarray != null) {

@@ -27,7 +27,7 @@ class buyController extends Controller
         $id_user = $data->input('id_user');
         $type = $data->input('type');
         $sub_type = $data->input('sub_type');
-        $gender = $data->input('gender_trade');
+        $gender_trade = $data->input('gender_trade');
         $time_duration = $data->input('time');
         if($time_duration == 'เช้า'){
             $morning = 10;
@@ -78,11 +78,10 @@ class buyController extends Controller
             'id_user'      => $id_user,
             'type' => $type,
             'sub_type'     => $sub_type,
-            'gender_trade'      => $gender,
+            'gender_trade'      => $gender_trade,
             'morning'=> $morning,
             'noon' => $noon,
             'afternoon' => $afternoon,
-
             'evening' =>  $evening,
             'night' => $night,
             'volume' => $volume,
@@ -107,15 +106,18 @@ class buyController extends Controller
         echo '<pre>';
         $data_buy = DB::table('buys')->where( ['id'=> $id])->first();
         $buyer = DB::table('users')->where( ['id'=> $data_buy->id_user])->first();
-        print_r($buyer);
+        $data_sell = DB::table('sells')->where( ['id'=> $id])->first();
+        $seller = DB::table('users')->where( ['id'=> $data_sell->id_user])->first();
+        //print_r($buyer);
         print_r($data_buy);
         if($data_buy->gender_trade == 'ทั้งหมด')
         {
             $data_seller = DB::table('sells')
                         ->join('users', 'sells.id_user','=','users.id')
-                        ->where(['sells.type'=> $data_buy->type,['sells.sub_type'=> $data_buy->sub_type]])
+                        //->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->select('sells.*','users.*')
                         ->get();
+                        //print_r($data_seller);
         }
         else
         {
@@ -124,6 +126,8 @@ class buyController extends Controller
                         ->where(['users.gender'=> $data_buy->gender_trade])
                         ->select('sells.*','users.*')
                         ->get();
+                        //print_r($data_seller);
+                        
         }
         print_r($data_seller);
          foreach ($data_seller as $x){
@@ -140,30 +144,30 @@ class buyController extends Controller
              $result = $miles * 1.609344;
              //print_r($result.'\n');
              if($result < 50){
-                $data_buy->morning;
-                $data_buy->noon;
-                $data_buy->afternoon;
-                $data_buy->evening;
-                $data_buy->volume;
-                $data_buy->price;
-                $buyer->rating;
-                // $db_sell = array(
-                //     'id' => $x->id,
-                //     'id_user' => 4,
-                //     'type' => เศษลวด,
-                //     'sub_type' => ลวด,
-                //     'gender_trade' => ชาย,
-                //     'morning' => 0,
-                //     'noon' => 10,
-                //     'afternoon' => 0,
-                //     'evening' => 0,
-                //     'night' => 0,
-                //     'volume' => ,
-                //     'price' => 1,
-                //     'image' => fdsfsda,
-                //     'name' => user4,
-                //     'desc' => gfdsgfdsgf,
-                //);
+                $morning_b = $data_buy->morning;
+                $noon_b = $data_buy->noon;
+                $afternoon_b = $data_buy->afternoon;
+                $evening_b = $data_buy->evening;
+                $night_b = $data_buy->night;
+                $volume_b = $data_buy->volume;
+                $price_b = $data_buy->price;
+                $rating_b = $buyer->rating;
+                
+                $morning_s = $x->morning;
+                $noon_s = $x->noon;
+                $afternoon_s = $x->afternoon;
+                $evening_s = $x->evening;
+                $night_s = $x->night;
+                $volume_s = $x->volume;
+                $price_s = $x->price;
+                $rating_s = $seller->rating;
+
+                /*calculate */
+                $cal_bdots = ( $morning_b* $morning_s)+($noon_b*$noon_s)+($afternoon_b*$afternoon_s)+($evening_b*$evening_s)+($night_b*$night_s)+($volume_b*$volume_s)+($price_b*$price_s)+($rating_b*$rating_s);
+                $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
+                $cal = $cal_bdots / $cal_bs;
+    
+                print_r($cal);
              }
              
          }

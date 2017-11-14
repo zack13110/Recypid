@@ -75,7 +75,6 @@ class RegisterController extends Controller
             'longitude' => $data['longitude'],
             'avatar' => $data['avatar'],
             'rating' => $data['rating'],
-
         ]);
     }
 }
