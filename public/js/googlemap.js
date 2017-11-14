@@ -58,11 +58,6 @@ function initMap() {
         });
     });
 
-<<<<<<< HEAD
-    // This event listener calls addMarker() when the map is clicked.
-=======
-
->>>>>>> 5d5881336e22aca8a5970f5abb0f74d2e17d809e
     google.maps.event.addListener(map, 'click', function (event) {
         if (markerarray != null) {
             markerarray.forEach(function (marker) {
