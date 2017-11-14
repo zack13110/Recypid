@@ -89,6 +89,7 @@
                                 @endif
                             </div>
                         </div>
+<<<<<<< HEAD
                         <div class="form-group{{ $errors->has('tel') ? ' has-error' : '' }}">
                             <label for="tel" class="col-md-4 control-label">Profile Image</label>
 
@@ -103,8 +104,13 @@
                             </div>
                         </div>
                         <div class="form-group row">
+=======
+
+                   <div class="form-group row">
+>>>>>>> deca1e8184a4fc67a067251438ce76b34edb097e
                         <label class="col-md-4 control-label">Map</label>
                                 
+
                                     <div class="col-lg-3">
                             <div>latitude </div>
                             <div><input class="form-control" type="text" name="latitude" id="latitude" readonly></div>
