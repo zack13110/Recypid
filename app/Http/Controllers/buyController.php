@@ -106,15 +106,14 @@ class buyController extends Controller
         echo '<pre>';
         $data_buy = DB::table('buys')->where( ['id'=> $id])->first();
         $buyer = DB::table('users')->where( ['id'=> $data_buy->id_user])->first();
-        $data_sell = DB::table('sells')->where( ['id'=> $id])->first();
-        $seller = DB::table('users')->where( ['id'=> $data_sell->id_user])->first();
-        //print_r($buyer);
+        print_r($buyer);
         print_r($data_buy);
+        //exit();
         if($data_buy->gender_trade == 'ทั้งหมด')
         {
             $data_seller = DB::table('sells')
                         ->join('users', 'sells.id_user','=','users.id')
-                        //->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
+                        ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->select('sells.*','users.*')
                         ->get();
                         //print_r($data_seller);
@@ -123,13 +122,14 @@ class buyController extends Controller
         {
             $data_seller = DB::table('sells')
                         ->join('users', 'sells.id_user','=','users.id')
-                        ->where(['users.gender'=> $data_buy->gender_trade])
+                        ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type,'users.gender'=> $data_buy->gender_trade])
                         ->select('sells.*','users.*')
                         ->get();
                         //print_r($data_seller);
                         
         }
         print_r($data_seller);
+        //exit();
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;
@@ -142,7 +142,7 @@ class buyController extends Controller
              $dist = rad2deg($dist);
              $miles = $dist * 60 * 1.1515;
              $result = $miles * 1.609344;
-             //print_r($result.'\n');
+             print_r($result.'</br>');
              if($result < 50){
                 $morning_b = $data_buy->morning;
                 $noon_b = $data_buy->noon;
@@ -160,19 +160,60 @@ class buyController extends Controller
                 $night_s = $x->night;
                 $volume_s = $x->volume;
                 $price_s = $x->price;
-                $rating_s = $seller->rating;
+                $rating_s = $x->rating;
 
+                //print_r($morning_b);
                 /*calculate */
                 $cal_bdots = ( $morning_b* $morning_s)+($noon_b*$noon_s)+($afternoon_b*$afternoon_s)+($evening_b*$evening_s)+($night_b*$night_s)+($volume_b*$volume_s)+($price_b*$price_s)+($rating_b*$rating_s);
                 $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                 $cal = $cal_bdots / $cal_bs;
     
                 print_r($cal);
+                if($cal > 0){
+                    $sell[] = array(
+                        'id' => $x->id,
+                        'id_user' => $x->id_user,
+                        'type' => $x->type,
+                        'sub_type' => $x->sub_type,
+                        'gender_trade' => $x->gender_trade,
+                        'volume' => $x->volume,
+                        'price' => $x->price,
+                        'image' => $x->image,
+                        'name_product' => $x->name_product,
+                        'desc' => $x->desc,
+                        'date' => $x->created_at,
+                        'updated_at' => $x->updated_at,
+                        'tel_buyer' => $x->tel,
+                        'name_buyer' => $x->name,
+                        'gender' => $x->gender,
+                        'latitude' => $x->latitude,
+                        'longitude' => $x->longitude,
+                        'avatar'=> $x->avatar,
+                        'rating' => $x->rating
+                    );
+                    print_r($sell);
+                }
              }
              
          }
+         $data_own = array(
+            'name' => $buyer->name,
+            'name_product'=>$data_buy->name_product,
+            'tel' =>$buyer->tel,
+            'type' => $data_buy->type,
+            'sub_type' =>$data_buy->sub_type,
+            'desc' => $data_buy->desc,
+            'gender' =>$buyer->gender,
+            'price' =>$data_buy->price,
+            'volume'=>$data_buy->volume,
+            'time' => $data_buy->created_at,
+            'latitude' => $buyer->latitude,
+            'longitude' => $buyer->longitude,
+            'avatar'=> $buyer->avatar,
+            'rating' => $buyer->rating
+         );
         
-        exit();
+        //exit();
     
         return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own]);
      
