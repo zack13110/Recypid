@@ -99,7 +99,7 @@ else{
                     <div class="font-modal ">ชื่อสินค้า</div>
                   </div>
                   <div class="col-md-6">
-                    <input class="form-control" id="name" name="name" required>
+                    <input class="form-control" id="name" name="name_product" required>
                   </div>
                 </div>
                 <!--rowend-->
@@ -220,7 +220,7 @@ else{
                   <div class="font-modal ">ชื่อสินค้า</div>
                 </div>
                 <div class="col-md-6">
-                  <input class="form-control" id="name" name="name">
+                  <input class="form-control" id="name" name="name_product">
                 </div>
               </div>
               <!--rowend-->
