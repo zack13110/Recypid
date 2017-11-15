@@ -12,44 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        DB::table('type_names')->insert([
-            ['name' => 'เศษลวด'],
-            ['name' => 'เศษกระดาษ'],
-            ['name' => 'ขวดแก้ว'],
-            ['name' => 'พลาสติก'],
-            ['name' => 'โลหะ'],
-            ['name' => 'เครื่องใช้สำนักงานและเครื่องใช้ไฟฟ้า'],
-            ['name' => 'อิ่นๆ'],
-        ]);
-
-        DB::table('sub_type_names')->insert([
-            ['name'=> 'ลวด'],
-            ['name'=> 'กระป๋อง'],
-            ['name'=> 'สังกะสี'],
-            ['name'=> 'กระดาษลัง'],
-            ['name'=> 'กระดาษหนังสือพิมพ์'],
-            ['name'=> 'กระดาษย่อย'],
-            ['name'=> 'กระดาษหนังสือ'],
-            ['name'=> 'ขวดเบียร์'],
-            ['name'=> 'ขวดสุรา'],
-            ['name'=> 'ขวดสุราขาว'],
-            ['name'=> 'ขวดเครื่องดื่มขูกำลัง'],
-            ['name'=> 'เศษแก้ว'],
-            ['name'=> 'ขวด PET'],
-            ['name'=> 'ขวดน้ำขาว-ขุ่น'],
-            ['name'=> 'ท่อPVC'],
-            ['name'=> 'โฟม'],
-            ['name'=> 'อลูมิเนียม'],
-            ['name'=> 'กระป๋องเครื่องดื่ม'],
-            ['name'=> 'ทองแดง'],
-            ['name'=> 'ทองเหลือง'],
-            ['name'=> 'อุปกรณ์คอมพิวเตอร์'],
-            ['name'=> 'เครื่องใช้ไฟฟ้า'],
-            ['name'=> 'แผงวงจร'],
-            ['name'=> 'แอร์คอนดิชั่น'],
-            ['name'=> 'น้ำมันพืชเก่า'],
-            ['name'=> 'ยางรถยนต์/มอเตอร์ไซต์'],
-        ]);
+        
 
         DB::table('time_names')->insert([
             ['name'=>'เช้า'],
@@ -123,7 +86,7 @@ class DatabaseSeeder extends Seeder
             'volume' => '12',
             'price' => '1',
             'image' => 'gfdsgfsdg',
-            'name' => 'sgfdsad',
+            'name_product' => 'name_product_01',
             'desc' => 'fdsafdasfs',
         ],
             ['id_user' => '3',
@@ -138,7 +101,7 @@ class DatabaseSeeder extends Seeder
             'volume' => '4',
             'price' => '1',
             'image' => 'gfdsgfdsgdf',
-            'name' => 'sfgdsgfdsgfd',
+            'name_product' => 'name_product_02',
             'desc' => 'gfdgfdsgds',
     ],
         ['id_user' => '3',
@@ -153,7 +116,7 @@ class DatabaseSeeder extends Seeder
         'volume' => '4',
         'price' => '1',
         'image' => 'gfdsgfdsgdf',
-        'name' => 'sfgdsgfdsgfd',
+        'name_product' => 'name_product_03',
         'desc' => 'gfdgfdsgds',
     ],
     
@@ -169,7 +132,7 @@ class DatabaseSeeder extends Seeder
             'volume' => '',
             'price' => '1',
             'image' => 'fdsfsda',
-            'name' => 'fdsafsf',
+            'name_product' => 'name_product_04',
             'desc' => 'gfdsgfdsgf',
             ]
         ]);

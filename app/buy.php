@@ -19,6 +19,6 @@ class buy extends Model
           * @var array
           */
          protected $fillable = [
-            'id', 'id_user', 'type', 'sub_type','gender', 'morning', 'noon', 'afternoon', 'evening', 'night', 'volume', 'price', 'image', 'name_product', 'desc'
+            'id', 'id_user', 'type', 'sub_type','gender_trade', 'morning', 'noon', 'afternoon', 'evening', 'night', 'volume', 'price', 'image', 'name', 'desc'
          ];
 }
