@@ -109,6 +109,7 @@ class sellController extends Controller
             }
             public function show($id){
                 //echo '<pre>';
+                $buy_location= array();
                 $data_sell = DB::table('sells')->where( ['id'=> $id])->first();
                 $seller = DB::table('users')->where( ['id'=> $data_sell->id_user])->first();
         
@@ -194,8 +195,8 @@ class sellController extends Controller
                                 'desc' => $x->desc,
                                 'time' => $x->created_at,
                                 'updated_at' => $x->updated_at,
-                                'tel_seller' => $x->tel,
-                                'name_seller' => $x->name,
+                                'tel_buyer' => $x->tel,
+                                'name_buyer' => $x->name,
                                 'gender' => $x->gender,
                                 'latitude' => $x->latitude,
                                 'longitude' => $x->longitude,
@@ -204,7 +205,8 @@ class sellController extends Controller
                             );
                             $buy_location[] = array( $x->latitude,$x->longitude,$x->name);
                             $buy_location_end[] = array($x->latitude,$x->longitude);
-                            
+                            //print_r($buy_location);
+                            //exit();
                         }
                      }
                      
