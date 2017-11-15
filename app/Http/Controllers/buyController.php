@@ -12,18 +12,22 @@ class buyController extends Controller
     public function buy(Request $data)
     
     {
+        
         //--------------------validation---------------//
-        $name = $data->input('name');
+        $name = $data->input('name_product');
         $sub_type = $data->input('sub_type');
         $price = $data->input('price');
+        print_r($data->all());
+        //exit();
         if($name == "" || $sub_type == "" || $price == ""||$volume = ""){
         $error = "--------------------------";
             return redirect()->back()->with('error'. $error);
+            exit();
         }
         else{
         //$items = $data->all();
         //$a = buy::create($items);
-        
+        //exit();
         $id_user = $data->input('id_user');
         $type = $data->input('type');
         $sub_type = $data->input('sub_type');
@@ -71,7 +75,7 @@ class buyController extends Controller
         $volume = $data->input('volume');
         $price = $data->input('price');
         $image = 'default';
-        $name = $data->input('name');
+        $name_product = $data->input('name_product');
         $desc = $data->input('desc');
         $additem = DB::table('buys')
         ->insert(array(
@@ -87,7 +91,7 @@ class buyController extends Controller
             'volume' => $volume,
             'price' => $price,
             'image' => $image,
-            'name' => $name,
+            'name_product' => $name_product,
             'desc' => $desc,
             'created_at' => new \DateTime(),
             'updated_at' =>  new \DateTime()
@@ -96,6 +100,8 @@ class buyController extends Controller
         $id_buying = DB::table('buys')->latest()->first();
 
         $id_buying = $id_buying->id;
+        //print_r($id_buying);
+        //exit();
         return redirect()->action(
             'buyController@show', ['id' => $id_buying]
         );
@@ -103,12 +109,13 @@ class buyController extends Controller
         //--------------------validation---------------//
     }
     public function show($id){
-        echo '<pre>';
+        //echo '<pre>';
+        $sell_location= array();
         $data_buy = DB::table('buys')->where( ['id'=> $id])->first();
         $buyer = DB::table('users')->where( ['id'=> $data_buy->id_user])->first();
 
-        print_r($buyer);
-        print_r($data_buy);
+        //print_r($buyer);
+        //print_r($data_buy);
         //exit();
 
         if($data_buy->gender_trade == 'ทั้งหมด')
@@ -130,7 +137,7 @@ class buyController extends Controller
                         //print_r($data_seller);
                         
         }
-        print_r($data_seller);
+        //print_r($data_seller);
         //exit();
 
          foreach ($data_seller as $x){
@@ -145,7 +152,7 @@ class buyController extends Controller
              $dist = rad2deg($dist);
              $miles = $dist * 60 * 1.1515;
              $result = $miles * 1.609344;
-             print_r($result.'</br>');
+             //print_r($result.'</br>');
              if($result < 50){
                 $morning_b = $data_buy->morning;
                 $noon_b = $data_buy->noon;
@@ -170,9 +177,12 @@ class buyController extends Controller
                 $cal_bdots = ( $morning_b* $morning_s)+($noon_b*$noon_s)+($afternoon_b*$afternoon_s)+($evening_b*$evening_s)+($night_b*$night_s)+($volume_b*$volume_s)+($price_b*$price_s)+($rating_b*$rating_s);
                 $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                 $cal = $cal_bdots / $cal_bs;
-    
-                print_r($cal);
-                if($cal > 0){
+                //print_r('---'.$cal.'<br>');
+                
+                if($cal > 0.5){
+                    echo '<pre>';
+                    
+                    echo '</pre>';
                     $sell[] = array(
                         'id' => $x->id,
                         'id_user' => $x->id_user,
@@ -184,21 +194,25 @@ class buyController extends Controller
                         'image' => $x->image,
                         'name_product' => $x->name_product,
                         'desc' => $x->desc,
-                        'date' => $x->created_at,
+                        'time' => $x->created_at,
                         'updated_at' => $x->updated_at,
-                        'tel_buyer' => $x->tel,
-                        'name_buyer' => $x->name,
+                        'tel_seller' => $x->tel,
+                        'name_seller' => $x->name,
                         'gender' => $x->gender,
                         'latitude' => $x->latitude,
                         'longitude' => $x->longitude,
                         'avatar'=> $x->avatar,
                         'rating' => $x->rating
                     );
-                    print_r($sell);
+                    $sell_location[] = array( $x->latitude,$x->longitude,$x->name);
+                    $sell_location_end[] = array($x->latitude,$x->longitude);
+                    
                 }
              }
              
          }
+         //print_r($sell);
+         //exit();
          $data_own = array(
             'name' => $buyer->name,
             'name_product'=>$data_buy->name_product,
@@ -218,7 +232,7 @@ class buyController extends Controller
         
         //exit();
     
-        return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own]);
+        return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own,'sell_location'=>$sell_location,'sell_location_end'=>$sell_location_end]);
      
     }
 }

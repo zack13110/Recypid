@@ -2,14 +2,16 @@
 @section('content')
 
 <?php
+
     if(isset($db_buy)){
         $numbers_buy = count($db_buy);
         $count_buy=0;
         $bg_owner = "bg-sell";
-
+        $count_number_for_js =$numbers_buy; 
     }else
     {
         $numbers_buy = 0; 
+        $count_number_for_js =0;
     }
 ?>
 
@@ -18,11 +20,25 @@
         $numbers_sell = count($db_sell);
         $count_sell=0;
         $bg_owner = "bg-buy";
+        $count_number_for_js =$numbers_sell;
+        //echo '<pre>'; 
         
+        //print_r($count_number_for_js);
+        $i=0;
+        
+        
+        //exit();
     }else
     {
         $numbers_sell = 0;
+        $count_number_for_js = 0;
     }
+    $lati_owner = $data_owner['latitude'];
+    $long_owner = $data_owner['longitude'];
+    $myVarValue = [$lati_owner,$long_owner];
+    //print_r($db_sell);
+    //exit();
+    
 ?>
 <div class="container">
     <div class="row">
@@ -33,26 +49,27 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
-                    <li class="active">
-                        <a href="#tab_1" data-toggle="tab">Image</a>
+                <li class="active">
+                        <a href="#tab_1" data-toggle="tab">Maps</a>
                     </li>
-                    <li>
-                        <a href="#tab_2" data-toggle="tab">Maps</a>
+                    <li >
+                        <a href="#tab_2" data-toggle="tab">Image</a>
                     </li>
-
+                    
+    
 
                 </ul>
                 <div class="tab-content">
-                    <div class="tab-pane active" id="tab_1">
+                <div class="tab-pane active" id="tab_1">
+                        <div id="map_canvas" style="height: 450px; width: 100%;"></div>
+                    </div>
+                    <div class="tab-pane " id="tab_2">
 
                         <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
 
                     </div>
                     <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_2">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
-                            width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>
+                    
                     <!-- /.tab-pane -->
 
                 </div>
@@ -248,25 +265,26 @@ if($numbers_sell >=1){
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
-                  <li class="active">
-                      <a href="#tab_1_user_'.$count_sell.'" data-toggle="tab">Image</a>
+                  <li  class="active">
+                      <a href="#tab_1_user_'.$count_sell.'" data-toggle="tab">Maps</a>
                   </li>
-                  <li>
-                      <a href="#tab_2_user_'.$count_sell.'" data-toggle="tab">Maps</a>
+                  <li >
+                      
+                      <a href="#tab_2_user_'.$count_sell.'" data-toggle="tab">Image</a>
                   </li>
 
 
               </ul>
               <div class="tab-content">
-                  <div class="tab-pane active" id="tab_1_user_'.$count_sell.'">
+               <div class="tab-pane active" id="tab_1_user_'.$count_sell.'">
+                      <div class="singleMap" id="allMaps_'.$count_sell.'"></div>
+                  </div>
+                  
+                  <!-- /.tab-pane -->
+                 <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
 
                       <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
 
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
-                          width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
                   <!-- /.tab-pane -->
 
@@ -343,17 +361,17 @@ if($numbers_sell >=1){
 @section('googlemap')
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
  <script>
-    var Chiang_mai = new google.maps.LatLng(18.796143, 98.979263);
-    var count_number = <?php echo json_encode($numbers_buy); ?>;
+    var mylocation = <?php echo json_encode($myVarValue); ?>;
     var map2;
+    
 var global_markers = [];    
-var markers = [[37.09024, -95.712891, 'trialhead0'], [-14.235004, -51.92528, 'trialhead1'], [-38.416097, -63.616672, 'trialhead2']];
+var markers = <?php echo json_encode($sell_location);?>;
 function initialize() {
     geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(myvar[0],myvar[1]);
+    var latlng = new google.maps.LatLng(mylocation[0],mylocation[1]);
     var myOptions = {
-        zoom: 12,
-        center: Chiang_mai,
+        zoom: 10,
+        center: latlng,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     map2 = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
@@ -383,13 +401,16 @@ function initialize() {
             infowindow.open(map2, this);
         });
     }
-    
+    var point_start = new google.maps.LatLng(mylocation[0],mylocation[1]);
     var mapList = "";
     //var abc= 0;
-    var start_array = [ ["18.808217", "98.954631"],["16.808217", "100"]];
-    var end_array = [ ["18.769325", "98.976480"],["17.08217", "102"]];
-    for (i = 0; i < 2; i++) {
-        var start = new google.maps.LatLng(start_array[i][0],start_array[i][1]);
+
+    //var start_array = [ [],mylocation[1]];
+    var end_array = <?php echo (json_encode($sell_location_end));?>;
+    //var start_array = [ ["18.808217", "98.954631"],["16.808217", "100"]];
+    //var end_array = [ ["18.769325", "98.976480"],["17.08217", "102"]];
+    for (i = 0; i < end_array.length; i++) {
+        var start = new google.maps.LatLng(mylocation[0],mylocation[1]);
         var end = new google.maps.LatLng(end_array[i][0],end_array[i][1]); 
         var directionsDisplay = new google.maps.DirectionsRenderer();
         var directionsService = new google.maps.DirectionsService();
@@ -397,12 +418,13 @@ function initialize() {
         //var name = '#allMaps_'+ abc +'_';
         //$(name).append('<div class="singleMap" id="map_' + i + '"></div>');
         var mapOptions = {
-            center: Chiang_mai,
-            zoom: 12
+            center: point_start,
+            zoom: 10
         };
         var map = new google.maps.Map(document.getElementById("allMaps_"+i), mapOptions);
         directionsDisplay.setMap(map);
         calculateAndDisplayRoute(directionsService, directionsDisplay,start,end);
+        
     }
     
 }
@@ -440,4 +462,4 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end
   }
 window.onload = initialize;
  </script>
-@endsection
+ @endsection
