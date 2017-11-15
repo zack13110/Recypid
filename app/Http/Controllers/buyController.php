@@ -113,7 +113,10 @@ class buyController extends Controller
         $sell_location= array();
         $data_buy = DB::table('buys')->where( ['id'=> $id])->first();
         $buyer = DB::table('users')->where( ['id'=> $data_buy->id_user])->first();
-
+        $sell = array();
+        $sell_location = array();
+        $sell_location_end = array();
+        
         //print_r($buyer);
         //print_r($data_buy);
         //exit();
@@ -139,7 +142,11 @@ class buyController extends Controller
         }
         //print_r($data_seller);
         //exit();
-
+        $sell_location[0]= array(
+            '0'=> $buyer->latitude,
+            '1'=> $buyer->longitude,
+            '2'=> $buyer->name
+        );
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;
@@ -178,11 +185,12 @@ class buyController extends Controller
                 $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                 $cal = $cal_bdots / $cal_bs;
                 //print_r('---'.$cal.'<br>');
-                
+                //exit();
                 if($cal > 0.5){
-                    echo '<pre>';
                     
-                    echo '</pre>';
+                    //echo '<pre>';
+                    
+                    //echo '</pre>';
                     $sell[] = array(
                         'id' => $x->id,
                         'id_user' => $x->id_user,
@@ -230,6 +238,7 @@ class buyController extends Controller
             'rating' => $buyer->rating
          );
         
+        //print_r($sell_location);
         //exit();
     
         return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own,'sell_location'=>$sell_location,'sell_location_end'=>$sell_location_end]);
