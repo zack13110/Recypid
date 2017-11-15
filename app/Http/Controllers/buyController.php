@@ -106,9 +106,11 @@ class buyController extends Controller
         echo '<pre>';
         $data_buy = DB::table('buys')->where( ['id'=> $id])->first();
         $buyer = DB::table('users')->where( ['id'=> $data_buy->id_user])->first();
+
         print_r($buyer);
         print_r($data_buy);
         //exit();
+
         if($data_buy->gender_trade == 'ทั้งหมด')
         {
             $data_seller = DB::table('sells')
@@ -116,7 +118,7 @@ class buyController extends Controller
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->select('sells.*','users.*')
                         ->get();
-                        //print_r($data_seller);
+                       // print_r($data_seller);
         }
         else
         {
@@ -130,6 +132,7 @@ class buyController extends Controller
         }
         print_r($data_seller);
         //exit();
+
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;
