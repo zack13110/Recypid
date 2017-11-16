@@ -34,43 +34,43 @@ class buyController extends Controller
         $gender_trade = $data->input('gender_trade');
         $time_duration = $data->input('time');
         if($time_duration == 'เช้า'){
-            $morning = 10;
-            $noon = 0;
+            $morning = 3;
+            $noon = 1;
             $afternoon=0;
             $evening =0;
             $night = 0;
         }
         else if ($time_duration == 'กลางวัน') 
         {
-            $morning = 0;
-            $noon = 10;
-            $afternoon=0;
+            $morning = 1;
+            $noon = 3;
+            $afternoon=1;
             $evening =0;
             $night = 0;
         }
         else if ($time_duration == 'บ่าย') 
         {
             $morning = 0;
-            $noon = 0;
-            $afternoon=10;
-            $evening =0;
+            $noon = 1;
+            $afternoon=3;
+            $evening =1;
             $night = 0;
         }
         else if ($time_duration == 'เย็น') 
         {
             $morning = 0;
             $noon = 0;
-            $afternoon=0;
-            $evening =10;
-            $night = 0;
+            $afternoon=1;
+            $evening =3;
+            $night = 1;
         }
         else if ($time_duration == 'กลางคืน') 
         {
             $morning = 0;
             $noon = 0;
             $afternoon=0;
-            $evening =0;
-            $night = 10;
+            $evening =1;
+            $night = 3;
         }
         $volume = $data->input('volume');
         $price = $data->input('price');
@@ -113,7 +113,10 @@ class buyController extends Controller
         $sell_location= array();
         $data_buy = DB::table('buys')->where( ['id'=> $id])->first();
         $buyer = DB::table('users')->where( ['id'=> $data_buy->id_user])->first();
-
+        $sell = array();
+        $location = array();
+        $location_end = array();
+        
         //print_r($buyer);
         //print_r($data_buy);
         //exit();
@@ -123,6 +126,7 @@ class buyController extends Controller
             $data_seller = DB::table('sells')
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
+                        ->where('sells.id_user', '<>', $data_buy->id_user)
                         ->select('sells.*','users.*')
                         ->get();
                        // print_r($data_seller);
@@ -132,6 +136,7 @@ class buyController extends Controller
             $data_seller = DB::table('sells')
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type,'users.gender'=> $data_buy->gender_trade])
+                        ->where('sells.id_user', '<>', $data_buy->id_user)
                         ->select('sells.*','users.*')
                         ->get();
                         //print_r($data_seller);
@@ -139,7 +144,11 @@ class buyController extends Controller
         }
         //print_r($data_seller);
         //exit();
-
+        $location[0]= array(
+            '0'=> $buyer->latitude,
+            '1'=> $buyer->longitude,
+            '2'=> $buyer->name
+        );
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;
@@ -178,11 +187,12 @@ class buyController extends Controller
                 $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                 $cal = $cal_bdots / $cal_bs;
                 //print_r('---'.$cal.'<br>');
-                
+                //exit();
                 if($cal > 0.5){
-                    echo '<pre>';
                     
-                    echo '</pre>';
+                    //echo '<pre>';
+                    
+                    //echo '</pre>';
                     $sell[] = array(
                         'id' => $x->id,
                         'id_user' => $x->id_user,
@@ -204,8 +214,8 @@ class buyController extends Controller
                         'avatar'=> $x->avatar,
                         'rating' => $x->rating
                     );
-                    $sell_location[] = array( $x->latitude,$x->longitude,$x->name);
-                    $sell_location_end[] = array($x->latitude,$x->longitude);
+                    $location[] = array( $x->latitude,$x->longitude,$x->name);
+                    $location_end[] = array($x->latitude,$x->longitude);
                     
                 }
              }
@@ -230,9 +240,10 @@ class buyController extends Controller
             'rating' => $buyer->rating
          );
         
+        //print_r($sell_location);
         //exit();
     
-        return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own,'sell_location'=>$sell_location,'sell_location_end'=>$sell_location_end]);
+        return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own,'location'=>$location,'location_end'=>$location_end]);
      
     }
 }

@@ -12,6 +12,7 @@
     {
         $numbers_buy = 0; 
         $count_number_for_js =0;
+        
     }
 ?>
 
@@ -22,7 +23,6 @@
         $bg_owner = "bg-buy";
         $count_number_for_js =$numbers_sell;
         //echo '<pre>'; 
-        
         //print_r($count_number_for_js);
         $i=0;
         
@@ -36,6 +36,7 @@
     $lati_owner = $data_owner['latitude'];
     $long_owner = $data_owner['longitude'];
     $myVarValue = [$lati_owner,$long_owner];
+    
     //print_r($db_sell);
     //exit();
     
@@ -142,7 +143,7 @@
 if($numbers_buy >=1){
     foreach($db_buy as $key){
     echo '<!-- Modal -->
-    <div class="modal fade" id="modal_buyer_'.$count_buy.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade modal_map" id="modal_buyer_'.$count_buy.'" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header bg-sell2 font_c_white">
@@ -157,24 +158,23 @@ if($numbers_buy >=1){
           <div class="nav-tabs-custom">
               <ul class="nav nav-tabs">
                   <li class="active">
-                      <a href="#tab_1_user_'.$count_buy.'" data-toggle="tab">Image</a>
-                  </li>
+                      <a href="#tab_1_user_'.$count_buy.'" data-toggle="tab">Maps</a>
+                  </li> 
                   <li>
-                      <a href="#tab_2_user_'.$count_buy.'" data-toggle="tab">Maps</a>
+                      <a href="#tab_2_user_'.$count_buy.'" data-toggle="tab">Image</a>
                   </li>
 
 
               </ul>
               <div class="tab-content">
                   <div class="tab-pane active" id="tab_1_user_'.$count_buy.'">
-
-                      <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
+                    <div class="singleMap" id="allMaps_'.$count_buy.'"></div>
+                      
 
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_2_user_'.$count_buy.'">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
-                          width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                  <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
                   </div>
                   <!-- /.tab-pane -->
 
@@ -209,38 +209,35 @@ if($numbers_buy >=1){
         </div><!-- end div modal body-->
       </div>
     </div>';
-    echo '<div class="row margin-1per">
+    echo '<div class="container" >
+    <div class="row margin-1per">
         <div class="col-md-12">
             <!-- /.info-box -->
             <a data-toggle="modal" data-target="#modal_buyer_'.$count_buy.'">
-            <div class="box_info bg-green">
-              
-              <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
-  
-              <div class="info_box_content">
-                <div>
-                  <span class="info-box-text pull-left">name</span> : '.$key['name_buyer'].'
-                </div>
-                <div>
-                  <span class="info-box-text pull-left">Sub type</span> : '.$key['sub_type'].'
-                </div>
-                <div>
-                  <span class="info-box-text pull-left">Name_product</span> : '.$key['name_product'].'
-                </div>
-                <div>
-                  <span class="info-box-text pull-left">price</span> : '.$key['price'].'
-                </div>
-                <div>
-                  <span class="info-box-text pull-left">volume</span> : '.$key['volume'].'
-                </div>
-              </div>
-              <!-- /.info-box-content -->
+          <div class="box_info bg-red user_info_box  clearfix">
+            <div class="pull-right">
+            <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
             </div>
-            
+            <div class="info_box_content ">
+            <div class="pull-left">
+                <div><label class="font-text border_radius col-md-4">Name_product</label> <label>'.$key['name_product'].'</label></div>
+                <div><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
+                <div><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
+            </div>
+            <div class="pull-left margin_box_info">
+                <div><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
+                <div><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
+              </div>
+            </div>
+            </div>
+            <!-- /.info-box-content -->
           </div>
-          </a>
           
-        </div>';
+        </div>
+        </a>
+    </div>
+    </div>
+    ';
     $count_buy++;
                       }
 }
@@ -282,8 +279,7 @@ if($numbers_sell >=1){
                   
                   <!-- /.tab-pane -->
                  <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
-                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
-                    width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
                   </div>
                   <!-- /.tab-pane -->
 
@@ -318,37 +314,35 @@ if($numbers_sell >=1){
         </div><!-- end div modal body-->
       </div>
     </div>';
-    echo '<div class="row margin-1per">
+    echo '<div class="container" >
+    <div class="row margin-1per">
         <div class="col-md-12">
             <!-- /.info-box -->
             <a data-toggle="modal" data-target="#modal_seller_'.$count_sell.'">
-          <div class="box_info bg-red">
-            
+          <div class="box_info bg-red user_info_box  clearfix">
+            <div class="pull-right">
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
-
-            <div class="info_box_content">
-              <div>
-                <span class="info-box-text pull-left">name</span> : '.$key['name_seller'].'
+            </div>
+            <div class="info_box_content ">
+            <div class="pull-left">
+                <div><label class="font-text border_radius col-md-4">Name_product</label> <label>'.$key['name_product'].'</label></div>
+                <div><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
+                <div><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
+            </div>
+            <div class="pull-left margin_box_info">
+                <div><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
+                <div><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
               </div>
-              <div>
-                <span class="info-box-text pull-left">Sub type</span> : '.$key['sub_type'].'
-              </div>
-              <div>
-                <span class="info-box-text pull-left">Name_product</span> : '.$key['name_product'].'
-              </div>
-              <div>
-                <span class="info-box-text pull-left">price</span> : '.$key['price'].'
-              </div>
-              <div>
-                <span class="info-box-text pull-left">volume</span> : '.$key['volume'].'
-              </div>
+            </div>
             </div>
             <!-- /.info-box-content -->
           </div>
           
         </div>
         </a>
-    </div>';
+    </div>
+    </div>
+    ';
     $count_sell++;
                       }
 }
@@ -356,6 +350,7 @@ if($numbers_sell >=1){
 
 
 </div>
+<div class="padding"></div>
 @endsection
 @section('googlemap')
  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
@@ -364,8 +359,12 @@ if($numbers_sell >=1){
     var map2;
     
 var global_markers = [];    
-var markers = <?php echo json_encode($sell_location);?>;
+var markers = <?php echo json_encode($location);?>;
+
+
 function initialize() {
+
+
     geocoder = new google.maps.Geocoder();
     var latlng = new google.maps.LatLng(mylocation[0],mylocation[1]);
     var myOptions = {
@@ -405,7 +404,7 @@ function initialize() {
     //var abc= 0;
 
     //var start_array = [ [],mylocation[1]];
-    var end_array = <?php echo (json_encode($sell_location_end));?>;
+    var end_array = <?php echo (json_encode($location_end));?>;
     //var start_array = [ ["18.808217", "98.954631"],["16.808217", "100"]];
     //var end_array = [ ["18.769325", "98.976480"],["17.08217", "102"]];
     for (i = 0; i < end_array.length; i++) {
