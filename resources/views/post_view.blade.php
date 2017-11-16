@@ -288,9 +288,8 @@ if($numbers_sell >=1){
                   
                   <!-- /.tab-pane -->
                  <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
-
-                      <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
-
+                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.056167471792!2d98.95062331446714!3d18.79565006560983!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a6e0d8891c9%3A0x2c728e2876b2505c!2z4LiE4LiT4Liw4Lin4Li04Lio4Lin4LiB4Lij4Lij4Lih4Lio4Liy4Liq4LiV4Lij4LmM!5e0!3m2!1sth!2sth!4v1507543261055"
+                    width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
                   </div>
                   <!-- /.tab-pane -->
 
