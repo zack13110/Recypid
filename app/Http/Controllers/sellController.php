@@ -187,9 +187,6 @@ class sellController extends Controller
                         //print_r('---'.$cal.'<br>');
                         
                         if($cal > 0.5){
-                            echo '<pre>';
-                            
-                            echo '</pre>';
                             $buy[] = array(
                                 'id' => $x->id,
                                 'id_user' => $x->id_user,
