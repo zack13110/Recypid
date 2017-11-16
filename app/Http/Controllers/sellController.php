@@ -33,43 +33,43 @@ class sellController extends Controller
                 $gender_trade = $data->input('gender_trade');
                 $time_duration = $data->input('time');
                 if($time_duration == 'เช้า'){
-                    $morning = 10;
-                    $noon = 0;
+                    $morning = 3;
+                    $noon = 1;
                     $afternoon=0;
                     $evening =0;
                     $night = 0;
                 }
                 else if ($time_duration == 'กลางวัน') 
                 {
-                    $morning = 0;
-                    $noon = 10;
-                    $afternoon=0;
+                    $morning = 1;
+                    $noon = 3;
+                    $afternoon=1;
                     $evening =0;
                     $night = 0;
                 }
                 else if ($time_duration == 'บ่าย') 
                 {
                     $morning = 0;
-                    $noon = 0;
-                    $afternoon=10;
-                    $evening =0;
+                    $noon = 1;
+                    $afternoon=3;
+                    $evening =1;
                     $night = 0;
                 }
                 else if ($time_duration == 'เย็น') 
                 {
                     $morning = 0;
                     $noon = 0;
-                    $afternoon=0;
-                    $evening =10;
-                    $night = 0;
+                    $afternoon=1;
+                    $evening =3;
+                    $night = 1;
                 }
                 else if ($time_duration == 'กลางคืน') 
                 {
                     $morning = 0;
                     $noon = 0;
                     $afternoon=0;
-                    $evening =0;
-                    $night = 10;
+                    $evening =1;
+                    $night = 3;
                 }
                 $volume = $data->input('volume');
                 $price = $data->input('price');
@@ -112,7 +112,9 @@ class sellController extends Controller
                 $buy_location= array();
                 $data_sell = DB::table('sells')->where( ['id'=> $id])->first();
                 $seller = DB::table('users')->where( ['id'=> $data_sell->id_user])->first();
-        
+                $buy = array();
+                $location = array();
+                $location_end = array();
                 //print_r($buyer);
                 //print_r($data_buy);
                 //exit();
@@ -122,6 +124,7 @@ class sellController extends Controller
                     $data_buyer = DB::table('buys')
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type])
+                                ->where('buys.id_user', '<>', $data_sell->id_user)
                                 ->select('buys.*','users.*')
                                 ->get();
                                // print_r($data_seller);
@@ -131,6 +134,7 @@ class sellController extends Controller
                     $data_buyer = DB::table('buys')
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type,'users.gender'=> $data_sell->gender_trade])
+                                ->where('buys.id_user', '<>', $data_sell->id_user)
                                 ->select('buys.*','users.*')
                                 ->get();
                                 //print_r($data_seller);
@@ -138,7 +142,11 @@ class sellController extends Controller
                 }
                 //print_r($data_seller);
                 //exit();
-        
+                $location[0]= array(
+                    '0'=> $seller->latitude,
+                    '1'=> $seller->longitude,
+                    '2'=> $seller->name
+                );
                  foreach ($data_buyer as $x){
                      //calculate distance around area
                      $lati_own =  $seller->latitude;
@@ -203,8 +211,8 @@ class sellController extends Controller
                                 'avatar'=> $x->avatar,
                                 'rating' => $x->rating
                             );
-                            $buy_location[] = array( $x->latitude,$x->longitude,$x->name);
-                            $buy_location_end[] = array($x->latitude,$x->longitude);
+                            $location[] = array( $x->latitude,$x->longitude,$x->name);
+                            $location_end[] = array($x->latitude,$x->longitude);
                             //print_r($buy_location);
                             //exit();
                         }
@@ -229,6 +237,6 @@ class sellController extends Controller
                     'avatar'=> $seller->avatar,
                     'rating' => $seller->rating
                  );
-            return view('post_view',['db_buy'=> $buy, 'data_owner' => $data_own,'buy_location'=>$buy_location,'buy_location_end'=>$buy_location_end]);
+            return view('post_view',['db_buy'=> $buy, 'data_owner' => $data_own,'location'=>$location,'location_end'=>$location_end]);
         }
     }
