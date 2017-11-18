@@ -197,6 +197,9 @@ li.link a{
 .user_info_box{
     padding:20px;
 }
+.user_info_box:hover{
+    border: 2px solid white;
+}
 .padding{
     padding: 5%;
 }
@@ -212,4 +215,10 @@ li.link a{
 }
 .margin_box_info{
     margin-left: 20px;
+}
+.padding_5px{
+    padding:5px;
+}
+.width35{
+    width: 40%;
 }
