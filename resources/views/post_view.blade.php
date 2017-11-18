@@ -332,6 +332,7 @@ if($numbers_sell >=1){
             <div class="pull-left margin_box_info">
                 <div class="padding_5px"><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
                 <div class="padding_5px"><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
+                <div class="padding_5px"><label class="font-text border_radius">Distance</label> <label ><span id="directions-panel" ></span> </label></div>
               </div>
             </div>
             </div>
@@ -451,7 +452,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end
               '</b><br>';
           summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
           summaryPanel.innerHTML += route.legs[i].end_address + '<br>';*/
-          summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+          summaryPanel.innerHTML += route.legs[i].distance.text + '';
         }
       } else {
         window.alert('Directions request failed due to ' + status);
