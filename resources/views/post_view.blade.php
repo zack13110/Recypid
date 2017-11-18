@@ -127,7 +127,7 @@
                 </a>
             </li>
             <li>
-            <a href="#"><span class="badge bg-aqua font15">เวลาที่ว่าง</span>
+            <a href="#"><span class="badge bg-aqua font15">วันที่ตั้งประกาศ</span>
                 <span class="pull-right"><?php echo $data_owner['time']?></span>
             </a>
             
