@@ -324,14 +324,14 @@ if($numbers_sell >=1){
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
             </div>
             <div class="info_box_content ">
-            <div class="pull-left">
-                <div><label class="font-text border_radius col-md-4">Name_product</label> <label>'.$key['name_product'].'</label></div>
-                <div><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
-                <div><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
+            <div class="pull-left width35">
+                <div class="padding_5px"><label class="font-text border_radius ">Name_product</label> <label>'.$key['name_product'].'</label></div>
+                <div class="padding_5px"><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
+                <div class="padding_5px"><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
             </div>
             <div class="pull-left margin_box_info">
-                <div><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
-                <div><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
+                <div class="padding_5px"><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
+                <div class="padding_5px"><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
               </div>
             </div>
             </div>
