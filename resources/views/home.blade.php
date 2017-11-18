@@ -35,7 +35,7 @@ else{
         <span><h4 class="widget-user-desc"><b>Contract :</b> {{ ucfirst(Auth::user()->tel) }}</h4></span>
       </div>
       <div class="widget-user-image">
-        <img class="img-circle" src="/bower_components/AdminLTE/dist/img/user3-128x128.jpg" alt="User Avatar">
+        <img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar">
       </div>
       <div class="box-footer">
         <div class="row">
@@ -154,7 +154,7 @@ else{
                 <!--rowend-->
                 <div class="row form-group">
                   <div class="col-md-4">
-                    <div class="font-modal">เพศ</div>
+                    <div class="font-modal">เพศที่สะดวก</div>
                   </div>
                   <div class="col-md-6">
                     <select class="form-control" id="gender" name="gender_trade">
@@ -275,7 +275,7 @@ else{
               <!--rowend-->
               <div class="row form-group">
                 <div class="col-md-4">
-                  <div class="font-modal">เพศ</div>
+                  <div class="font-modal">เพศที่สะดวก</div>
                 </div>
                 <div class="col-md-6">
                   <select class="form-control" id="gender" name="gender_trade">

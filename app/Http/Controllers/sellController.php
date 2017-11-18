@@ -125,7 +125,7 @@ class sellController extends Controller
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type])
                                 ->where('buys.id_user', '<>', $data_sell->id_user)
-                                ->select('buys.*','users.*')
+                                ->select('users.*','buys.*')
                                 ->get();
                                // print_r($data_seller);
                 }
@@ -135,7 +135,7 @@ class sellController extends Controller
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type,'users.gender'=> $data_sell->gender_trade])
                                 ->where('buys.id_user', '<>', $data_sell->id_user)
-                                ->select('buys.*','users.*')
+                                ->select('users.*','buys.*')
                                 ->get();
                                 //print_r($data_seller);
                                 
@@ -206,7 +206,8 @@ class sellController extends Controller
                                 'latitude' => $x->latitude,
                                 'longitude' => $x->longitude,
                                 'avatar'=> $x->avatar,
-                                'rating' => $x->rating
+                                'rating' => $x->rating,
+                                'cal'=> $cal
                             );
                             $location[] = array( $x->latitude,$x->longitude,$x->name);
                             $location_end[] = array($x->latitude,$x->longitude);
@@ -216,6 +217,21 @@ class sellController extends Controller
                      }
                      
                  }
+                 //foreach($buy as $key => $val){
+                    //echo $val['id'];
+                    //echo ' = '.$val['cal'].'</br>';
+                 //}
+                 foreach ($buy as $key => $row) {
+                    $cal_[$key]  = $row['cal'];
+                    //print_r($cal_[$key]);
+                    //exit();
+                }
+                array_multisort($cal_, SORT_DESC, $buy);
+                //print_r('------------------ Result ---------------'.'<br>');
+                //print_r($sell);
+                //foreach($buy as $aa){
+                   //echo $aa['id'].'</br>';
+                //}
                  //print_r($sell);
                  //exit();
                  $data_own = array(

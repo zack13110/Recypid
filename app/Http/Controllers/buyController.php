@@ -9,6 +9,9 @@ use App\buy;
 
 class buyController extends Controller
 {
+    
+    
+    
     public function buy(Request $data)
     
     {
@@ -17,7 +20,7 @@ class buyController extends Controller
         $name = $data->input('name_product');
         $sub_type = $data->input('sub_type');
         $price = $data->input('price');
-        print_r($data->all());
+        //sprint_r($data->all());
         //exit();
         if($name == "" || $sub_type == "" || $price == ""||$volume = ""){
         $error = "--------------------------";
@@ -118,7 +121,9 @@ class buyController extends Controller
         $location_end = array();
         
         //print_r($buyer);
+        //print_r('---------------Buy Announce---------------'.'<br>');
         //print_r($data_buy);
+        //print_r('<br>');
         //exit();
 
         if($data_buy->gender_trade == 'ทั้งหมด')
@@ -127,7 +132,7 @@ class buyController extends Controller
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->where('sells.id_user', '<>', $data_buy->id_user)
-                        ->select('sells.*','users.*')
+                        ->select('users.*','sells.*')
                         ->get();
                        // print_r($data_seller);
         }
@@ -137,7 +142,7 @@ class buyController extends Controller
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type,'users.gender'=> $data_buy->gender_trade])
                         ->where('sells.id_user', '<>', $data_buy->id_user)
-                        ->select('sells.*','users.*')
+                        ->select('users.*','sells.*')
                         ->get();
                         //print_r($data_seller);
                         
@@ -149,6 +154,7 @@ class buyController extends Controller
             '1'=> $buyer->longitude,
             '2'=> $buyer->name
         );
+        //print_r('--------------- Result After filter ---------------'.'<br>');
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;
@@ -161,7 +167,7 @@ class buyController extends Controller
              $dist = rad2deg($dist);
              $miles = $dist * 60 * 1.1515;
              $result = $miles * 1.609344;
-             //print_r($result.'</br>');
+             //print_r('--------- Result After Filter --------- '.$result.'</br>');
              if($result < 50){
                 $morning_b = $data_buy->morning;
                 $noon_b = $data_buy->noon;
@@ -171,7 +177,7 @@ class buyController extends Controller
                 $volume_b = $data_buy->volume;
                 $price_b = $data_buy->price;
                 $rating_b = $buyer->rating;
-                
+                $id = $x->id;
                 $morning_s = $x->morning;
                 $noon_s = $x->noon;
                 $afternoon_s = $x->afternoon;
@@ -180,13 +186,13 @@ class buyController extends Controller
                 $volume_s = $x->volume;
                 $price_s = $x->price;
                 $rating_s = $x->rating;
-
+                //print_r($id);
+                //print_r('<br>');
                 //print_r($morning_b);
                 /*calculate */
                 $cal_bdots = ( $morning_b* $morning_s)+($noon_b*$noon_s)+($afternoon_b*$afternoon_s)+($evening_b*$evening_s)+($night_b*$night_s)+($volume_b*$volume_s)+($price_b*$price_s)+($rating_b*$rating_s);
                 $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                 $cal = $cal_bdots / $cal_bs;
-                //print_r('---'.$cal.'<br>');
                 //exit();
                 if($cal > 0.5){
                     
@@ -212,7 +218,8 @@ class buyController extends Controller
                         'latitude' => $x->latitude,
                         'longitude' => $x->longitude,
                         'avatar'=> $x->avatar,
-                        'rating' => $x->rating
+                        'rating' => $x->rating,
+                        'cal'=> $cal
                     );
                     $location[] = array( $x->latitude,$x->longitude,$x->name);
                     $location_end[] = array($x->latitude,$x->longitude);
@@ -221,7 +228,26 @@ class buyController extends Controller
              }
              
          }
+         //print_r('--------------------- Result Form calculate ------------------'.'<br>');
          //print_r($sell);
+         //foreach($sell as $key => $val){
+            //echo $val['id'];
+            //echo ' = '.$val['cal'].'</br>';
+         //}
+         //exit();
+         //print_r($id_sl);
+         //exit();
+         foreach ($sell as $key => $row) {
+            $cal_[$key]  = $row['cal'];
+            //print_r($cal_[$key]);
+            //exit();
+        }
+         array_multisort($cal_, SORT_DESC, $sell);
+         //print_r('------------------ Result ---------------'.'<br>');
+         //print_r($sell);
+        // foreach($sell as $aa){
+            //echo $aa['id'].'</br>';
+        //}
          //exit();
          $data_own = array(
             'name' => $buyer->name,
