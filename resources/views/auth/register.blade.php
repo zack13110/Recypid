@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('sub_name') ? ' has-error' : '' }}">
-                            <label for="sub_name" class="col-md-4 control-label">Sub Name</label>
+                            <label for="sub_name" class="col-md-4 control-label">Surname</label>
 
                             <div class="col-md-6">
                                 <input id="sub_name" type="text" class="form-control" name="sub_name" value="{{ old('sub_name') }}" required autofocus>
@@ -90,9 +90,7 @@
                             </div>
                         </div>
                            <div class="row form-group">
-                 <div class="col-md-4">
-                   <label class="control-label">gender</label>
-                 </div>
+                           <label for="gender" class="col-md-4 control-label">Gender</label>
                  <div class="col-md-6">
                    <select class="form-control" id="gender" name="gender">
                      <option value="ชาย">ชาย</option>
