@@ -222,3 +222,13 @@ li.link a{
 .width35{
     width: 40%;
 }
+.dropdown-menu.notify{
+    width: 350px !important;
+}
+.no-padding{
+    padding: 0px;
+}
+.img-circle.img-md{
+    width: 50px !important;
+    height: 50px !important;
+}

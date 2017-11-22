@@ -303,5 +303,9 @@ public function test2(Request $request)
     
         // The blog post is valid, store in database...
 }
+public function test()
+{
+    return view('test');
+}
 
 }
