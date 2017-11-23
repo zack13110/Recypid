@@ -9,6 +9,10 @@ use App\sell;
 
 class sellController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function sell(Request $data)
     
         {
@@ -125,6 +129,8 @@ class sellController extends Controller
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type])
                                 ->where('buys.id_user', '<>', $data_sell->id_user)
+                                ->where('buys.gender_trade', '=', $seller->gender)
+                                ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
                                 ->select('users.*','buys.*')
                                 ->get();
                                // print_r($data_seller);
@@ -135,6 +141,8 @@ class sellController extends Controller
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type,'users.gender'=> $data_sell->gender_trade])
                                 ->where('buys.id_user', '<>', $data_sell->id_user)
+                                ->where('buys.gender_trade', '=', $seller->gender)
+                                ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
                                 ->select('users.*','buys.*')
                                 ->get();
                                 //print_r($data_seller);
@@ -185,7 +193,17 @@ class sellController extends Controller
                         $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                         $cal = $cal_bdots / $cal_bs;
                         //print_r('---'.$cal.'<br>');
-                        
+                        if($x->morning == 3){
+                            $duration_name = 'เช้า';
+                        }else if($x->noon == 3){
+                            $duration_name = 'กลางวัน';
+                        }else if($x->afternoon == 3){
+                            $duration_name = 'บ่าย';
+                        }else if($x->evening == 3){
+                            $duration_name = 'เย็น';
+                        }else if($x->night == 3){
+                            $duration_name = 'กลางคืน';
+                        }
                         if($cal > 0.5){
                             $buy[] = array(
                                 'id' => $x->id,
@@ -195,6 +213,7 @@ class sellController extends Controller
                                 'gender_trade' => $x->gender_trade,
                                 'volume' => $x->volume,
                                 'price' => $x->price,
+                                'duration_name' => $duration_name,
                                 'image' => $x->image,
                                 'name_product' => $x->name_product,
                                 'desc' => $x->desc,
@@ -221,12 +240,14 @@ class sellController extends Controller
                     //echo $val['id'];
                     //echo ' = '.$val['cal'].'</br>';
                  //}
-                 foreach ($buy as $key => $row) {
+                if(!empty($buy)){
+                foreach ($buy as $key => $row) {
                     $cal_[$key]  = $row['cal'];
                     //print_r($cal_[$key]);
                     //exit();
                 }
                 array_multisort($cal_, SORT_DESC, $buy);
+                }
                 //print_r('------------------ Result ---------------'.'<br>');
                 //print_r($sell);
                 //foreach($buy as $aa){
