@@ -191,6 +191,14 @@ else{
                 </div>
                 <!--rowend-->
                 <!-- modal-body end -->
+                <div class="row form-group">
+                  <div class="col-md-4">
+                    <div class="font-modal">รูปสินค้า</div>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" id="image" type="file" name="image"> 
+                  </div>
+                </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
@@ -308,6 +316,14 @@ else{
                   </div>
                   <div class="col-md-6">
                     <input class="form-control" id="price" name="price"> 
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-md-4">
+                    <div class="font-modal">รูปสินค้า</div>
+                  </div>
+                  <div class="col-md-6">
+                    <input class="form-control" id="image" type="file" name="image"> 
                   </div>
                 </div>
                 <!--rowend-->
