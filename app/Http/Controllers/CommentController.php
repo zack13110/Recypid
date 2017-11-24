@@ -71,6 +71,11 @@ class CommentController extends Controller
             ->where(['id'=> $id_notify])
             ->update(array('confirm_B' => 1));
         }
+        $confirm_auth = DB::table('notify')
+        ->where(['id'=> $id_notify])
+        ->first();
+
+        
         $addcomment = DB::table('comments')
         ->insert(array(
             'id_main_user' => $id_user_commened,
@@ -80,7 +85,35 @@ class CommentController extends Controller
             'created_at' => new \DateTime(),
             'updated_at' =>  new \DateTime()
          ));
+         if($confirm_auth->confirm_B == 1 && $confirm_auth->confirm_A == 1){
+            if($confirm_auth->type_product_A =="buy"){
+                DB::table('buys')->where('id', '=', $confirm_auth->id_product_A)->delete();
+            }else{
+                DB::table('sells')->where('id', '=', $confirm_auth->id_product_A)->delete();
+            }
+            if($confirm_auth->type_product_B =="buy"){
+                DB::table('buys')->where('id', '=', $confirm_auth->id_product_B)->delete();
+            }else{
+                DB::table('sells')->where('id', '=', $confirm_auth->id_product_B)->delete();
+            }
+            DB::table('notify')->where('id', '=', $id_notify)->delete();
+        }
         //exit();
-        return redirect("notify/".$id_notify);
+        return redirect("user/".$id_user_commened);
+    }
+    public function viewcomment($id){
+        $id_user = Auth::user()->id;
+        $comment = array();
+        $data_sent_user = array();
+
+        $send_id_user = $id;
+        $data= array('id' => 0);
+        $data_sent_user = DB::table('users')->where( ['id'=> $send_id_user])->first();
+        $comment = DB::table('comments')->where( ['id_main_user'=> $send_id_user])
+                    ->join('users', 'comments.id_commenter','=','users.id')
+                    ->select('comments.*','users.name','users.sub_name','users.name','users.avatar')
+                    ->orderBy('created_at', 'desc')->get();
+
+        return view('comment_view',['data_sent_user'=> $data_sent_user,'comment'=> $comment,'data'=>$data, 'send_id_user'=>$send_id_user]);
     }
 }
