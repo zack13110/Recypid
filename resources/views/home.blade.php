@@ -91,7 +91,7 @@ else{
                 <h4 class="modal-title">ตั้งขาย</h4>
                 </div>
                 <div class="modal-body">
-                <form action="/sell" name="sell_post" id="sell_post" method="post">
+                <form action="/sell" name="sell_post" id="sell_post" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
                 <div class="row form-group">
@@ -220,7 +220,7 @@ else{
                 <h4 class="modal-title">ตั้งซื้อ</h4>
               </div>
               <div class="modal-body">
-              <form action="/buy" name="buy_post" id="buy_post" method="post">
+              <form action="/buy" name="buy_post" id="buy_post" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
               <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
               <div class="row form-group">

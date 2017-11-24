@@ -81,6 +81,21 @@ class buyController extends Controller
         $volume = $data->input('volume');
         $price = $data->input('price');
         $image = 'default';
+
+        $img = $data->file('image');
+
+        if(!empty($img)){
+
+        
+        $getImgName = $img->getClientOriginalName();
+        $imgType = pathinfo($getImgName, PATHINFO_EXTENSION);
+        $getCTime = new \DateTime();
+        $imgName = $getCTime->format('YmdHis');
+        $path = 'images';
+        $img->move($path,$imgName.'.'.$imgType);
+        $image = $imgName.'.'.$imgType;
+            
+        }
         $name_product = $data->input('name_product');
         $desc = $data->input('desc');
         $additem = DB::table('buys')
