@@ -232,3 +232,6 @@ li.link a{
     width: 50px !important;
     height: 50px !important;
 }
+.username.comment_user_block{
+    margin-left: 20px;
+}

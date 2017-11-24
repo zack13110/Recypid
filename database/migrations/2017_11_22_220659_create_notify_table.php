@@ -22,6 +22,8 @@ class CreateNotifyTable extends Migration
             $table->integer('id_product_B');
             $table->string('type_product_A');
             $table->string('type_product_B');
+            $table->string('confirm_A');
+            $table->string('confirm_B');
             $table->timestamps();
         });
     }

@@ -17,6 +17,8 @@
  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
  @include('including/header')
  <?php
+ if(Auth::check()){
+$notify =array();
  $id_user = Auth::user()->id;
  $notify_data = DB::table('notify')
                 ->where('id_user_A', $id_user)
@@ -48,6 +50,7 @@ foreach($notify_data as $a){
     );
 }
 }
+ }
  
  ?>
 <body class="first-bg">
@@ -79,6 +82,7 @@ foreach($notify_data as $a){
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Notifications: style can be found in dropdown.less -->
+                        @if (Auth::check())
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
@@ -111,6 +115,7 @@ foreach($notify_data as $a){
             </ul>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
+          @endif
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>

@@ -269,7 +269,7 @@ class buyController extends Controller
         //}
          //exit();
          $data_own = array(
-             'id_user'=> $buyer->id,
+            'id_user'=> $buyer->id,
             'id_product'=>$data_buy->id,
             'name' => $buyer->name,
             'name_product'=>$data_buy->name_product,

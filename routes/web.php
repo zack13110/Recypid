@@ -30,5 +30,8 @@ Route::post('/buy', 'buyController@buy');
 Route::get('/buy/{id}', 'buyController@show');
 Route::post('/test', 'HomeController@test2');
 Route::post('/deal', 'CommentController@deal');
+Route::post('/addcomment', 'CommentController@commentpost');
 Route::get('/notify/{id}', 'CommentController@senddatauser');
+Route::get('/user/comment', 'CommentController@viewcomment')->name('viewcomment');
 Route::get('/map', 'googlemapAPIController@index');
+

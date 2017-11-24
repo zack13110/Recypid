@@ -169,16 +169,6 @@
 					<!-- /.widget-user -->
 				</div>
 			</div>
-<form action="/deal" method="POST">
-        
-        <input class="id_user_trader" name="id_user_trader" type="hidden" value="'.$key['id_user'].'">
-        <input class="id_user_own" name="id_user_own" type="hidden" value="'.$data_owner['id_user'].'">
-        <input class="id_product_trader" name="id_product_trader" type="hidden" value="'.$key['id'].'">
-        <input class="id_product_own" name="id_product_own" type="hidden" value="'.$data_owner['id_product'].'">
-        <input class="type_trader" name="type_trader" type="hidden" value="'.$type_trader.'">
-        <input class="type_owner" name="type_own" type="hidden" value="'.$type_owner.'">
-        <button type="submit" class="btn btn-flat btn-block btn-primary">ตกลงซื้อขายกันแล้ว</button>
-        </form>
 			<?php
 if($numbers_buy >=1){
     foreach($db_buy as $key){
@@ -248,17 +238,24 @@ if($numbers_buy >=1){
             </dl>
         </div><!-- end/.box-body -->
         <div class="modal-footer">
-        <form action="" method="post">';
+        <form action="/deal" method="POST">';
         ?>
         {{ csrf_field() }}
         <?php 
+        $check_id_notify = $notify = DB::table('notify')
+                            ->where( ['id_user_A'=> $data_owner['id_user'],'id_user_B'=> $key['id_user'],
+                            'id_product_A'=> $data_owner['id_product'],'id_product_B'=>$key['id'],
+                            'type_product_A'=> $type_owner,'type_product_B'=> $type_trader])
+                            ->orwhere( ['id_user_B'=> $data_owner['id_user'],'id_user_A'=> $key['id_user'],
+                            'id_product_B'=> $data_owner['id_product'],'id_product_A'=>$key['id'],
+                            'type_product_B'=> $type_owner,'type_product_A'=> $type_trader])->first();
         echo '<input class="id_user_trader" name="id_user_trader" type="hidden" value="'.$key['id_user'].'">
         <input class="id_user_own" name="id_user_own" type="hidden" value="'.$data_owner['id_user'].'">
         <input class="id_product_trader" name="id_product_trader" type="hidden" value="'.$key['id'].'">
         <input class="id_product_own" name="id_product_own" type="hidden" value="'.$data_owner['id_product'].'">
         <input class="type_trader" name="type_trader" type="hidden" value="'.$type_trader.'">
         <input class="type_owner" name="type_own" type="hidden" value="'.$type_owner.'">
-        <button type="button" class="btn btn-flat btn-block btn-primary">ตกลงซื้อขายกันแล้ว</button>
+        <button type="submit" class="btn btn-flat btn-block btn-primary" ';if(isset($check_id_notify->id)){ echo 'disabled="disabled"'; } echo '>ตกลงซื้อขายกันแล้ว</button>
         </form>
       </div>
         </div><!-- end div modal body-->
@@ -275,15 +272,16 @@ if($numbers_buy >=1){
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
             </div>
             <div class="info_box_content ">
-            <div class="pull-left">
-                <div><label class="font-text border_radius col-md-4">Name_product</label> <label>'.$key['name_product'].'</label></div>
-                <div><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
-                <div><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
-            </div>
-            <div class="pull-left margin_box_info">
-                <div><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
-                <div><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
-              </div>
+            <div class="pull-left width35">
+            <div class="padding_5px"><label class="font-text border_radius ">Name_product</label> <label>'.$key['name_product'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
+        </div>
+        <div class="pull-left margin_box_info">
+            <div class="padding_5px"><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius">Distance</label> <label ><span id="directions-panel" ></span> </label></div>
+          </div>
             </div>
             </div>
             <!-- /.info-box-content -->
@@ -373,14 +371,20 @@ if($numbers_sell >=1){
         ?>
         {{ csrf_field() }}
         <?php 
-        
+        $check_id_notify = $notify = DB::table('notify')
+                            ->where( ['id_user_A'=> $data_owner['id_user'],'id_user_B'=> $key['id_user'],
+                            'id_product_A'=> $data_owner['id_product'],'id_product_B'=>$key['id'],
+                            'type_product_A'=> $type_owner,'type_product_B'=> $type_trader])
+                            ->orwhere( ['id_user_B'=> $data_owner['id_user'],'id_user_A'=> $key['id_user'],
+                            'id_product_B'=> $data_owner['id_product'],'id_product_A'=>$key['id'],
+                            'type_product_B'=> $type_owner,'type_product_A'=> $type_trader])->first();
         echo '<input class="id_user_trader" name="id_user_trader" type="hidden" value="'.$key['id_user'].'">
         <input class="id_user_own" name="id_user_own" type="hidden" value="'.$data_owner['id_user'].'">
         <input class="id_product_trader" name="id_product_trader" type="hidden" value="'.$key['id'].'">
         <input class="id_product_own" name="id_product_own" type="hidden" value="'.$data_owner['id_product'].'">
         <input class="type_trader" name="type_trader" type="hidden" value="'.$type_trader.'">
         <input class="type_owner" name="type_own" type="hidden" value="'.$type_owner.'">
-        <button type="submit" class="btn btn-flat btn-block btn-primary">ตกลงซื้อขายกันแล้ว</button>
+        <button type="submit" class="btn btn-flat btn-block btn-primary" ';if(isset($check_id_notify->id)){ echo 'disabled="disabled"'; } echo '>ตกลงซื้อขายกันแล้ว</button>
         </form>
         </div>
         </div><!-- end div modal body-->

@@ -256,6 +256,8 @@ class sellController extends Controller
                  //print_r($sell);
                  //exit();
                  $data_own = array(
+                    'id_user'=> $seller->id,
+                    'id_product'=>$data_sell->id,
                     'name' => $seller->name,
                     'name_product'=>$data_sell->name_product,
                     'tel' =>$seller->tel,
