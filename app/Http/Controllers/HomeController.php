@@ -37,6 +37,8 @@ class HomeController extends Controller
                 ->join('users', 'sells.id_user','=','users.id')
                 ->where(['sells.type'=> $b->type,'sells.sub_type'=> $b->sub_type])
                 ->where('sells.id_user', '<>', $b->id_user)
+                ->where('sells.gender_trade', '=', $gender_x)
+                ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
                 ->select('sells.*','users.*')
                 ->get();
                            // print_r($data_seller);
@@ -47,6 +49,8 @@ class HomeController extends Controller
                 ->join('users', 'sells.id_user','=','users.id')
                 ->where(['sells.type'=> $b->type,'sells.sub_type'=> $b->sub_type,'users.gender'=> $b->gender_trade])
                 ->where('sells.id_user', '<>', $b->id_user)
+                ->where('sells.gender_trade', '=', $gender_x)
+                ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
                 ->select('sells.*','users.*')
                 ->get();
                             //print_r($data_seller);
@@ -145,6 +149,8 @@ class HomeController extends Controller
            ->join('users', 'buys.id_user','=','users.id')
            ->where(['buys.type'=> $b->type,'buys.sub_type'=> $b->sub_type])
            ->where('buys.id_user', '<>', $b->id_user)
+           ->where('buys.gender_trade', '=', $gender_x)
+           ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
            ->select('buys.*','users.*')
            ->get();
                       // print_r($data_seller);
@@ -155,6 +161,8 @@ class HomeController extends Controller
            ->join('users', 'buys.id_user','=','users.id')
            ->where(['buys.type'=> $b->type,'buys.sub_type'=> $b->sub_type,'users.gender'=> $b->gender_trade])
            ->where('buys.id_user', '<>', $b->id_user)
+           ->where('buys.gender_trade', '=', $gender_x)
+           ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
            ->select('buys.*','users.*')
            ->get();
                        //print_r($data_seller);
@@ -289,8 +297,36 @@ class HomeController extends Controller
         // /*----------------------  sell end ---------------------------*/
 krsort($buy);
 krsort($sell);
-
-
+// $notify_data = DB::table('notify')
+//                 ->where('id_user_A', $id_user)
+//                 ->orwhere('id_user_B', $id_user)
+//                 ->get();
+// if(!empty($notify_data)){
+// foreach($notify_data as $a){
+//     $id_notify = $a->id;
+//     if($a->id_user_A == $id_user){
+//         $id_owner = $a->id_user_A;
+//         $id_trader = $a->id_user_B;
+//         $db_owner = DB::table('users')->where( ['id'=> $id_owner])->first();
+//         $db_trader = DB::table('users')->where( ['id'=> $id_trader])->first();
+//         $name_owner  =$db_owner->name;
+//         $name_trader  =$db_trader->name;
+//     }
+//     else if ($a->id_user_B == $id_user){
+//         $id_owner = $a->id_user_B;
+//         $id_trader = $a->id_user_A;
+//         $db_owner = DB::table('users')->where( ['id'=> $id_owner])->first();
+//         $db_trader = DB::table('users')->where( ['id'=> $id_trader])->first();
+//         $name_owner  =$db_owner->name;
+//         $name_trader  =$db_trader->name;
+//     }
+//     $notify[] = array(
+//         'id_notify'=> $id_notify,
+//         'name_owner' => $name_owner,
+//         'name_trader' => $name_trader,
+//     );
+// }
+// }
 return view('home',['db_sell'=> $sell, 'db_buy' => $buy, 'id_user' => $id_user]);
 }
 
@@ -302,6 +338,10 @@ public function test2(Request $request)
         ]);
     
         // The blog post is valid, store in database...
+}
+public function test()
+{
+    return view('test');
 }
 
 }

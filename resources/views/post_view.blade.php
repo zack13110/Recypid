@@ -1,5 +1,4 @@
-@extends('layouts.app') 
-@section('content')
+@extends('layouts.app') @section('content')
 
 <?php
 
@@ -8,6 +7,8 @@
         $count_buy=0;
         $bg_owner = "bg-sell";
         $count_number_for_js =$numbers_buy; 
+        $type_owner = "sell";
+        $type_trader = "buy";
     }else
     {
         $numbers_buy = 0; 
@@ -16,7 +17,7 @@
     }
 ?>
 
-<?php
+	<?php
     if(isset($db_sell)){
         $numbers_sell = count($db_sell);
         $count_sell=0;
@@ -25,6 +26,8 @@
         //echo '<pre>'; 
         //print_r($count_number_for_js);
         $i=0;
+        $type_owner = 'buy';
+        $type_trader = "sell";
         
         
         //exit();
@@ -41,105 +44,132 @@
     //exit();
     
 ?>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            
-        </div>
-        <div class="col-md-6">
-            <!-- Custom Tabs -->
-            <div class="nav-tabs-custom">
-                <ul class="nav nav-tabs">
-                <li class="active">
-                        <a href="#tab_1" data-toggle="tab">Maps</a>
-                    </li>
-                    <li >
-                        <a href="#tab_2" data-toggle="tab">Image</a>
-                    </li>
-                    
-    
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
 
-                </ul>
-                <div class="tab-content">
-                <div class="tab-pane active" id="tab_1">
-                        <div id="map_canvas" style="height: 450px; width: 100%;"></div>
-                    </div>
-                    <div class="tab-pane " id="tab_2">
+				</div>
+				<div class="col-md-6">
+					<!-- Custom Tabs -->
+					<div class="nav-tabs-custom">
+						<ul class="nav nav-tabs">
+							<li class="active">
+								<a href="#tab_1" data-toggle="tab">Maps</a>
+							</li>
+							<li>
+								<a href="#tab_2" data-toggle="tab">Image</a>
+							</li>
 
-                        <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
 
-                    </div>
-                    <!-- /.tab-pane -->
-                    
-                    <!-- /.tab-pane -->
 
-                </div>
-                <!-- /.tab-content -->
-            </div>
-            <!-- nav-tabs-custom -->
-        </div>
-        <div class="col-md-6">
-            <div class="box box-widget widget-user-2">
-                <!-- Add the bg color to the header using any of the bg-* classes -->
-                <div class="widget-user-header <?php echo $bg_owner?>">
-                    <div class="widget-user-image">
-                        <img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar">
-                    </div>
-                    <!-- /.widget-user-image -->
-                    <h3 class="widget-user-username"><?php echo $data_owner['name']?></h3>
-                    <h5 class="widget-user-desc"><?php echo $data_owner['tel']?></h5>
-                </div>
-                <div class="box-footer no-padding">
-                    <ul class="nav nav-stacked post_view_no_border">
-                    <li>
-                    <a href="#"><span class="badge bg-aqua font15">ชื่อสินค้า</span>
-                        <span class="pull-right "><?php echo $data_owner['name_product']?></span>
-                    </a>
-                </li>
-                    <li>
-                    <a href="#"><span class="badge bg-aqua font15">หมวด</span>
-                        <span class="pull-right"><?php echo $data_owner['type']?></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge bg-aqua font15">ประเภท</span>
-                        <span class="pull-right"><?php echo $data_owner['sub_type']?></span>
-                    </a>
-                </li>
-                <li>
-                <a href="#"><span class="badge bg-aqua font15">คำอธิบายเพิ่มเติม</span>
-                    <span class="pull-right "><?php echo $data_owner['desc']?></span>
-                </a>
-            </li>
-                <li>
-                    <a href="#"><span class="badge bg-aqua font15">เพศ</span>
-                        <span class="pull-right "><?php echo $data_owner['gender']?></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#"><span class="badge bg-aqua font15">ราคา</span>
-                        <span class="pull-right "><?php echo $data_owner['price']?></span>
-                    </a>
-                </li>
-                <li>
-                <a href="#"><span class="badge bg-aqua font15">จำนวน</span>
-                    <span class="pull-right"><?php echo $data_owner['volume']?></span>
-                </a>
-            </li>
-            <li>
-            <a href="#"><span class="badge bg-aqua font15">วันที่ตั้งประกาศ</span>
-                <span class="pull-right"><?php echo $data_owner['time']?></span>
-            </a>
-            
-        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /.widget-user -->
-        </div>
-    </div>
+						</ul>
+						<div class="tab-content">
+							<div class="tab-pane active" id="tab_1">
+								<div id="map_canvas" style="height: 450px; width: 100%;"></div>
+							</div>
+							<div class="tab-pane " id="tab_2">
 
-<?php
+								<img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
+
+							</div>
+							<!-- /.tab-pane -->
+
+							<!-- /.tab-pane -->
+
+						</div>
+						<!-- /.tab-content -->
+					</div>
+					<!-- nav-tabs-custom -->
+				</div>
+				<div class="col-md-6">
+					<div class="box box-widget widget-user-2">
+						<!-- Add the bg color to the header using any of the bg-* classes -->
+						<div class="widget-user-header <?php echo $bg_owner?>">
+							<div class="widget-user-image">
+								<img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar">
+							</div>
+							<!-- /.widget-user-image -->
+							<h3 class="widget-user-username">
+								<?php echo $data_owner['name']?>
+							</h3>
+							<h5 class="widget-user-desc">
+								<?php echo $data_owner['tel']?>
+							</h5>
+						</div>
+						<div class="box-footer no-padding">
+							<ul class="nav nav-stacked post_view_no_border">
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">ชื่อสินค้า</span>
+										<span class="pull-right ">
+											<?php echo $data_owner['name_product']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">หมวด</span>
+										<span class="pull-right">
+											<?php echo $data_owner['type']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">ประเภท</span>
+										<span class="pull-right">
+											<?php echo $data_owner['sub_type']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">คำอธิบายเพิ่มเติม</span>
+										<span class="pull-right ">
+											<?php echo $data_owner['desc']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">เพศ</span>
+										<span class="pull-right ">
+											<?php echo $data_owner['gender']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">ราคา</span>
+										<span class="pull-right ">
+											<?php echo $data_owner['price']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">จำนวน</span>
+										<span class="pull-right">
+											<?php echo $data_owner['volume']?>
+										</span>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<span class="badge bg-aqua font15">เวลาที่ว่าง</span>
+										<span class="pull-right">
+											<?php echo $data_owner['time']?>
+										</span>
+									</a>
+
+								</li>
+							</ul>
+						</div>
+					</div>
+					<!-- /.widget-user -->
+				</div>
+			</div>
+			<?php
 if($numbers_buy >=1){
     foreach($db_buy as $key){
     echo '<!-- Modal -->
@@ -193,6 +223,8 @@ if($numbers_buy >=1){
                 <dd>'.$key['type'].'</dd>
             <dt>หมวด</dt>
                 <dd>'.$key['sub_type'].'</dd>
+            <dt>ช่วงเวลาที่สะดวก</dt>
+                <dd>'.$key['duration_name'].'</dd>
             <dt>เพศ</dt>
                 <dd>'.$key['gender'].'</dd>   
             <dt>คำอธิบาย</dt>
@@ -205,8 +237,29 @@ if($numbers_buy >=1){
                 <dd>'.$key['time'].'</dd>   
             </dl>
         </div><!-- end/.box-body -->
-        
+        <div class="modal-footer">
+        <form action="/deal" method="POST">';
+        ?>
+        {{ csrf_field() }}
+        <?php 
+        $check_id_notify = $notify = DB::table('notify')
+                            ->where( ['id_user_A'=> $data_owner['id_user'],'id_user_B'=> $key['id_user'],
+                            'id_product_A'=> $data_owner['id_product'],'id_product_B'=>$key['id'],
+                            'type_product_A'=> $type_owner,'type_product_B'=> $type_trader])
+                            ->orwhere( ['id_user_B'=> $data_owner['id_user'],'id_user_A'=> $key['id_user'],
+                            'id_product_B'=> $data_owner['id_product'],'id_product_A'=>$key['id'],
+                            'type_product_B'=> $type_owner,'type_product_A'=> $type_trader])->first();
+        echo '<input class="id_user_trader" name="id_user_trader" type="hidden" value="'.$key['id_user'].'">
+        <input class="id_user_own" name="id_user_own" type="hidden" value="'.$data_owner['id_user'].'">
+        <input class="id_product_trader" name="id_product_trader" type="hidden" value="'.$key['id'].'">
+        <input class="id_product_own" name="id_product_own" type="hidden" value="'.$data_owner['id_product'].'">
+        <input class="type_trader" name="type_trader" type="hidden" value="'.$type_trader.'">
+        <input class="type_owner" name="type_own" type="hidden" value="'.$type_owner.'">
+        <button type="submit" class="btn btn-flat btn-block btn-primary" ';if(isset($check_id_notify->id)){ echo 'disabled="disabled"'; } echo '>ตกลงซื้อขายกันแล้ว</button>
+        </form>
+      </div>
         </div><!-- end div modal body-->
+        
       </div>
     </div>';
     echo '<div class="container" >
@@ -219,15 +272,16 @@ if($numbers_buy >=1){
             <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
             </div>
             <div class="info_box_content ">
-            <div class="pull-left">
-                <div><label class="font-text border_radius col-md-4">Name_product</label> <label>'.$key['name_product'].'</label></div>
-                <div><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
-                <div><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
-            </div>
-            <div class="pull-left margin_box_info">
-                <div><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
-                <div><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
-              </div>
+            <div class="pull-left width35">
+            <div class="padding_5px"><label class="font-text border_radius ">Name_product</label> <label>'.$key['name_product'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius ">Type</label> <label>'.$key['type'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius">Sub type</label> <label> '.$key['sub_type'].'</label></div>
+        </div>
+        <div class="pull-left margin_box_info">
+            <div class="padding_5px"><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
+            <div class="padding_5px"><label class="font-text border_radius">Distance</label> <label ><span id="directions-panel" ></span> </label></div>
+          </div>
             </div>
             </div>
             <!-- /.info-box-content -->
@@ -242,9 +296,9 @@ if($numbers_buy >=1){
                       }
 }
 ?>
-</div>
+		</div>
 
-<?php
+		<?php
 if($numbers_sell >=1){
     foreach($db_sell as $key){
     echo '<!-- Modal -->
@@ -298,6 +352,8 @@ if($numbers_sell >=1){
                 <dd>'.$key['type'].'</dd>
             <dt>หมวด</dt>
                 <dd>'.$key['sub_type'].'</dd>
+            <dt>ช่วงเวลาที่สะดวก</dt>
+                <dd>'.$key['duration_name'].'</dd>
             <dt>เพศ</dt>
                 <dd>'.$key['gender'].'</dd>   
             <dt>คำอธิบาย</dt>
@@ -310,8 +366,29 @@ if($numbers_sell >=1){
                 <dd>'.$key['time'].'</dd>   
             </dl>
         </div><!-- end/.box-body -->
-        
+        <div class="modal-footer">
+        <form action="/deal" method="POST">';
+        ?>
+        {{ csrf_field() }}
+        <?php 
+        $check_id_notify = $notify = DB::table('notify')
+                            ->where( ['id_user_A'=> $data_owner['id_user'],'id_user_B'=> $key['id_user'],
+                            'id_product_A'=> $data_owner['id_product'],'id_product_B'=>$key['id'],
+                            'type_product_A'=> $type_owner,'type_product_B'=> $type_trader])
+                            ->orwhere( ['id_user_B'=> $data_owner['id_user'],'id_user_A'=> $key['id_user'],
+                            'id_product_B'=> $data_owner['id_product'],'id_product_A'=>$key['id'],
+                            'type_product_B'=> $type_owner,'type_product_A'=> $type_trader])->first();
+        echo '<input class="id_user_trader" name="id_user_trader" type="hidden" value="'.$key['id_user'].'">
+        <input class="id_user_own" name="id_user_own" type="hidden" value="'.$data_owner['id_user'].'">
+        <input class="id_product_trader" name="id_product_trader" type="hidden" value="'.$key['id'].'">
+        <input class="id_product_own" name="id_product_own" type="hidden" value="'.$data_owner['id_product'].'">
+        <input class="type_trader" name="type_trader" type="hidden" value="'.$type_trader.'">
+        <input class="type_owner" name="type_own" type="hidden" value="'.$type_owner.'">
+        <button type="submit" class="btn btn-flat btn-block btn-primary" ';if(isset($check_id_notify->id)){ echo 'disabled="disabled"'; } echo '>ตกลงซื้อขายกันแล้ว</button>
+        </form>
+        </div>
         </div><!-- end div modal body-->
+        
       </div>
     </div>';
     echo '<div class="container" >
@@ -332,6 +409,7 @@ if($numbers_sell >=1){
             <div class="pull-left margin_box_info">
                 <div class="padding_5px"><label class="font-text border_radius">price</label> <label> '.$key['price'].'</label></div>
                 <div class="padding_5px"><label class="font-text border_radius">volume</label> <label> '.$key['volume'].'</label></div>
+                <div class="padding_5px"><label class="font-text border_radius">Distance</label> <label ><span id="directions-panel" ></span> </label></div>
               </div>
             </div>
             </div>
@@ -349,13 +427,12 @@ if($numbers_sell >=1){
 ?>
 
 
-</div>
-<div class="padding"></div>
-@endsection
-@section('googlemap')
- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
- <script>
-    var mylocation = <?php echo json_encode($myVarValue); ?>;
+			</div>
+			<div class="padding"></div>
+			@endsection @section('googlemap')
+			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
+			<script>
+				var mylocation = <?php echo json_encode($myVarValue); ?>;
     var map2;
     
 var global_markers = [];    
@@ -451,7 +528,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end
               '</b><br>';
           summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
           summaryPanel.innerHTML += route.legs[i].end_address + '<br>';*/
-          summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
+          summaryPanel.innerHTML += route.legs[i].distance.text + '';
         }
       } else {
         window.alert('Directions request failed due to ' + status);
@@ -459,5 +536,5 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end
     });
   }
 window.onload = initialize;
- </script>
- @endsection
+			</script>
+			@endsection

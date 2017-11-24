@@ -10,7 +10,10 @@ use App\buy;
 class buyController extends Controller
 {
     
-    
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     
     public function buy(Request $data)
     
@@ -132,6 +135,8 @@ class buyController extends Controller
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->where('sells.id_user', '<>', $data_buy->id_user)
+                        ->where('sells.gender_trade', '=', $buyer->gender)
+                        ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
                         ->select('users.*','sells.*')
                         ->get();
                        // print_r($data_seller);
@@ -142,13 +147,13 @@ class buyController extends Controller
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type,'users.gender'=> $data_buy->gender_trade])
                         ->where('sells.id_user', '<>', $data_buy->id_user)
+                        ->where('sells.gender_trade', '=', $buyer->gender)
+                        ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
                         ->select('users.*','sells.*')
                         ->get();
                         //print_r($data_seller);
                         
         }
-        //print_r($data_seller);
-        //exit();
         $location[0]= array(
             '0'=> $buyer->latitude,
             '1'=> $buyer->longitude,
@@ -190,6 +195,17 @@ class buyController extends Controller
                 //print_r('<br>');
                 //print_r($morning_b);
                 /*calculate */
+                if($x->morning == 3){
+                    $duration_name = 'เช้า';
+                }else if($x->noon == 3){
+                    $duration_name = 'กลางวัน';
+                }else if($x->afternoon == 3){
+                    $duration_name = 'บ่าย';
+                }else if($x->evening == 3){
+                    $duration_name = 'เย็น';
+                }else if($x->night == 3){
+                    $duration_name = 'กลางคืน';
+                }
                 $cal_bdots = ( $morning_b* $morning_s)+($noon_b*$noon_s)+($afternoon_b*$afternoon_s)+($evening_b*$evening_s)+($night_b*$night_s)+($volume_b*$volume_s)+($price_b*$price_s)+($rating_b*$rating_s);
                 $cal_bs = sqrt(pow($morning_b,2)+pow($noon_b,2)+pow($afternoon_b,2)+pow($evening_b,2)+pow($night_b,2)+pow($volume_b,2)+pow($price_b,2)+pow($rating_b,2)) * sqrt(pow($morning_s,2)+pow($noon_s,2)+pow($afternoon_s,2)+pow($evening_s,2)+pow($night_s,2)+pow($volume_s,2)+pow($price_s,2)+pow($rating_s,2));
                 $cal = $cal_bdots / $cal_bs;
@@ -206,6 +222,7 @@ class buyController extends Controller
                         'sub_type' => $x->sub_type,
                         'gender_trade' => $x->gender_trade,
                         'volume' => $x->volume,
+                        'duration_name'=> $duration_name,
                         'price' => $x->price,
                         'image' => $x->image,
                         'name_product' => $x->name_product,
@@ -237,12 +254,14 @@ class buyController extends Controller
          //exit();
          //print_r($id_sl);
          //exit();
+         if(!empty($sell)){
          foreach ($sell as $key => $row) {
             $cal_[$key]  = $row['cal'];
             //print_r($cal_[$key]);
             //exit();
         }
-         array_multisort($cal_, SORT_DESC, $sell);
+        array_multisort($cal_, SORT_DESC, $sell);
+    }
          //print_r('------------------ Result ---------------'.'<br>');
          //print_r($sell);
         // foreach($sell as $aa){
@@ -250,6 +269,8 @@ class buyController extends Controller
         //}
          //exit();
          $data_own = array(
+            'id_user'=> $buyer->id,
+            'id_product'=>$data_buy->id,
             'name' => $buyer->name,
             'name_product'=>$data_buy->name_product,
             'tel' =>$buyer->tel,
@@ -266,8 +287,6 @@ class buyController extends Controller
             'rating' => $buyer->rating
          );
         
-        //print_r($sell_location);
-        //exit();
     
         return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own,'location'=>$location,'location_end'=>$location_end]);
      
