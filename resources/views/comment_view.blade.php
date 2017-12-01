@@ -65,7 +65,7 @@
             <div class="box-footer" >
               <form action="/addcomment" method="post">
               {{ csrf_field() }}
-                <input name="id_notify" type="hidden" value="<?php if($data['id'] != 0){ echo $data->id; }?>">
+                <input name="id_notify" type="hidden" value="<?php if($data_01['id'] != 0){ echo $data->id; }?>">
                 <input name="id_user_commened" type="hidden" value="<?php echo $send_id_user;?>">
                 <input name="id_commenter" type="hidden" value="<?php echo Auth::user()->id;?>">
                 <img class="img-responsive img-circle img-md" src="/bower_components/AdminLTE/dist/img/user4-128x128.jpg" alt="Alt Text">
@@ -76,15 +76,15 @@
                         <lable>RATING<i class="fa fa-star text-yellow"></i></lable>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" name="rating" class="form-control input-sm" placeholder="Press enter to post comment" <?php if($data['id'] == 0){ echo 'disabled'; } ?>>
+                        <input type="text" name="rating" class="form-control input-sm" placeholder="Press enter to post comment" <?php if($data_01['id'] == 0){ echo 'disabled'; } ?>>
                     </div>
                     </div>
                     <div class="row">
                     <div class="col-md-10">
-                        <input type="text" name="comment" class="form-control input-sm" placeholder="Press enter to post comment" <?php if($data['id'] == 0){ echo 'disabled'; } ?>>
+                        <input type="text" name="comment" class="form-control input-sm" placeholder="Press enter to post comment" <?php if($data_01['id'] == 0){ echo 'disabled'; } ?>>
                     </div>
                     <div class="col-md-2 ">
-                        <button type="submit" class="btn btn-flat btn-primary btn-block" <?php if($data['id'] == 0){ echo 'disabled'; } ?>>POST</button>
+                        <button type="submit" class="btn btn-flat btn-primary btn-block" <?php if($data_01['id'] == 0){ echo 'disabled'; } ?>>POST</button>
                     </div>
                     </div>
                 </div>

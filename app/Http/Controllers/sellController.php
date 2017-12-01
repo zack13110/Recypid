@@ -78,6 +78,18 @@ class sellController extends Controller
                 $volume = $data->input('volume');
                 $price = $data->input('price');
                 $image = 'default';
+                $img = $data->file('image');
+                if(!empty($img)){
+                
+                $getImgName = $img->getClientOriginalName();
+                $imgType = pathinfo($getImgName, PATHINFO_EXTENSION);
+                $getCTime = new \DateTime();
+                $imgName = $getCTime->format('YmdHis');
+                $path = 'images';
+                $img->move($path,$imgName.'.'.$imgType);
+                $image = $imgName.'.'.$imgType;
+                    
+                }
                 $name_product = $data->input('name_product');
                 $desc = $data->input('desc');
                 $additem = DB::table('sells')
@@ -129,8 +141,7 @@ class sellController extends Controller
                                 ->join('users', 'buys.id_user','=','users.id')
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type])
                                 ->where('buys.id_user', '<>', $data_sell->id_user)
-                                ->where('buys.gender_trade', '=', $seller->gender)
-                                ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
+                                ->whereIn('buys.gender_trade', [$seller->gender,'ทั้งหมด'])
                                 ->select('users.*','buys.*')
                                 ->get();
                                // print_r($data_seller);
@@ -142,7 +153,7 @@ class sellController extends Controller
                                 ->where(['buys.type'=> $data_sell->type,'buys.sub_type'=> $data_sell->sub_type,'users.gender'=> $data_sell->gender_trade])
                                 ->where('buys.id_user', '<>', $data_sell->id_user)
                                 ->where('buys.gender_trade', '=', $seller->gender)
-                                ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
+                                ->whereIn('buys.gender_trade', [$seller->gender,'ทั้งหมด'])
                                 ->select('users.*','buys.*')
                                 ->get();
                                 //print_r($data_seller);
@@ -271,7 +282,8 @@ class sellController extends Controller
                     'latitude' => $seller->latitude,
                     'longitude' => $seller->longitude,
                     'avatar'=> $seller->avatar,
-                    'rating' => $seller->rating
+                    'rating' => $seller->rating,
+                    'image' => $data_sell->image,
                  );
             return view('post_view',['db_buy'=> $buy, 'data_owner' => $data_own,'location'=>$location,'location_end'=>$location_end]);
         }
