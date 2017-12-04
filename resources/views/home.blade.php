@@ -357,8 +357,10 @@ foreach($db_sell as $x)
         <div class="box box-danger" >
           <div class="box box-widget widget-user box_sell">
           <div class="box-tools pull-right">
-          <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal2" data-whatever="'.$x["id"].'"><i class="fa fa-times"></i></button>
-        </div>
+          <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal" data-whatever="'.$x["id"].'"><i class="fa fa-edit"></i></button>
+          <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal2" data-whatever="'.$x["id"].'"><i class="fa fa-remove"></i></button>
+          
+          </div>
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-sell2" >
             
@@ -443,6 +445,7 @@ foreach($db_buy as $x)
           <div class="box box-widget widget-user box_buy">
           <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal" data-whatever="'.$x["id"].'"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal" data-whatever="'.$x["id"].'"><i class="fa fa-edit"></i></button>
               </div>
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-buy2">
