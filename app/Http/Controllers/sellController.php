@@ -13,6 +13,12 @@ class sellController extends Controller
     {
         $this->middleware('auth');
     }
+    public function delete(Request $data)
+    {
+        $id = $data->input('id_product');
+        DB::table('sells')->where('id', '=', $id)->delete();
+        return redirect('home');
+    }
     public function sell(Request $data)
     
         {

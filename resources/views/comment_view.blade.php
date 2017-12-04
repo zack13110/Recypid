@@ -76,7 +76,13 @@
                         <lable>RATING<i class="fa fa-star text-yellow"></i></lable>
                     </div>
                     <div class="col-md-8">
-                        <input type="text" name="rating" class="form-control input-sm" placeholder="Press enter to post comment" <?php if($data['id'] == 0){ echo 'disabled'; } ?>>
+                      <select type="text" name="rating" class="form-control input-sm" <?php if($data['id'] == 0){ echo 'disabled'; } ?>>
+                        <option value="5">5</option>
+                        <option value="4">4</option>
+                        <option value="3">3</option>
+                        <option value="2">2</option>
+                        <option value="1">1</option>
+                      </select>
                     </div>
                     </div>
                     <div class="row">
