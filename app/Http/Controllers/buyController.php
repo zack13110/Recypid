@@ -14,7 +14,13 @@ class buyController extends Controller
     {
         $this->middleware('auth');
     }
-    
+    public function delete(Request $data)
+    {
+        $id = $data->input('id_product');
+        DB::table('buys')->where('id', '=', $id)->delete();
+        return redirect('home');
+    }
+
     public function buy(Request $data)
     {
         

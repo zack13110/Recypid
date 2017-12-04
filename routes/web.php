@@ -34,4 +34,7 @@ Route::post('/addcomment', 'CommentController@commentpost');
 Route::get('/notify/{id}', 'CommentController@senddatauser');
 Route::get('/user/{id}', 'CommentController@viewcomment');
 Route::get('/map', 'googlemapAPIController@index');
+Route::post('/buy/delete', 'buyController@delete');
+Route::post('/sell/delete', 'sellController@delete');
+
 

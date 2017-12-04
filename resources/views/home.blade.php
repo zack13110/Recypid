@@ -356,8 +356,12 @@ foreach($db_sell as $x)
       <!-- *****************sell************* -->
         <div class="box box-danger" >
           <div class="box box-widget widget-user box_sell">
+          <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal2" data-whatever="'.$x["id"].'"><i class="fa fa-times"></i></button>
+        </div>
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-sell2" >
+            
               <h3 class="widget-user-username"><span class="pull-right badge bg-red badge_sell">SELL</span></h3>
               <h5 class="widget-user-desc">'.$x["name"].'</h5>
             </div>
@@ -424,6 +428,7 @@ $count_sell++;
     </div>
 </div>
 <?php 
+
 if($vol_buy !=0){
 
 if($count_buy%3==0) 
@@ -437,7 +442,7 @@ foreach($db_buy as $x)
         <div class="box box-success">
           <div class="box box-widget widget-user box_buy">
           <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fa fa-times"></i></button>
+                <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal" data-whatever="'.$x["id"].'"><i class="fa fa-times"></i></button>
               </div>
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-buy2">
@@ -501,29 +506,50 @@ $count_buy++;
 </div>
 
 
-<!--box-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-  <div class="modal-dialog" role="document">
+<!--modal delele for buy-->
+<div class="modal fade bs-example-modal-sm" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="control-label">Recipient:</label>
-            <input type="text" class="form-control" id="recipient-name">
+      <div class="modal-footer">
+      <form action="/buy/delete" method="post">
+      {{ csrf_field() }}
+            <input type="hidden" class="form-control" name="id_product" id="id_product" value="">
+          <div class="form-group pull-left col-md-6">
+              <button type="submit" class="btn btn-success btn-block btn-flat">ใช่</button>
           </div>
-          <div class="form-group">
-            <label for="message-text" class="control-label">Message:</label>
-            <textarea class="form-control" id="message-text"></textarea>
+          <div class="form-group pull-right col-md-6">
+          <button type="button" class="btn btn-danger btn-block btn-flat" data-dismiss="modal">ไม่</button>
           </div>
         </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!--modal delele for sell-->
+<div class="modal fade bs-example-modal-sm" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Send message</button>
+      <form action="/sell/delete" method="post">
+      {{ csrf_field() }}
+            <input type="hidden" class="form-control" name="id_product" id="id_product" value="">
+          <div class="form-group pull-left col-md-6">
+              <button type="submit" class="btn btn-success btn-block btn-flat">ใช่</button>
+          </div>
+          <div class="form-group pull-right col-md-6">
+          <button type="button" class="btn btn-danger btn-block btn-flat" data-dismiss="modal">ไม่</button>
+          </div>
+        </form>
+
       </div>
     </div>
   </div>
