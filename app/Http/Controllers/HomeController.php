@@ -37,9 +37,8 @@ class HomeController extends Controller
                 ->join('users', 'sells.id_user','=','users.id')
                 ->where(['sells.type'=> $b->type,'sells.sub_type'=> $b->sub_type])
                 ->where('sells.id_user', '<>', $b->id_user)
-                ->where('sells.gender_trade', '=', $gender_x)
-                ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
-                ->select('sells.*','users.*')
+                ->whereIn('sells.gender_trade', [$buyer->gender,'ทั้งหมด'])
+                ->select('users.*','sells.*')
                 ->get();
                            // print_r($data_seller);
             }
@@ -49,9 +48,9 @@ class HomeController extends Controller
                 ->join('users', 'sells.id_user','=','users.id')
                 ->where(['sells.type'=> $b->type,'sells.sub_type'=> $b->sub_type,'users.gender'=> $b->gender_trade])
                 ->where('sells.id_user', '<>', $b->id_user)
-                ->where('sells.gender_trade', '=', $gender_x)
-                ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
-                ->select('sells.*','users.*')
+                ->where('sells.gender_trade', '=', $buyer->gender)
+                ->whereIn('sells.gender_trade', [$buyer->gender,'ทั้งหมด'])
+                ->select('users.*','sells.*')
                 ->get();
                             //print_r($data_seller);
                 
@@ -149,9 +148,8 @@ class HomeController extends Controller
            ->join('users', 'buys.id_user','=','users.id')
            ->where(['buys.type'=> $b->type,'buys.sub_type'=> $b->sub_type])
            ->where('buys.id_user', '<>', $b->id_user)
-           ->where('buys.gender_trade', '=', $gender_x)
-           ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
-           ->select('buys.*','users.*')
+           ->whereIn('buys.gender_trade', [$seller->gender,'ทั้งหมด'])
+           ->select('users.*','buys.*')
            ->get();
                       // print_r($data_seller);
        }
@@ -161,9 +159,9 @@ class HomeController extends Controller
            ->join('users', 'buys.id_user','=','users.id')
            ->where(['buys.type'=> $b->type,'buys.sub_type'=> $b->sub_type,'users.gender'=> $b->gender_trade])
            ->where('buys.id_user', '<>', $b->id_user)
-           ->where('buys.gender_trade', '=', $gender_x)
-           ->orwhere('buys.gender_trade', '=', 'ทั้งหมด')
-           ->select('buys.*','users.*')
+           ->where('buys.gender_trade', '=', $seller->gender)
+           ->whereIn('buys.gender_trade', [$seller->gender,'ทั้งหมด'])
+           ->select('users.*','buys.*')
            ->get();
                        //print_r($data_seller);
            

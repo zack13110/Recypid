@@ -62,9 +62,21 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
     protected function create(array $data)
     {
-        return User::create([
+        $img = $data['avatar'];
+        if(!empty($img)){
+            $getImgName = $img->getClientOriginalName();
+            $imgType = pathinfo($getImgName, PATHINFO_EXTENSION);
+            $getCTime = new \DateTime();
+            $imgName = $getCTime->format('YmdHis');
+            $path = 'avatars';
+            $img->move($path,$imgName.'.'.$imgType);
+            $image = $imgName.'.'.$imgType;
+        }
+        return 
+            User::create([
             'name' => $data['name'],
             'sub_name' => $data['sub_name'],
             'email' => $data['email'],
@@ -73,7 +85,7 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
             'latitude' => $data['latitude'],
             'longitude' => $data['longitude'],
-            'avatar' => $data['avatar'],
+            'avatar' => $image,
             'rating' => $data['rating'],
         ]);
     }

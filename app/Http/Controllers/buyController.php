@@ -22,7 +22,6 @@ class buyController extends Controller
     }
 
     public function buy(Request $data)
-    
     {
         
         //--------------------validation---------------//
@@ -32,7 +31,7 @@ class buyController extends Controller
         //sprint_r($data->all());
         //exit();
         if($name == "" || $sub_type == "" || $price == ""||$volume = ""){
-        $error = "--------------------------";
+        $error = "-------------";
             return redirect()->back()->with('error'. $error);
             exit();
         }
@@ -87,11 +86,8 @@ class buyController extends Controller
         $volume = $data->input('volume');
         $price = $data->input('price');
         $image = 'default';
-
         $img = $data->file('image');
-
         if(!empty($img)){
-
         
         $getImgName = $img->getClientOriginalName();
         $imgType = pathinfo($getImgName, PATHINFO_EXTENSION);
@@ -156,8 +152,7 @@ class buyController extends Controller
                         ->join('users', 'sells.id_user','=','users.id')
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type])
                         ->where('sells.id_user', '<>', $data_buy->id_user)
-                        ->where('sells.gender_trade', '=', $buyer->gender)
-                        ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
+                        ->whereIn('sells.gender_trade', [$buyer->gender,'ทั้งหมด'])
                         ->select('users.*','sells.*')
                         ->get();
                        // print_r($data_seller);
@@ -169,9 +164,10 @@ class buyController extends Controller
                         ->where(['sells.type'=> $data_buy->type,'sells.sub_type'=> $data_buy->sub_type,'users.gender'=> $data_buy->gender_trade])
                         ->where('sells.id_user', '<>', $data_buy->id_user)
                         ->where('sells.gender_trade', '=', $buyer->gender)
-                        ->orwhere('sells.gender_trade', '=', 'ทั้งหมด')
+                        ->whereIn('sells.gender_trade', [$buyer->gender,'ทั้งหมด'])
                         ->select('users.*','sells.*')
                         ->get();
+                        
                         //print_r($data_seller);
                         
         }
@@ -181,6 +177,8 @@ class buyController extends Controller
             '2'=> $buyer->name
         );
         //print_r('--------------- Result After filter ---------------'.'<br>');
+        //print_r($data_seller);
+        //exit();
          foreach ($data_seller as $x){
              //calculate distance around area
              $lati_own =  $buyer->latitude;
@@ -305,7 +303,8 @@ class buyController extends Controller
             'latitude' => $buyer->latitude,
             'longitude' => $buyer->longitude,
             'avatar'=> $buyer->avatar,
-            'rating' => $buyer->rating
+            'rating' => $buyer->rating,
+            'image' => $data_buy->image
          );
         
     
