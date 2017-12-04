@@ -147,13 +147,17 @@ foreach($notify_data as $a){
         </nav>
 
         @yield('content')
-    </div>
 
+    </div>
+    
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    
+</body>
+<script src="{{ asset('js/app.js') }}"></script>
     @yield('googlemap')
     
    
     <script src="/js/googlemap.js"></script>
-</body>
+    @yield('java_s')
+    @include('including/linkjs')
 </html>
