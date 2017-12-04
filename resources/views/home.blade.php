@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="container a">
   <div class="row testclass">
 
 <?php
@@ -24,7 +24,7 @@ else{
   $vol_sell=0;
 }
 ?>
-  </div>
+
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
     <!-- Widget: user widget style 1 -->
@@ -90,9 +90,10 @@ else{
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">ตั้งขาย</h4>
                 </div>
-                <div class="modal-body">
                 <form action="/sell" name="sell_post" id="sell_post" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <div class="modal-body">
+                
                 <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
                 <div class="row form-group">
                   <div class="col-md-4">
@@ -219,9 +220,10 @@ else{
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">ตั้งซื้อ</h4>
               </div>
-              <div class="modal-body">
               <form action="/buy" name="buy_post" id="buy_post" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
+              <div class="modal-body">
+              
               <input type="hidden" name="id_user" id="id_user" value="{{ ucfirst(Auth::user()->id) }}"/>
               <div class="row form-group">
                 <div class="col-md-4">
@@ -436,6 +438,9 @@ foreach($db_buy as $x)
       <!-- *****************BUY************* -->
         <div class="box box-success">
           <div class="box box-widget widget-user box_buy">
+          <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool"  data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap"><i class="fa fa-times"></i></button>
+              </div>
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-buy2">
               <h3 class="widget-user-username"><span class="pull-right badge bg-green badge_buy">BUY</span></h3>
@@ -493,8 +498,36 @@ $count_buy++;
 ?>
 
 </div>
+</div>
+</div>
+</div>
 
 
 <!--box-->
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">New message</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="control-label">Recipient:</label>
+            <input type="text" class="form-control" id="recipient-name">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="control-label">Message:</label>
+            <textarea class="form-control" id="message-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
 @endsection

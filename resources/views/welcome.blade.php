@@ -17,4 +17,5 @@
 
     @include('including/linkjs')
     </body>
+    @yield('java_s')
 </html>

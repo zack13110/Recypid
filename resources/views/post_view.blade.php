@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('content')
 
 <?php
 
@@ -429,7 +430,8 @@ if($numbers_sell >=1){
 
 			</div>
 			<div class="padding"></div>
-			@endsection @section('googlemap')
+			@endsection 
+        @section('googlemap')
 			<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOu-BjBwPObD2LS7AjqxkcQ_tt_zQ9A10&libraries=places&callback=initialize"></script>
 			<script>
 				var mylocation = <?php echo json_encode($myVarValue); ?>;
@@ -537,4 +539,4 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay,start,end
   }
 window.onload = initialize;
 			</script>
-			@endsection
+@endsection
