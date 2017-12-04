@@ -16,7 +16,6 @@ class buyController extends Controller
     }
     
     public function buy(Request $data)
-    
     {
         
         //--------------------validation---------------//
@@ -26,7 +25,7 @@ class buyController extends Controller
         //sprint_r($data->all());
         //exit();
         if($name == "" || $sub_type == "" || $price == ""||$volume = ""){
-        $error = "--------------------------";
+        $error = "-------------";
             return redirect()->back()->with('error'. $error);
             exit();
         }

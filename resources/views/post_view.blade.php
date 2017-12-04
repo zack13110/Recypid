@@ -86,7 +86,7 @@
 						<!-- Add the bg color to the header using any of the bg-* classes -->
 						<div class="widget-user-header <?php echo $bg_owner?>">
 							<div class="widget-user-image">
-								<img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar">
+								<img class="img-circle" src="/avatars/{{ ucfirst(Auth::user()->avatar) }}" alt="User Avatar">
 							</div>
 							<!-- /.widget-user-image -->
 							<h3 class="widget-user-username">
@@ -204,7 +204,7 @@ if($numbers_buy >=1){
                   </div>
                   <!-- /.tab-pane -->
                   <div class="tab-pane" id="tab_2_user_'.$count_buy.'">
-                  <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
+                  <img class="img-responsive pad" src="/images/'.$key['image'].'" alt="Photo">
                   </div>
                   <!-- /.tab-pane -->
 
@@ -269,7 +269,7 @@ if($numbers_buy >=1){
             <a data-toggle="modal" data-target="#modal_buyer_'.$count_buy.'">
           <div class="box_info bg-red user_info_box  clearfix">
             <div class="pull-right">
-            <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
+            <span class="info-box-icon"><img class="img-circle" src="/avatars/'.$key['avatar'].'" alt="User Avatar"></span>
             </div>
             <div class="info_box_content ">
             <div class="pull-left width35">
@@ -333,7 +333,7 @@ if($numbers_sell >=1){
                   
                   <!-- /.tab-pane -->
                  <div class="tab-pane" id="tab_2_user_'.$count_sell.'">
-                    <img class="img-responsive pad" src="/bower_components/AdminLTE/dist/img/photo2.png" alt="Photo">
+                    <img class="img-responsive pad" src="/images/'.$key['image'].'" alt="Photo">
                   </div>
                   <!-- /.tab-pane -->
 
@@ -398,7 +398,7 @@ if($numbers_sell >=1){
             <a data-toggle="modal" data-target="#modal_seller_'.$count_sell.'">
           <div class="box_info bg-red user_info_box  clearfix">
             <div class="pull-right">
-            <span class="info-box-icon"><img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar"></span>
+            <span class="info-box-icon"><img class="img-circle" src="/avatars/'.$key['avatar'].'" alt="User Avatar"></span>
             </div>
             <div class="info_box_content ">
             <div class="pull-left width35">

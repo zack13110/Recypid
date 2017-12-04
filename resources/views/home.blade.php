@@ -2,10 +2,8 @@
 @extends('layouts.app')
 @section('content')
 
-
 <div class="container">
   <div class="row testclass">
-
 <?php
 if(count($db_buy) != 0){
 $vol_buy = count($db_buy);
@@ -35,7 +33,7 @@ else{
         <span><h4 class="widget-user-desc"><b>Contract :</b> {{ ucfirst(Auth::user()->tel) }}</h4></span>
       </div>
       <div class="widget-user-image">
-        <img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar">
+        <img class="img-circle" src="/avatars/{{ ucfirst(Auth::user()->avatar) }}" alt="User Avatar">
       </div>
       <div class="box-footer">
         <div class="row">

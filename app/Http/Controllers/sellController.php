@@ -25,7 +25,7 @@ class sellController extends Controller
         //print_r($name);
         //exit();
         if($name == "" || $sub_type == "" || $price == "" ||$volume = ""){
-            $error = "--------------------------";
+            $error = "---------------";
                 return redirect()->back()->with('error'. $error);
                 
             }
