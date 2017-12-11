@@ -19,7 +19,7 @@
             <!-- /.col -->
             <div class="col-sm-12">
               <div class="description-block">
-                <h5 class="description-header">{{$data_sent_user->rating}}</h5>
+                <h5 class="description-header">{{$rating_data_user_was_commented}}</h5>
                 <span class="description-text">RATING</span>
               </div>
               <!-- /.description-block -->
@@ -73,11 +73,11 @@
                 <div class="img-push">
                     <div class="row">
                     <div class="col-md-2" style="text-align: center;font-size: 15px;">
-                        <lable>RATING<i class="fa fa-star text-yellow"></i></lable>
+                        <lable>RATING<i class="fa fa-star text-yellow"></i></lable> 
                     </div>
                     <div class="col-md-8">
 
-                      <select type="text" name="rating" class="form-control input-sm" <?php if($data['id'] == 0){ echo 'disabled'; } ?>>
+                      <select type="text" name="rating" class="form-control input-sm" <?php if(!isset($data->id) ){ echo 'disabled'; } ?>>
                         <option value="5">5</option>
                         <option value="4">4</option>
                         <option value="3">3</option>
