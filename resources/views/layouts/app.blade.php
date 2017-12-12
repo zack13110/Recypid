@@ -145,9 +145,9 @@ foreach($notify_data as $a){
                 </div>
             </div>
         </nav>
-
+ <!--///////////////////////////////////////////////-->
         @yield('content')
-
+ <!--///////////////////////////////////////////////-->
     </div>
     
     <!-- Scripts -->
@@ -159,5 +159,4 @@ foreach($notify_data as $a){
    
     <script src="/js/googlemap.js"></script>
     @yield('java_s')
-    @include('including/linkjs')
 </html>

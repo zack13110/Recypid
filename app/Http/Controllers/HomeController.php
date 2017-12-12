@@ -31,6 +31,18 @@ class HomeController extends Controller
             $type_x = $b->type;
             $sub_type_x = $b->sub_type;
             $gender_x = Auth::user()->gender;
+            $duration_name = '';
+            if($b->morning == 3){
+                $duration_name = 'เช้า';
+            }else if($b->noon == 3){
+                $duration_name = 'กลางวัน';
+            }else if($b->afternoon == 3){
+                $duration_name = 'บ่าย';
+            }else if($b->evening == 3){
+                $duration_name = 'เย็น';
+            }else if($b->night == 3){
+                $duration_name = 'กลางคืน';
+            }
             if($b->gender_trade == 'ทั้งหมด')
             {
                 $data_seller = DB::table('sells')
@@ -127,6 +139,9 @@ class HomeController extends Controller
         "sub_type" => $b->sub_type,
         "volume" => $b->volume,
         "price" => $b->price,
+        "gender" => $b->gender_trade,
+        "desc" =>  $b->desc, 
+        "duration_name" => $duration_name, 
         "countmatching" => $countmatching_,
         "date" => $b->created_at,
         );    
@@ -142,6 +157,18 @@ class HomeController extends Controller
        $type_x = $b->type;
        $sub_type_x = $b->sub_type;
        $gender_x = Auth::user()->gender;
+       $duration_name = '';
+       if($b->morning == 3){
+           $duration_name = 'เช้า';
+       }else if($b->noon == 3){
+           $duration_name = 'กลางวัน';
+       }else if($b->afternoon == 3){
+           $duration_name = 'บ่าย';
+       }else if($b->evening == 3){
+           $duration_name = 'เย็น';
+       }else if($b->night == 3){
+           $duration_name = 'กลางคืน';
+       }
        if($b->gender_trade == 'ทั้งหมด')
        {
            $data_buyer = DB::table('buys')
@@ -232,14 +259,17 @@ class HomeController extends Controller
   }
 
   $sell[] = array(
-   "id" => $b->id,
-   "name" => $b->name_product,  
-   "type" => $b->type,
-   "sub_type" => $b->sub_type,
-   "volume" => $b->volume,
-   "price" => $b->price,
-   "countmatching" => $countmatching_,
-   "date" => $b->created_at,
+    "id" => $b->id,
+    "name" => $b->name_product,  
+    "type" => $b->type,
+    "sub_type" => $b->sub_type,
+    "volume" => $b->volume,
+    "price" => $b->price,
+    "gender" => $b->gender_trade,
+    "desc" =>  $b->desc, 
+    "duration_name" => $duration_name, 
+    "countmatching" => $countmatching_,
+    "date" => $b->created_at,
    );    
 }
 

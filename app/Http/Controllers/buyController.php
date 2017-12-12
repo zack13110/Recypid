@@ -311,4 +311,104 @@ class buyController extends Controller
         return view('post_view',['db_sell'=> $sell, 'data_owner' => $data_own,'location'=>$location,'location_end'=>$location_end]);
      
     }
+    public function update(Request $data)
+    {
+        $id_product= $data->input('id_product');
+        $name = $data->input('name_product');
+        $sub_type = $data->input('sub_type');
+        $price = $data->input('price');
+
+        if($name == "" || $sub_type == "" || $price == "" ||$volume = ""){
+            $error = "---------------";
+                return redirect()->back()->with('error'. $error);
+                
+            }
+            else
+            {
+                $id_user = $data->input('id_user');
+                $type = $data->input('type');
+                $sub_type = $data->input('sub_type');
+                $gender_trade = $data->input('gender_trade');
+                $time_duration = $data->input('time');
+                if($time_duration == 'เช้า'){
+                    $morning = 3;
+                    $noon = 1;
+                    $afternoon=0;
+                    $evening =0;
+                    $night = 0;
+                }
+                else if ($time_duration == 'กลางวัน') 
+                {
+                    $morning = 1;
+                    $noon = 3;
+                    $afternoon=1;
+                    $evening =0;
+                    $night = 0;
+                }
+                else if ($time_duration == 'บ่าย') 
+                {
+                    $morning = 0;
+                    $noon = 1;
+                    $afternoon=3;
+                    $evening =1;
+                    $night = 0;
+                }
+                else if ($time_duration == 'เย็น') 
+                {
+                    $morning = 0;
+                    $noon = 0;
+                    $afternoon=1;
+                    $evening =3;
+                    $night = 1;
+                }
+                else if ($time_duration == 'กลางคืน') 
+                {
+                    $morning = 0;
+                    $noon = 0;
+                    $afternoon=0;
+                    $evening =1;
+                    $night = 3;
+                }
+                $volume = $data->input('volume');
+                $price = $data->input('price');
+                $image = 'default';
+                $img = $data->file('image');
+                if(!empty($img)){
+                
+                $getImgName = $img->getClientOriginalName();
+                $imgType = pathinfo($getImgName, PATHINFO_EXTENSION);
+                $getCTime = new \DateTime();
+                $imgName = $getCTime->format('YmdHis');
+                $path = 'images';
+                $img->move($path,$imgName.'.'.$imgType);
+                $image = $imgName.'.'.$imgType;
+                    
+                }
+                $name_product = $data->input('name_product');
+                $desc = $data->input('desc');
+                $additem = DB::table('buys')
+                ->where(['id'=>$id_product])
+                ->update(array(
+                    'type' => $type,
+                    'sub_type'=> $sub_type,
+                    'gender_trade'      => $gender_trade,
+                    'morning'=> $morning,
+                    'noon' => $noon,
+                    'afternoon' => $afternoon,
+                    'evening' =>  $evening,
+                    'night' => $night,
+                    'volume' => $volume,
+                    'price' => $price,
+                    'image' => $image,
+                    'name_product' => $name_product,
+                    'desc' => $desc,
+                    'updated_at' =>  new \DateTime()
+                ));
+
+                //exit();
+                return redirect()->action(
+                    'buyController@show', ['id' => $id_product]
+                );
+    }
+    }
 }

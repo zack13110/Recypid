@@ -36,6 +36,7 @@ class CommentController extends Controller
         $id_user = Auth::user()->id;
         $comment = array();
         $data_sent_user = array();
+        
         if($id_user == $notify->id_user_A)
         {
             $send_id_user = $notify->id_user_B;
@@ -44,6 +45,8 @@ class CommentController extends Controller
         {
             $send_id_user = $notify->id_user_A;
         }
+        $rating_data_user_was_commented = DB::table('users')->where( ['id'=> $send_id_user])->first()->rating;
+
         $data = $notify;
         $data_01 = array('id' =>  $send_id_user );
         $data_sent_user = DB::table('users')->where( ['id'=> $send_id_user])->first();
@@ -52,14 +55,17 @@ class CommentController extends Controller
                     ->select('comments.*','users.name','users.sub_name','users.name','users.avatar')
                     ->orderBy('created_at', 'desc')->get();
 
-        return view('comment_view',['data_sent_user'=> $data_sent_user,'comment'=> $comment,'data'=> $data,'data_01'=> $data_01, 'send_id_user'=>$send_id_user]);
+        return view('comment_view',['data_sent_user'=> $data_sent_user,'comment'=> $comment,'data'=> $data,'data_01'=> $data_01, 'send_id_user'=>$send_id_user,'rating_data_user_was_commented'=>$rating_data_user_was_commented]);
     }
     public function commentpost(Request $request){
+        
         $id_notify = $request->input('id_notify');
         $rating = $request->input('rating');
         $comment = $request->input('comment');
         $id_commenter = $request->input('id_commenter');
         $id_user_commened = $request->input('id_user_commened');
+        $data_user_was_commented = DB::table('users')->where( ['id'=> $id_user_commened])->first()->rating;
+        
         $confirm_auth = DB::table('notify')
         ->where(['id'=> $id_notify])
         ->first();
@@ -99,13 +105,28 @@ class CommentController extends Controller
             }
             DB::table('notify')->where('id', '=', $id_notify)->delete();
         }
-        //exit();
+        $cal_rating = DB::table('comments')->where( ['id_main_user'=> $id_user_commened])->get();
+       
+        $count_row = 1;
+        $rating = 5;
+        foreach($cal_rating as $data)
+        {
+            $rating = $rating + $data->rating;
+            $count_row++;  
+        }
+        $rating_real = ($rating/ $count_row);
+
+        $test = DB::table('users')
+        ->where(['id' => $id_user_commened])
+        ->update(['rating' => $rating_real]);
+
         return redirect("user/".$id_user_commened);
     }
     public function viewcomment($id){
         $id_user = Auth::user()->id;
         $comment = array();
         $data_sent_user = array();
+        $rating_data_user_was_commented = DB::table('users')->where( ['id'=> $id])->first()->rating;
 
         $send_id_user = $id;
         $data_01= array('id' => 0);
@@ -115,6 +136,6 @@ class CommentController extends Controller
                     ->select('comments.*','users.name','users.sub_name','users.name','users.avatar')
                     ->orderBy('created_at', 'desc')->get();
 
-        return view('comment_view',['data_sent_user'=> $data_sent_user,'comment'=> $comment,'data_01'=>$data_01, 'send_id_user'=>$send_id_user]);
+        return view('comment_view',['data_sent_user'=> $data_sent_user,'comment'=> $comment,'data_01'=>$data_01, 'send_id_user'=>$send_id_user,'rating_data_user_was_commented'=>$rating_data_user_was_commented]);
     }
 }
