@@ -12,7 +12,7 @@
           <span><h4 class="widget-user-desc"><b>Contract :</b> {{ ucfirst($data_sent_user->tel) }}</h4></span>
         </div>
         <div class="widget-user-image">
-          <img class="img-circle" src="/bower_components/AdminLTE/dist/img/User_Circle.png" alt="User Avatar">
+          <img class="img-circle" src="/avatars/{{ ucfirst($data_sent_user->avatar) }}" alt="User Avatar">
         </div>
         <div class="box-footer">
           <div class="row">
@@ -44,7 +44,7 @@
     @foreach ($comment as $comment)
               <div class="box-comment">
                 <!-- User image -->
-                <img class="img-circle img-md" src="/bower_components/AdminLTE/dist/img/user3-128x128.jpg" alt="User Image">
+                <img class="img-circle img-md" src="/avatars/{{ ucfirst($comment->avatar) }}" alt="User Image">
 
                 <div class="comment-text">
                       <span class="username">
@@ -68,7 +68,7 @@
                 <input name="id_notify" type="hidden" value="<?php if($data_01['id'] != 0){ echo $data->id; }?>">
                 <input name="id_user_commened" type="hidden" value="<?php echo $send_id_user;?>">
                 <input name="id_commenter" type="hidden" value="<?php echo Auth::user()->id;?>">
-                <img class="img-responsive img-circle img-md" src="/bower_components/AdminLTE/dist/img/user4-128x128.jpg" alt="Alt Text">
+                <img class="img-responsive img-circle img-md" src="/avatars/{{ ucfirst(Auth::user()->avatar) }}" alt="Alt Text">
                 <!-- .img-push is used to add margin to elements next to floating images -->
                 <div class="img-push">
                     <div class="row">
